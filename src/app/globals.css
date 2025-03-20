@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Ownglyph_wiseelist-Rg";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2501-1@1.1/Ownglyph_wiseelist-Rg.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "iceJaram-Rg";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceJaram-Rg.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  .iceJaram-Rg {
+    font-family: "iceJaram-Rg", cursive;
+  }
+}
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f9f8f3;
+    --foreground: #ededed;
+  }
+}
+
+/* 모든 요소와 가상 요소(before, after)까지 border-box 적용 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 크롬, 사파리 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 파이어폭스 */
+html {
+  scrollbar-width: none;
+}
+
+/* IE, 엣지 */
+body {
+  -ms-overflow-style: none;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Pretendard", sans-serif;
+}
+
+/* ✅ 온보딩 Swiper 전용 스타일 */
+
+.onboarding-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e5e5ea !important;
+  opacity: 1;
+}
+
+.onboarding-swiper .swiper-pagination-bullet-active {
+  background-color: #ff6365 !important;
+}
+
+/* 페이지네이션 위치 커스텀 (온보딩) */
+.onboarding-swiper .swiper-pagination {
+  position: absolute;
+  top: 123px !important; /* top-[123px] */
+  left: 23px !important;
+  width: auto !important; /* 너비를 auto로 설정 */
+  z-index: 10;
+}
+
+.pagination-placeholder {
+  height: 20px;
+}
+
+/* ✅ SelectBird Swiper 전용 스타일 */
+.select-bird-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e5e5ea !important;
+  opacity: 1;
+}
+
+.select-bird-swiper .swiper-pagination-bullet-active {
+  background-color: #84a667 !important;
+}
+
+/* 페이지네이션 위치 조정 (SelectBird) */
+.select-bird-swiper .swiper-pagination {
+  position: relative;
+  /* bottom: -15px; */
+  text-align: center;
+}
