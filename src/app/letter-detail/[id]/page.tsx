@@ -117,7 +117,7 @@ const LetterDetailId: React.FC = () => {
   // 청년 버전
   return userData?.roleName === "MENTEE" ? (
     <div className="relative">
-      {/* 오버레이 */}
+      {/* 오버레이  고마움 전달 모달*/}
       {showModal && (
         <>
           <div className="absolute inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
@@ -221,7 +221,7 @@ const LetterDetailId: React.FC = () => {
           />
           <span className="flex-auto text-[#292D32] font-bold text-base leading-6 tracking-tight ml-1">
             {letter.replyLetter
-              ? `${letter?.sendLetter.sendUser}`
+              ? `${letter?.replyLetter.sendUser}`
               : "답장을 기다리는중"}
           </span>
           <Image
