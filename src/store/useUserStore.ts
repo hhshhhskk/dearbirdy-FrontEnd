@@ -6,28 +6,16 @@ interface User {
   quota?: number;
   userRole: string;
   read?: boolean;
+
+  setRead: (value: boolean) => void;
 }
 
-interface UserState {
-  user: User | null;
-  setUser: (user: User) => void;
-  loadUserFromSession: () => void;
-}
+export const useUserStore = create<User>((set) => ({
+  birdName: "",
+  nickname: "",
+  quota: 0,
+  userRole: "",
+  read: false,
 
-export const useUserStore = create<UserState>((set) => ({
-  user: null,
-
-  setUser: (user) => {
-    set({ user });
-    sessionStorage.setItem("userData", JSON.stringify(user)); // ✅ sessionStorage에 저장
-  },
-
-  loadUserFromSession: () => {
-    if (typeof window !== "undefined") {
-      const storedData = sessionStorage.getItem("userData");
-      if (storedData) {
-        set({ user: JSON.parse(storedData) });
-      }
-    }
-  },
+  setRead: (value: boolean) => set({ read: value }),
 }));

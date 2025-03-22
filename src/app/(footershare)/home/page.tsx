@@ -4,6 +4,7 @@ import HomeMainSenior from "@/components/home/HomeMainSenior";
 import HomeMainYouth from "@/components/home/HomeMainYouth";
 import Header from "@/components/ui/Header";
 import { getUserInfo } from "@/services/homeGetApi";
+import { useUserStore } from "@/store/useUserStore";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { useRouter } from "next/navigation";
 
@@ -34,6 +35,7 @@ export interface IUserData {
 const Home: React.FC = () => {
   const [userData, setUserData] = useState<IUserData | null>(null);
   const [sse, setSse] = useState(false);
+  const { setRead } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -49,6 +51,7 @@ const Home: React.FC = () => {
         } else {
           const response = await getUserInfo();
           sessionStorage.setItem("userInfo", JSON.stringify(response.data));
+          setRead(response.data.read);
           setUserData(response.data);
 
           // 실시간 알림
