@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import BookMarkIcon from "../Icons/Bookmark_icon";
 import { useRouter } from "next/navigation";
 import { useBookMarkStore } from "@/store/bookMarkStore";
-import { Letter } from "@/app/(footershare)/letter-storage/page";
+import { Letter } from "@/app/(footershare)/letters/page";
 import BirdyTip from "./BirdyTip";
 import {
   QueryClient,

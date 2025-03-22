@@ -207,7 +207,7 @@ const LetterDetailId: React.FC = () => {
             alt="왼쪽 방향 아이콘"
             width={24}
             height={24}
-            onClick={() => router.back()}
+            onClick={() => router.push("/letters")}
             className="cursor-pointer"
           />
           <Image
@@ -422,7 +422,7 @@ const LetterDetailId: React.FC = () => {
           alt="왼쪽 방향 아이콘"
           width={24}
           height={24}
-          onClick={() => router.back()}
+          onClick={() => router.push("/letters")}
         />
         <Image
           src={`/images/birds/${

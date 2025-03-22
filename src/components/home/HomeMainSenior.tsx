@@ -57,7 +57,7 @@ const HomeMainSenior: React.FC<IProps> = ({ userData }) => {
 
             <div
               className="flex w-full cursor-pointer select-none h-[50px] justify-center items-center gap-1 mt-4 align-stretch rounded-lg bg-[#292D32]"
-              onClick={() => router.push("/letter-storage")}
+              onClick={() => router.push("/letters")}
             >
               <HomeLetterIcon fill="#FFF" />
               <span className="text-center flex text-white font-pretendard text-base leading-6 tracking-[-0.064px]">

@@ -48,9 +48,28 @@ const SeniorNotificationPage: React.FC<IProps> = ({ notifications }) => {
               </div>
               <div
                 className="ml-4"
-                onClick={() =>
-                  router.push(`/letter-detail/${notification.letterStatusSeq}`)
-                }
+                onClick={() => {
+                  const birdKey =
+                    notification.birdName && birdNameMap[notification.birdName]
+                      ? birdNameMap[notification.birdName]
+                      : "default";
+
+                  if (
+                    // 읽으면 true , 읽지않았으면 false
+                    // 읽지 않았고 편지가 포함되면 letterOpen
+                    !notification.read &&
+                    notification.message.includes("편지")
+                  ) {
+                    setNickname(notification.nickname);
+                    setBirdName(birdKey);
+                    setLetterStatusSeq(notification.letterStatusSeq);
+                    router.push(`/letter-open`);
+                  } else {
+                    router.push(
+                      `/letter-detail/${notification.letterStatusSeq}`
+                    );
+                  }
+                }}
               >
                 <div className="flex items-center justify-between h-6">
                   <p className="text-[#6B7178] text-[12px] font-normal leading-[16px] tracking-[-0.048px]">
@@ -98,24 +117,8 @@ const SeniorNotificationPage: React.FC<IProps> = ({ notifications }) => {
               <div
                 className="ml-4"
                 onClick={() => {
-                  const birdKey =
-                    notification.birdName && birdNameMap[notification.birdName]
-                      ? birdNameMap[notification.birdName]
-                      : "default";
-
-                  if (
-                    notification.read &&
-                    notification.message.includes("편지")
-                  ) {
-                    setNickname(notification.nickname);
-                    setBirdName(birdKey);
-                    setLetterStatusSeq(notification.letterStatusSeq);
-                    router.push(`/letter-open`);
-                  } else {
-                    router.push(
-                      `/letter-detail/${notification.letterStatusSeq}`
-                    );
-                  }
+                  // 이전알림은 이미 전부 읽은 상태
+                  router.push(`/letter-detail/${notification.letterStatusSeq}`);
                 }}
               >
                 <div className="flex items-center justify-between h-6">

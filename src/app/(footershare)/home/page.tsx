@@ -6,7 +6,7 @@ import Header from "@/components/ui/Header";
 import { getUserInfo } from "@/services/homeGetApi";
 import { useUserStore } from "@/store/useUserStore";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import React, { useEffect, useState } from "react";
 
@@ -37,6 +37,7 @@ const Home: React.FC = () => {
   const [sse, setSse] = useState(false);
   const { setRead } = useUserStore();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +78,7 @@ const Home: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [pathname]);
 
   console.log(userData);
   console.log("sse: ", sse);

@@ -26,7 +26,7 @@ const LetterOpen: React.FC = () => {
           width={24}
           height={24}
           className=""
-          onClick={() => router.back()}
+          onClick={() => router.push("/letters")}
         />
       </header>
 
