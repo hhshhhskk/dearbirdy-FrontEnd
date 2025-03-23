@@ -38,3 +38,19 @@ export const getThrow = async (letterStatusSeq: number) => {
     return null;
   }
 };
+
+// 편지 신고하기
+export const postReport = async (letterSeq: number, category: string) => {
+  try {
+    const response = await api.post(`/reports`, {
+      category: category,
+      letterSeq: letterSeq,
+    });
+    console.log(response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error("❌ 신고 요청 실패:", error);
+    return null;
+  }
+};
