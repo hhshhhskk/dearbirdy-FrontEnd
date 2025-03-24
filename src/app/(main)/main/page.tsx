@@ -34,7 +34,7 @@ export default function MainPage() {
         <div className="flex flex-col items-center flex-1 gap-4 mt-[72px]">
           <Logo fill="white" className="w-40 h-12" />
           <h2 className="whitespace-break-spaces text-center text-lg text-[#F4F5EF] font-bold leading-[26px] tracking-[-0.072px]">
-            편지로 연결되는 따뜻한 마음,{"\n"}인생 선후배들의 만남
+            편지로 연결되는 따뜻한 마음 ,{"\n"}인생 선후배들의 만남
           </h2>
         </div>
 
