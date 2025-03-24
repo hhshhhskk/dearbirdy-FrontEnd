@@ -16,7 +16,7 @@ const Banner: React.FC = () => {
         </p>
       </div>
       <Image
-        src="/images/birds/home_birds.svg"
+        src="/images/birds/home/home_birds.png"
         alt="홈 새두마리"
         width={126}
         height={92}

@@ -41,7 +41,7 @@ const HomeMainYouth: React.FC<IProps> = ({ userData }) => {
               <SendMessage userData={userData as IUserData} />
             )}
             <Image
-              src={`/images/birdy-tip/${birdKey}_tip.png`}
+              src={`/images/birds/home/${birdKey}.png`}
               alt="홈 나의 새 프로필사진"
               width={280}
               height={226}

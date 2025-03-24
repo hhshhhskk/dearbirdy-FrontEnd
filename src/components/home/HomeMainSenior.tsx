@@ -42,8 +42,8 @@ const HomeMainSenior: React.FC<IProps> = ({ userData }) => {
               <SendMessage userData={userData as IUserData} />
             )}
             <Image
-              src={`/images/birdy-tip/${birdKey}_tip.png`}
-              alt="홈 나의 새 프로필사진png"
+              src={`/images/birds/home/${birdKey}.png`}
+              alt="홈 나의 새 프로필사진.png"
               width={280}
               height={226}
               className="mt-4"
