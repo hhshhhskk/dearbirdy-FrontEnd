@@ -29,7 +29,7 @@ export default function LetterGuideModal({
       {/* ✅ 모달 컨테이너 (최소 높이 472px로 설정) */}
 
       <div
-        className={`fixed flex-grow bottom-0 left-1/2 transform -translate-x-1/2 w-[376px] min-h-[472px] bg-white shadow-lg rounded-t-[30px] z-50 transition-transform duration-500 flex flex-col px-4 py-6 ${
+        className={`fixed flex-grow bottom-0 left-1/2 transform -translate-x-1/2 w-full min-h-[472px] bg-white shadow-lg rounded-t-[30px] z-50 transition-transform duration-500 flex flex-col px-4 py-6 ${
           isOpen ? "animate-slide-up" : "translate-y-full opacity-0"
         }`}
       >

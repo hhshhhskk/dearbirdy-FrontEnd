@@ -59,7 +59,7 @@ export default function LetterSent() {
 
         {/* 안내 박스 */}
         <div className="absolute bottom-[44px]">
-          <div className="mt-[171px] w-[343px] h-[64px] border border-[#E5E5EA] bg-[#F0F1EC] rounded-[12px] p-[10px] flex justify-between items-center">
+          <div className="mt-[171px] w-full h-[64px] border border-[#E5E5EA] bg-[#F0F1EC] rounded-[12px] p-[10px] flex justify-between items-center">
             <div>
               <p className="text-[#6B7178] text-[14px] font-medium">
                 빠르면 하루, 최대 7일이 걸릴 수 있어요.
@@ -73,7 +73,7 @@ export default function LetterSent() {
 
           {/* 홈으로 버튼 */}
           <button
-            className="w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-[17px] select-none cursor-pointer"
+            className="w-full h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-[17px] select-none cursor-pointer"
             onClick={() => {
               resetLetter();
               router.push("/home");

@@ -11,10 +11,10 @@ const ThrowAfterModal: React.FC<IProps> = ({ setShowThrowAfterModal }) => {
   const router = useRouter();
   return (
     <div
-      className="absolute inset-0  z-20 bg-[rgba(51,51,51,0.80)]
+      className="absolute inset-0 w-full  z-20 bg-[rgba(51,51,51,0.80)]
   flex justify-center items-center"
     >
-      <div className="flex w-[328px] p-[20px_16px] flex-col items-start rounded-[18px] border border-[#F0F1EC] bg-white">
+      <div className="flex w-full p-[20px_16px] flex-col items-start rounded-[18px] border border-[#F0F1EC] bg-white">
         <p className="text-[#292D32] font-bold text-[18px] leading-[26px] tracking-[-0.072px]">
           다른 버디에게로 편지가 전해졌어요!
         </p>
@@ -24,7 +24,7 @@ const ThrowAfterModal: React.FC<IProps> = ({ setShowThrowAfterModal }) => {
           도움을 받고 해결될 수 있도록 함께 소원해주세요.
         </p>
         <div
-          className="rounded-[10px] bg-[#292D32] flex w-[296px] h-[44px] p-[11px_16px] flex-col justify-center items-center mt-4"
+          className="rounded-[10px] bg-[#292D32] flex w-full h-[44px] p-[11px_16px] flex-col justify-center items-center mt-4"
           onClick={() => {
             router.push("/home");
             setShowThrowAfterModal(false);

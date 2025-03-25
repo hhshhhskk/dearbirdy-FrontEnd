@@ -76,7 +76,7 @@ const YouthLetterStorage: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="relative mb-[60px] flex flex-col gap-2">
-        <header className="min-w-[343px] w-full sticky top-0 left-0 flex gap-1 h-[56px] py-[11px] items-end bg-[#F9F8F3]">
+        <header className="w-full sticky top-0 left-0 flex gap-1 h-[56px] py-[11px] items-end bg-[#F9F8F3]">
           {category.map((title, idx) => (
             <span
               key={idx}
@@ -193,7 +193,7 @@ const YouthLetterStorage: React.FC = () => {
               </div>
             ) : (
               <div className="flex items-center justify-center">
-                <div className="flex flex-col items-center justify-center w-screen">
+                <div className="flex flex-col items-center justify-center">
                   <Image
                     src={`/images/icons/storage/storage_${
                       cateNum === 2 ? "letter" : "bookmark"
@@ -217,7 +217,7 @@ const YouthLetterStorage: React.FC = () => {
         {/* 책갈피 토스트 메세지 */}
         <div className="fixed flex flex-col items-center translate-x-1/2 bottom-10 right-1/2">
           {showToast && (
-            <div className="fixed text-sm text-white rounded-xl  bg-[rgba(100,100,100,0.8)] flex w-[323px] h-[56px] px-5 py-[19px] justify-center items-center shadow-lg bottom-10 animate-bounce">
+            <div className="fixed text-sm text-white rounded-xl  bg-[rgba(100,100,100,0.8)] flex w-full h-[56px] px-5 py-[19px] justify-center items-center shadow-lg bottom-10 animate-bounce">
               책갈피는 &apos;저장한 편지&apos;에서 확인할 수 있어요!
             </div>
           )}

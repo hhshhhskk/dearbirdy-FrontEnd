@@ -29,7 +29,7 @@ export default function SharedLayout({
     <>
       {report && <Report />}
       {limit && <Limit />}
-      <div className={`box-border font-pretendard min-h-screen min-w-[375px]`}>
+      <div className={`box-border font-pretendard min-h-screen`}>
         <div className="justify-center flex-1 w-full">{children}</div>
         <Footer />
       </div>

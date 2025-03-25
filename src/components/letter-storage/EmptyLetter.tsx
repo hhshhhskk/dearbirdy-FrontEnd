@@ -3,7 +3,7 @@ import React from "react";
 
 const EmptyLetter: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-screen mt-2">
+    <div className="flex flex-col items-center justify-center mt-2">
       <Image
         src="/images/icons/storage/storage_letter_icon.svg"
         alt="엠티케이스 편지 아이콘"

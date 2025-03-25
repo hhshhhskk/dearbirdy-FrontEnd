@@ -88,7 +88,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="w-screen max-w-[476px]">
+    <div className="">
       <Header userData={userData} sse={sse} setSse={setSse} />
 
       {userData.roleName === "MENTOR" ? (
