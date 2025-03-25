@@ -8,7 +8,8 @@ type PageProps = {
   };
 };
 
-export default function BirdyTestQuestion({ params }: PageProps) {
+// 비동기적으로 처리하는 방식 적용
+export default async function BirdyTestQuestion({ params }: PageProps) {
   const step = Number(params.id);
 
   if (isNaN(step) || step < 1 || step > 12) {
