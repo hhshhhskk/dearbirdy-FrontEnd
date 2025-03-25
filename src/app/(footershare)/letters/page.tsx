@@ -5,6 +5,7 @@ import SeniorLetterStorage from "@/components/letter-storage/SeniorLetterStorage
 import YouthLetterStorage from "@/components/letter-storage/YouthLetterStorage";
 import { IUserData } from "../home/page";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export interface IDataListItem {
   letterStatusSeq: number;
@@ -74,7 +75,7 @@ const LetterStorage: React.FC = () => {
   }, []);
 
   if (!userData) {
-    return <p>로딩 중...</p>;
+    return <LoadingSpinner />;
   }
   // console.log(userData);
 

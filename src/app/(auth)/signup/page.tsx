@@ -1,54 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
-import BirdyTest from "@/components/signup/birdytest/BirdyTest";
-import CategoryStep from "@/components/signup/CategoryStep";
-import CompleteStep from "@/components/signup/CompleteStep";
-import NicknameStep from "@/components/signup/NicknameStep";
-import RoleStep from "@/components/signup/RoleStep";
-import SignupIntro from "@/components/signup/SignupIntro";
-import SignupNav from "@/components/signup/SignupNav";
-import { useSignupStore } from "@/store/useSignupStore";
-import { useBirdyTestStore } from "@/store/useBirdyTestStore";
+import { useRouter } from "next/navigation";
+import { getSignupRedirectPath, useSignupStore } from "@/store/useSignupStore";
 
-import { useRouter } from "next/navigation"; // ✅ useRouter import
-
-const SignUp = () => {
-  const router = useRouter(); // ✅ useRouter 사용
-  const { step, setStep, hideNav } = useSignupStore();
-  const { setTestStep } = useBirdyTestStore();
+export default function SignupEntry() {
+  const router = useRouter();
+  const state = useSignupStore();
 
   useEffect(() => {
-    const savedSignupState = sessionStorage.getItem("signup-storage");
-    if (savedSignupState) {
-      try {
-        setStep(JSON.parse(savedSignupState).state.step);
-      } catch (error) {
-        console.error("❌ SignUp: sessionStorage 데이터 복원 오류", error);
-      }
-    }
+    const path = getSignupRedirectPath(state);
+    router.replace(path);
+  }, [state, router]);
 
-    const savedBirdyTestState = sessionStorage.getItem("birdytest-storage");
-    if (savedBirdyTestState) {
-      try {
-        setTestStep(JSON.parse(savedBirdyTestState).state.testStep);
-      } catch (error) {
-        console.error("❌ SignUp: BirdyTest sessionStorage 복원 오류", error);
-      }
-    }
-  }, [setStep, setTestStep, router]); // ✅ router 추가
-
-  return (
-    <div className="w-screen min-w-[375px] max-w-[476px] h-screen px-4">
-      {!hideNav && step !== 4 && <SignupNav />}
-      {step === 0 && <SignupIntro />}
-      {step === 1 && <NicknameStep />}
-      {step === 2 && <RoleStep />}
-      {step === 3 && <CategoryStep />}
-      {step === 4 && <CompleteStep />}
-      {step === 5 && <BirdyTest />}
-    </div>
-  );
-};
-
-export default SignUp;
+  return null;
+}

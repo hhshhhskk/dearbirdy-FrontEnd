@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { birdNameMap } from "@/constants/birdNameMap"; // ✅ 외부에서 불러오기
 import { IUserData } from "@/app/(footershare)/home/page";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 interface IProps {
   userData?: IUserData;
@@ -17,7 +18,7 @@ const ProfileSection: React.FC<IProps> = ({ userData }) => {
     return `/images/letter-slide/${englishName}_profile.png`;
   };
 
-  if (!userData) return <span>로딩중...</span>;
+  if (!userData) return <LoadingSpinner />;
 
   return (
     <div className="mx-auto">

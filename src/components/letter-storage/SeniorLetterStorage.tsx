@@ -19,6 +19,7 @@ import {
   getLetterWait,
 } from "@/services/letterStorage";
 import { birdNameMap } from "@/constants/birdNameMap"; // ✅ birdName 변환 맵 추가
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 const queryClient = new QueryClient();
 
@@ -71,7 +72,7 @@ const SeniorLetterStorage: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="mt-10 text-center">로딩 중...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

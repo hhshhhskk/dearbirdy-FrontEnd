@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAccessToken } from "@/services/authService";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const KakaoCallback = () => {
   const router = useRouter();
@@ -42,7 +43,7 @@ const KakaoCallback = () => {
     handleKakaoLogin();
   }, [code, router]);
 
-  return <div>로그인 처리 중...</div>;
+  return <LoadingSpinner />;
 };
 
 export default KakaoCallback;

@@ -1,86 +1,83 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
+export interface UserCategory {
+  career: boolean;
+  mental: boolean;
+  relationship: boolean;
+  love: boolean;
+  life: boolean;
+  finance: boolean;
+  housing: boolean;
+  other: boolean;
+}
+
 interface SignupState {
-  step: number;
-  hideNav: boolean;
-  formData: {
-    nickname: string;
-    userRole: string;
-    userCategory: {
-      career: boolean;
-      mental: boolean;
-      relationship: boolean;
-      love: boolean;
-      life: boolean;
-      finance: boolean;
-      housing: boolean;
-      other: boolean;
-    };
-    birdName: string;
-  };
-  setStep: (step: number) => void;
-  setHideNav: (hide: boolean | ((prev: boolean) => boolean)) => void;
-  nextStep: () => void;
-  prevStep: () => void;
-  updateFormData: (data: Partial<SignupState["formData"]>) => void;
+  nickname: string;
+  userRole: "MENTOR" | "MENTEE" | "";
+  userCategory: UserCategory;
+  birdName: string;
+
+  setNickname: (nickname: string) => void;
+  setUserRole: (role: "MENTOR" | "MENTEE") => void;
+  setUserCategory: (category: Partial<UserCategory>) => void;
+  setBirdName: (name: string) => void;
   resetSignup: () => void;
 }
 
 export const useSignupStore = create<SignupState>()(
   persist(
     (set) => ({
-      step: 0,
-      hideNav: false,
-      formData: {
-        nickname: "",
-        userRole: "",
-        userCategory: {
-          career: false,
-          mental: false,
-          relationship: false,
-          love: false,
-          life: false,
-          finance: false,
-          housing: false,
-          other: false,
-        },
-        birdName: "",
+      nickname: "",
+      userRole: "",
+      userCategory: {
+        career: false,
+        mental: false,
+        relationship: false,
+        love: false,
+        life: false,
+        finance: false,
+        housing: false,
+        other: false,
       },
-      setStep: (step) => set({ step }),
-      setHideNav: (hide) =>
+      birdName: "",
+
+      setNickname: (nickname) => set({ nickname }),
+      setUserRole: (role) => set({ userRole: role }),
+      setUserCategory: (category) =>
         set((state) => ({
-          hideNav: typeof hide === "function" ? hide(state.hideNav) : hide,
+          userCategory: { ...state.userCategory, ...category },
         })),
-      nextStep: () => set((state) => ({ step: state.step + 1 })),
-      prevStep: () => set((state) => ({ step: Math.max(0, state.step - 1) })),
-      updateFormData: (data) =>
-        set((state) => ({
-          formData: { ...state.formData, ...data },
-        })),
+      setBirdName: (birdName) => set({ birdName }),
+
       resetSignup: () =>
         set({
-          step: 0,
-          formData: {
-            nickname: "",
-            userRole: "",
-            userCategory: {
-              career: false,
-              mental: false,
-              relationship: false,
-              love: false,
-              life: false,
-              finance: false,
-              housing: false,
-              other: false,
-            },
-            birdName: "",
+          nickname: "",
+          userRole: "",
+          userCategory: {
+            career: false,
+            mental: false,
+            relationship: false,
+            love: false,
+            life: false,
+            finance: false,
+            housing: false,
+            other: false,
           },
+          birdName: "",
         }),
     }),
     {
-      name: "signup-storage", // ✅ sessionStorage 키
+      name: "signup-storage",
       storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
+
+// 가입 도중 복귀 시 이동 경로 판단
+export const getSignupRedirectPath = (state: SignupState): string => {
+  if (!state.nickname) return "/signup/intro";
+  if (!state.userRole) return "/signup/user-role";
+  if (state.userRole === "MENTOR") return "/signup/user-category";
+  return "/birdy-test";
+};

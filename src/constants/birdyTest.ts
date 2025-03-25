@@ -1,10 +1,10 @@
-export type Answer = 0 | 1 | 2;
+export type OptionValue = 0 | 1 | 2;
+export type Answer = OptionValue | null; // null: 답변 안 한 상태, 0: 아니다, 1: 보통이다, 2: 그렇다
 export type Direction = "life" | "lifestyle";
-
 interface Option {
-  value: Answer;
-  emoji: string; // 이모지만 별도로 정의
-  label: string; // 순수 텍스트
+  value: OptionValue;
+  emoji: string;
+  label: string;
 }
 
 export interface Question {
@@ -32,7 +32,7 @@ export const questions: Question[] = [
     options: [
       { value: 2, emoji: "👓", label: "효율이 중요하죠" },
       { value: 1, emoji: "🟰", label: "비슷하다고 생각해요" },
-      { value: 0, emoji: "😄", label: "즐거워야해요!" },
+      { value: 0, emoji: "😄", label: "즐거워야 해요!" },
     ],
   },
 
@@ -136,4 +136,32 @@ export const questions: Question[] = [
       { value: 0, emoji: "👀", label: "주로 가만히 있는 타입이에요" },
     ],
   },
+];
+
+// 새 유형 데이터
+export const birdTypes = [
+  {
+    name: "앵무새",
+    lifeMin: 10,
+    lifeMax: 12,
+    lifestyleMin: 7,
+    lifestyleMax: 12,
+  },
+  {
+    name: "올빼미",
+    lifeMin: 10,
+    lifeMax: 12,
+    lifestyleMin: 0,
+    lifestyleMax: 6,
+  },
+  { name: "뱁새", lifeMin: 7, lifeMax: 9, lifestyleMin: 0, lifestyleMax: 12 },
+  {
+    name: "카나리아",
+    lifeMin: 4,
+    lifeMax: 6,
+    lifestyleMin: 0,
+    lifestyleMax: 12,
+  },
+  { name: "벌새", lifeMin: 0, lifeMax: 3, lifestyleMin: 7, lifestyleMax: 12 },
+  { name: "파랑새", lifeMin: 0, lifeMax: 3, lifestyleMin: 0, lifestyleMax: 6 },
 ];

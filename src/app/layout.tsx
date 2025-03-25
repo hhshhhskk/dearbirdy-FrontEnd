@@ -41,11 +41,13 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="192x192" href="/logo_192.png" />
         <link rel="apple-touch-icon" sizes="512x512" href="/logo_512.png" />
       </Head>
+
+      {/* 참고: 전역적 배경색 및 폰트 색상은 global.css에서 적용하고 있음 */}
       <body
-        className={`${pretendard.variable} font-pretendard w-full flex justify-center`}
+        className={`${pretendard.variable} font-pretendard min-h-screen flex justify-center`}
       >
         {/* ✅ React Query Provider 적용 */}
-        <main className="min-w-[375px] max-w-[476px] h-full bg-[#f9f8f3]">
+        <main className="min-h-screen w-full max-w-[476px] flex flex-col shadow-2xl bg-white02">
           <Providers>{children}</Providers>
         </main>
       </body>

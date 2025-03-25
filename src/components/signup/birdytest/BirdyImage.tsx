@@ -12,12 +12,12 @@ const BirdyImage = ({ birdName }: BirdyImageProps) => {
   return (
     <div className="mb-4 mt-4 flex justify-center">
       <Image
-        src={`/images/birds/${birdKey}_280.png`}
+        src={`/images/birds/${birdKey}_280.svg`}
         alt={birdName}
         width={200}
         height={200}
         onError={(e) => {
-          (e.target as HTMLImageElement).src = "/images/birds/default_280.png";
+          (e.target as HTMLImageElement).src = "/images/birds/default_280.svg";
         }} // ✅ 이미지 로드 실패 시 기본 이미지 적용
       />
     </div>

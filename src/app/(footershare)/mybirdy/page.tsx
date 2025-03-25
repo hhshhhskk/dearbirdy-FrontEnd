@@ -4,6 +4,7 @@ import LetterHistory from "@/components/mybirdy/letterHistory";
 import ProfileSection from "@/components/mybirdy/profileSection";
 import { useEffect, useState } from "react";
 import { IUserData } from "../home/page";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default function MyBirdy() {
   const [userData, setUserData] = useState<IUserData | undefined>(undefined);
@@ -14,7 +15,7 @@ export default function MyBirdy() {
       setUserData(userInfo);
     }
   }, []);
-  if (!userData) <span>로딩중...</span>;
+  if (!userData) <LoadingSpinner />;
 
   return (
     <div className="flex flex-col gap-6 w-full bg-[#292D32]">

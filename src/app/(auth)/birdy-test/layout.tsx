@@ -20,7 +20,7 @@ export default function SignupLayout({
             <ChevronLeft className="w-6 h-6" stroke="#292D32" />
           </button>
         }
-        title="회원가입"
+        title="버디테스트"
         noPadding
       />
 

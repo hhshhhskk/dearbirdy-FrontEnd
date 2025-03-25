@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Suspense } from "react";
 
 export default function AuthLayout({
@@ -7,5 +8,5 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Suspense fallback={<div>로딩 중...</div>}>{children}</Suspense>;
+  return <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>;
 }

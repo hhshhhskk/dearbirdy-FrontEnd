@@ -19,6 +19,7 @@ import { useInView } from "react-intersection-observer";
 import { birdNameMap } from "@/constants/birdNameMap";
 import HomeLetterIcon from "../Icons/Home_letter_icon";
 import BirdyTip from "./BirdyTip";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 const queryClient = new QueryClient();
 
@@ -69,7 +70,7 @@ const YouthLetterStorage: React.FC = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  if (isLoading) return <div className="mt-10 text-center">로딩 중...</div>;
+  if (isLoading) return <LoadingSpinner />;
   console.log(data?.pages);
 
   return (

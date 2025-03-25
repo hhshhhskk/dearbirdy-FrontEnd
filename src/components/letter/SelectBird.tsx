@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import { getBirdyInfo, postLetter } from "@/services/userService";
 import { birdNameMap } from "@/constants/birdNameMap"; // ✅ 외부에서 불러오기
 import { BIRD_TRAIT_STYLES } from "@/constants/birdTraitsStyles";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 export interface Bird {
   birdName: string;
@@ -92,7 +93,7 @@ export default function SelectBird() {
 
   // ✅ 데이터가 없을 때 로딩 메시지 표시
   if (birds.length === 0) {
-    return <p className="mt-20 text-center">로딩 중...</p>;
+    return <LoadingSpinner />;
   }
 
   return (

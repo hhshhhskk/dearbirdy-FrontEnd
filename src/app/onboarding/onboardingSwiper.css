@@ -1,0 +1,20 @@
+.onboarding-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e5e5ea !important;
+  opacity: 1;
+}
+
+.onboarding-swiper .swiper-pagination-bullet-active {
+  background-color: #ff6365 !important;
+}
+
+/* 페이지네이션 위치 */
+.onboarding-swiper .swiper-pagination {
+  position: absolute;
+  top: 115px !important;
+  left: 23px !important;
+  width: auto !important;
+  z-index: 10;
+}

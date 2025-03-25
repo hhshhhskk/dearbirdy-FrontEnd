@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 interface RoleCardProps {
   role: "MENTEE" | "MENTOR";
   selectedRole: "MENTEE" | "MENTOR" | null;
@@ -19,29 +17,25 @@ const RoleCard: React.FC<RoleCardProps> = ({
   description1,
   description2,
 }) => {
+  const textColor = selectedRole === role ? "text-black01" : "text-gray06";
+  const borderColor =
+    selectedRole === role ? "border-green03" : "border-transparent";
+
   return (
     <div
       onClick={() => onSelect(role)}
-      className={`w-full h-[224px] bg-[#FFF] select-none flex flex-col items-center justify-center px-4 border-2 cursor-pointer rounded-[20px] transition-all ${
-        selectedRole === role ? "border-[#84A667]" : "border-none"
-      }`}
+      className={`w-full px-global pt-[10px] pb-[32px] bg-white01 select-none flex flex-col items-center justify-center border-2 cursor-pointer rounded-[20px] transition-all ${borderColor}`}
     >
-      {/* ✅ 캐릭터 이미지 */}
-      <Image src={imageSrc} alt={title} width={100} height={100} />
+      <img src={imageSrc} alt={title} className="w-full h-auto" />
 
-      {/* ✅ 텍스트 박스 */}
-      <p className="mt-2 text-sm text-center text-[#6B7178]">
-        {description1}
-        <br />
-        {description2}
-      </p>
-      <p
-        className={`text-[16px] font-bold ${
-          selectedRole === role ? "text-[#292D32]" : "text-[#6B7178]"
-        }`}
-      >
-        {title}
-      </p>
+      <div className={`mt-2 text-center ${textColor}`}>
+        <p className={`text-Body2_M_14`}>
+          {description1}
+          <br />
+          {description2}
+        </p>
+        <p className={`text-Body1_B_16`}>{title}</p>
+      </div>
     </div>
   );
 };

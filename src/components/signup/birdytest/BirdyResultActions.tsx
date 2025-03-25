@@ -2,15 +2,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSignupStore } from "@/store/useSignupStore";
 import { postAdditionalInfo } from "@/services/authService";
-import NextButton from "@/components/common/NextButton";
+import StyledButton from "@/components/ui/StyledButton";
 
-interface BirdyResultActionsProps {
-  birdData: { birdName: string } | null;
-}
-
-const BirdyResultActions = ({ birdData }: BirdyResultActionsProps) => {
+const BirdyResultActions = () => {
   const router = useRouter();
-  const { formData, resetSignup } = useSignupStore();
+  const { birdName, nickname, userRole, userCategory, resetSignup } =
+    useSignupStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleNext = async () => {
@@ -19,22 +16,10 @@ const BirdyResultActions = ({ birdData }: BirdyResultActionsProps) => {
 
     try {
       const userData = {
-        birdName: birdData?.birdName || formData.birdName,
-        nickname: formData.nickname,
-        userRole: formData.userRole,
-        userCategory:
-          formData.userRole === "MENTEE"
-            ? {
-                career: false,
-                mental: false,
-                relationship: false,
-                love: false,
-                life: false,
-                finance: false,
-                housing: false,
-                other: false,
-              }
-            : formData.userCategory,
+        birdName,
+        nickname,
+        userRole,
+        userCategory,
       };
 
       await postAdditionalInfo(userData);
@@ -53,12 +38,10 @@ const BirdyResultActions = ({ birdData }: BirdyResultActionsProps) => {
   };
 
   return (
-    <div className="absolute bottom-[44px] left-4 right-4 w-auto flex justify-center">
-      <NextButton
-        text="환영해, 나의 버디!"
-        onClick={handleNext}
-        disabled={isSubmitting}
-      />
+    <div className="absolute bottom-[44px] left-0 right-0 px-global">
+      <StyledButton onClick={handleNext} disabled={isSubmitting}>
+        환영해, 나의 버디!
+      </StyledButton>
     </div>
   );
 };
