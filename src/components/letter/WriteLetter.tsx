@@ -47,7 +47,7 @@ export default function WriteLetter() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-[#f9f8f3] flex flex-col">
+    <div className="relative w-full max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col">
       {isDrawerOpen && (
         <LetterGuideModal
           isOpen={isDrawerOpen}
@@ -55,7 +55,7 @@ export default function WriteLetter() {
           type="letter"
         />
       )}
-      <header className="absolute top-0 w-full h-[56px] flex justify-between items-center bg-[#F9F8F3]">
+      <header className="absolute top-0 w-full min-w-[343px]  h-[56px] flex justify-between items-center bg-[#F9F8F3]">
         <Image
           src="/images/icons/arrow_left_icon.svg"
           alt="왼쪽 방향 아이콘"
@@ -103,10 +103,10 @@ export default function WriteLetter() {
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col mt-[14px] w-full"
+          className="flex flex-col mt-[14px]"
         >
           {/* 제목 입력 필드 */}
-          <div className="flex p-4 flex-col items-start border-b border-[#E5E5EA]">
+          <div className="flex min-w-[375px] w-screen max-w-[476px] p-4 flex-col items-start border-b border-[#E5E5EA]">
             <input
               {...register("title", {
                 required: "편지 제목을 입력 해 주세요",
@@ -126,7 +126,7 @@ export default function WriteLetter() {
           </div>
 
           {/* 내용 필드 */}
-          <div className="flex flex-col p-4">
+          <div className="flex flex-col min-w-[375px] w-screen max-w-[476px] p-4">
             <textarea
               maxLength={300}
               {...register("letter", {

@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className="fixed bottom-0 w-full h-[60px] flex justify-around items-center border-t border-[#F0F1EC] bg-[#F9F8F3]">
+      <div className="fixed bottom-0 w-full max-w-[476px] h-[60px] flex justify-around items-center border-t border-[#F0F1EC] bg-[#F9F8F3] min-w-[375px] ">
         {menuItems.map(({ id, Icon, label }) => (
           <div
             key={id}

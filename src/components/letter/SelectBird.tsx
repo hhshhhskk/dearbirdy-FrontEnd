@@ -97,7 +97,7 @@ export default function SelectBird() {
   }
 
   return (
-    <div className="relative flex flex-col items-center h-screen text-black  overflow-hidden">
+    <div className="relative flex flex-col items-center h-screen text-black">
       {/* 상단 네비게이션 */}
       <nav className="flex justify-start w-full py-4">
         <LeftArrow
@@ -118,8 +118,8 @@ export default function SelectBird() {
       </p>
 
       {/* Swiper 카드 영역 */}
-      <div className="">
-        <div className="mt-[21px] w-full">
+      <div className=" max-w-[380px]">
+        <div className="mt-[21px] pl-[21px] w-full">
           <Swiper
             modules={[Pagination]}
             spaceBetween={10} // ✅ 카드 간격 유지
@@ -182,7 +182,7 @@ export default function SelectBird() {
                     {bird.birdName}
                   </p>
                   {/* 설명 박스 */}
-                  <div className="w-full h-[224px] p-[16px] border border-[#F0F1EC] bg-[#F9F8F3] rounded-[10px]">
+                  <div className="w-[274px] h-[224px] p-[16px] border border-[#F0F1EC] bg-[#F9F8F3] rounded-[10px]">
                     {bird.explanation.split("\n").map((text, i) => (
                       <p
                         key={i}

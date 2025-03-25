@@ -78,7 +78,7 @@ const SeniorLetterStorage: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="relative mb-[60px] flex flex-col gap-2">
-        <header className="w-full sticky top-0 left-0 flex gap-1 h-[56px] py-[11px] items-end bg-[#F9F8F3]">
+        <header className=" min-w-[343px] w-full sticky top-0 left-0 flex gap-1 h-[56px] py-[11px] items-end bg-[#F9F8F3]">
           {category.map((title, idx) => (
             <span
               key={idx}
@@ -198,7 +198,7 @@ const SeniorLetterStorage: React.FC = () => {
               </div>
             ) : (
               <div className="flex items-center justify-center">
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center w-screen">
                   <Image
                     src={`/images/icons/storage/storage_${
                       cateNum === 2 ? "letter" : "bookmark"

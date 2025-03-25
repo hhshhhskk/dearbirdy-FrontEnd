@@ -59,7 +59,7 @@ const NotificationBox: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#f9f8f3] flex flex-col">
+    <div className="w-screen min-h-screen max-w-[476px] bg-[#f9f8f3] flex flex-col">
       <header className="relative cursor-pointer select-none w-full h-[56px] flex justify-center items-center">
         <Image
           src="/images/icons/arrow_left_icon.svg"
@@ -83,7 +83,7 @@ const NotificationBox: React.FC = () => {
           )
         ) : (
           // 알림없음
-          <div className="flex flex-col items-center justify-center mt-2">
+          <div className="flex flex-col items-center justify-center w-screen mt-2">
             <Image
               src="/images/icons/notification_bell_icon.svg"
               alt="알림함 종 아이콘"

@@ -33,7 +33,7 @@ const LetterReplyCompletePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#f9f8f3] flex flex-col px-4 w-full">
+    <div className="w-screen min-w-[375px] max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col px-4">
       <main className="relative flex flex-col items-center justify-center">
         <div className="absolute top-[108px]">
           <p className=" text-[#292D32] text-center text-[20px] font-bold leading-[28px] tracking-[-0.08px] ">
@@ -45,7 +45,10 @@ const LetterReplyCompletePage: React.FC = () => {
         {/* 애니메이션 */}
         <div className="flex items-center justify-center w-full h-screen">
           {animationData ? (
-            <Lottie animationData={animationData} style={{ height: 310 }} />
+            <Lottie
+              animationData={animationData}
+              style={{ width: 375, height: 310 }}
+            />
           ) : (
             <p className="text-center text-[#6B7178]">
               애니메이션을 불러오는 중...
@@ -53,7 +56,7 @@ const LetterReplyCompletePage: React.FC = () => {
           )}
         </div>
         <div className="absolute w-full bottom-[44px]">
-          <div className="w-full rounded-[12px] border border-[#E5E5EA] bg-[#F0F1EC] flex p-[10px_16px] justify-between items-center mt-[80px]">
+          <div className="w-full rounded-[12px] border border-[#E5E5EA] bg-[#F0F1EC] flex min-w-[343px] p-[10px_16px] justify-between items-center mt-[80px]">
             <div className="flex flex-col items-start justify-start">
               <p className="text-[#6B7178] text-center text-[14px] font-normal leading-[22px] tracking-[-0.056px]">
                 답장을 확인하면 고마움 표시가 도착해요.
@@ -65,7 +68,7 @@ const LetterReplyCompletePage: React.FC = () => {
             <Toggle />
           </div>
           <div
-            className="w-full p-[13px_16px] flex justify-center items-center gap-[8px] rounded-[8px] bg-[#292D32] mt-[17px] cursor-pointer"
+            className="min-w-[343px] w-full p-[13px_16px] flex justify-center items-center gap-[8px] rounded-[8px] bg-[#292D32] mt-[17px] cursor-pointer"
             onClick={() => router.push("/home")}
           >
             <span className="text-[#E5E5EA] text-center text-[16px] font-medium leading-[24px] tracking-[-0.064px]">

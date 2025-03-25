@@ -78,7 +78,7 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
       </div>
 
       {/* 모달 */}
-      <div className="flex z-30 w-full h-[550px] p-[24px_16px] flex-col items-start gap-[10px] rounded-[30px] border border-[#F4F5EF] bg-white">
+      <div className="flex z-30 w-[343px] h-[550px] p-[24px_16px] flex-col items-start gap-[10px] rounded-[30px] border border-[#F4F5EF] bg-white">
         <div className="flex items-end justify-start gap-2">
           <Image
             src={`/images/birds/${

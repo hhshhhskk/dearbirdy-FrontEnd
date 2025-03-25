@@ -34,7 +34,7 @@ const ThrowModal: React.FC<IProps> = ({
         className="absolute inset-0  z-20 bg-[rgba(51,51,51,0.80)]
       flex justify-center items-center"
       >
-        <div className="flex w-full p-[20px_16px] flex-col items-start rounded-[18px] border border-[#F0F1EC] bg-white">
+        <div className="flex w-[328px] p-[20px_16px] flex-col items-start rounded-[18px] border border-[#F0F1EC] bg-white">
           <p className="text-[#292D32] font-bold text-[18px] leading-[26px] tracking-[-0.072px]">
             편지 답장을 다른 새에게 맡기시겠어요?
           </p>

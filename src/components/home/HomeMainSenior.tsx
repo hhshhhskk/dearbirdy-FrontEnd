@@ -35,7 +35,7 @@ const HomeMainSenior: React.FC<IProps> = ({ userData }) => {
           <button onClick={() => setIsGuideOpen(true)}>
             <Banner />
           </button>
-          <div className="flex flex-col items-center p-global rounded-[24px] border border-[#F0F1EC] bg-[#FFF]">
+          <div className="flex flex-col items-center p-[3vh] rounded-[24px] border border-[#F0F1EC] bg-[#FFF]">
             {serviceLimit ? (
               <SendMessageLimit />
             ) : (

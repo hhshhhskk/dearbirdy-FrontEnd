@@ -80,7 +80,7 @@ const LetterStorage: React.FC = () => {
   // console.log(userData);
 
   return (
-    <div className="p-global">
+    <div className="w-screen max-w-[476px] px-4">
       {userData.roleName === "MENTEE" ? (
         <YouthLetterStorage />
       ) : userData.roleName === "MENTOR" ? (
