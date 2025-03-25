@@ -1,4 +1,4 @@
-import BirdyTestForm from "@/components/signup/birdyTest/BirdyTestForm";
+import BirdyTestForm from "@/components/signup/birdyTestTemp/BirdyTestForm";
 import { notFound } from "next/navigation";
 
 export default function BirdyTestQuestion({
