@@ -1,6 +1,7 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+
 import BirdyResultCard from "@/components/signup/birdyTestTemp/BirdyResultCard";
 import { Answer } from "@/constants/birdyTest";
 import { useBirdyTestStore } from "@/store/useBirdyTestStore";
@@ -9,6 +10,7 @@ import { processBirdyTestResults } from "@/util/birdyTestUtils";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import loadingResult from "@/animations/loading_result.json";
 import { useEffect, useRef, useState } from "react";
+import BirdyResultCard from "@/components/signup/birdytest/BirdyResultCard";
 
 export default function BirdyTestResultPage() {
   const { answers } = useBirdyTestStore();
