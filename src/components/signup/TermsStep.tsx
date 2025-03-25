@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ interface TermsItemProps {
 const TermsItem = ({ checked, label, onCheck, link }: TermsItemProps) => (
   <div className="flex items-center justify-between w-full gap-2">
     <div
-      className="flex items-center gap-2 cursor-pointer flex-grow"
+      className="flex items-center flex-grow gap-2 cursor-pointer"
       onClick={onCheck}
     >
       <Image
@@ -116,7 +116,7 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
           </div>
 
           {/* ✅ 안내 텍스트 */}
-          <p className="my-6 text-Body0_M_18 text-white01 text-center">
+          <p className="my-6 text-center text-Body0_M_18 text-white01">
             버디님, 약관동의 해주실 거죠?
           </p>
         </div>
@@ -143,7 +143,7 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
             </div>
           </div>
 
-          <hr className="w-full  border-gray01 my-4" />
+          <hr className="w-full my-4 border-gray01" />
 
           <div className="flex flex-col gap-[10px]">
             <TermsItem

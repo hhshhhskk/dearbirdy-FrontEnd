@@ -85,10 +85,12 @@ export default function UserCategoryPage() {
   const handleToggle = (id: CategoryType) => {
     setSelected((prev) => {
       const currentSelection = new Set(prev);
-      currentSelection.has(id)
-        ? currentSelection.delete(id)
-        : currentSelection.add(id);
-      return currentSelection;
+      if (currentSelection.has(id)) {
+        currentSelection.delete(id); // 값이 있으면 제거
+      } else {
+        currentSelection.add(id); // 값이 없으면 추가
+      }
+      return currentSelection; // 수정된 Set 반환
     });
   };
 
@@ -120,7 +122,7 @@ export default function UserCategoryPage() {
         text="우선적으로 편지를 받고 싶은 내용의 카테고리를 선택해주세요."
       />
 
-      <div className="mt-11 mb-global flex-1 w-full h-full">
+      <div className="flex-1 w-full h-full mt-11 mb-global">
         <div className="select-none grid grid-cols-3 gap-x-[7px] gap-y-[8px]">
           {categories.map(({ id, name, icon }) => (
             <CategoryCard
