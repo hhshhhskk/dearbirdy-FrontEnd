@@ -1,13 +1,16 @@
 "use client";
-export const dynamic = "force-dynamic";
 
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
+import type { LottieRefCurrentProps } from "lottie-react";
 import InfoBox from "@/components/common/InfoBox";
 import BirdyResultCard from "@/components/signup/birdyTestTemp/BirdyResultCard";
 import { Answer } from "@/constants/birdyTest";
 import { useBirdyTestStore } from "@/store/useBirdyTestStore";
 import { useSignupStore } from "@/store/useSignupStore";
 import { processBirdyTestResults } from "@/util/birdyTestUtils";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import loadingResult from "@/animations/loading_result.json";
 import { useEffect, useRef, useState } from "react";
 
