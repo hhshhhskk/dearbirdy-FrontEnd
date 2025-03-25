@@ -33,7 +33,7 @@ export default function MainPage() {
       <div className="px-global relative z-10 top-[131px] flex flex-col items-center">
         <Logo fill="white" className="w-[180px] h-[48px] mb-global" />
         <h2 className="text-center text-Body0_B_18 text-line01 whitespace-pre-wrap">
-          편지로 연결되는 따뜻한 마음,{"\n"}인생 선후배들의 만남
+          편지로 연결되는 따뜻한 마음{"\n"}인생 선후배들의 만남
         </h2>
       </div>
     </CommonLayout>
