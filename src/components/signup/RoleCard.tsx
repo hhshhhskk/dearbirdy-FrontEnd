@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface RoleCardProps {
   role: "MENTEE" | "MENTOR";
   selectedRole: "MENTEE" | "MENTOR" | null;
@@ -26,7 +28,14 @@ const RoleCard: React.FC<RoleCardProps> = ({
       onClick={() => onSelect(role)}
       className={`w-full px-global pt-[10px] pb-[32px] bg-white01 select-none flex flex-col items-center justify-center border-2 cursor-pointer rounded-[20px] transition-all ${borderColor}`}
     >
-      <img src={imageSrc} alt={title} className="w-full h-auto" />
+      <Image
+        src={imageSrc}
+        alt={title}
+        width={140}
+        height={140}
+        style={{ width: "100%", height: "auto" }}
+        className="object-contain"
+      />
 
       <div className={`mt-2 text-center ${textColor}`}>
         <p className={`text-Body2_M_14`}>

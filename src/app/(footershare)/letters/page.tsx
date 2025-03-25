@@ -72,7 +72,7 @@ const LetterStorage: React.FC = () => {
         setUserData(parsedData);
       }
     }
-  }, []);
+  }, [router]);
 
   if (!userData) {
     return <LoadingSpinner />;

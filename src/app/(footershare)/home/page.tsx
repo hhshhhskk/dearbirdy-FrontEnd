@@ -78,7 +78,7 @@ const Home: React.FC = () => {
     };
 
     fetchData();
-  }, [pathname]);
+  }, [pathname, router, setRead]);
 
   console.log(userData);
   console.log("sse: ", sse);
@@ -88,7 +88,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="w-screen max-w-[476px]">
+    <div className="">
       <Header userData={userData} sse={sse} setSse={setSse} />
 
       {userData.roleName === "MENTOR" ? (

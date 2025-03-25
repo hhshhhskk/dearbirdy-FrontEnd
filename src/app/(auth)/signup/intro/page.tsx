@@ -1,6 +1,7 @@
 "use client";
 
 import StyledButton from "@/components/ui/StyledButton";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function SignupIntro() {
@@ -18,9 +19,12 @@ export default function SignupIntro() {
       </div>
 
       <div className="mt-[66px] w-[80%] mx-auto">
-        <img
+        <Image
           src="/images/common/background_bluebird.png"
           alt="파랑새 일러스트"
+          width={474}
+          height={474}
+          className="object-contain"
         />
       </div>
 

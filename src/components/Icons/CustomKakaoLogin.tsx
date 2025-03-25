@@ -1,4 +1,5 @@
 import { getKakaoLoginUrl } from "@/lib/kakaoAuth";
+import Image from "next/image";
 
 export default function CustomKakaoLogin() {
   return (
@@ -8,10 +9,11 @@ export default function CustomKakaoLogin() {
         window.location.href = getKakaoLoginUrl();
       }}
     >
-      <img
+      <Image
         src="/images/logo/kakao-logo.svg"
         alt="카카오 로고"
-        className="w-[18px] h-[18px]"
+        width={18}
+        height={18}
       />
       <span className="text-[15px] font-semibold text-[rgba(0,0,0,0.85)]">
         카카오로 시작하기

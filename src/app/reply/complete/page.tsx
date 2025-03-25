@@ -30,7 +30,7 @@ const LetterReplyCompletePage: React.FC = () => {
     };
 
     loadAnimation();
-  }, []);
+  }, [birdName]);
 
   return (
     <div className="w-screen min-w-[375px] max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col px-4">

@@ -4,6 +4,7 @@ import Logo from "@/components/Icons/common/Logo";
 import CustomKakaoLogin from "@/components/Icons/CustomKakaoLogin";
 import CommonLayout from "@/components/layout/CommonLayout";
 import { useAuthStore } from "@/store/authStore";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -24,10 +25,11 @@ export default function MainPage() {
       isFullScreen
       bottomFixedButton={<CustomKakaoLogin />}
     >
-      <img
+      <Image
         src="/images/common/background_main.svg"
         alt="배경"
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        fill
+        className="object-cover"
       />
 
       <div className="px-global relative z-10 top-[131px] flex flex-col items-center">

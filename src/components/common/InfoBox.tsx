@@ -22,7 +22,7 @@ const InfoBox: React.FC<InfoBoxProps> = ({ imageSrc, altText, text }) => {
       </div>
 
       {/* 오른쪽 텍스트 */}
-      <p className="text-black01 text-Body2_R_14">{text}</p>
+      <p className="text-black01 text-Body2_R_14 whitespace-pre-wrap">{text}</p>
     </div>
   );
 };

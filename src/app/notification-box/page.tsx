@@ -52,7 +52,7 @@ const NotificationBox: React.FC = () => {
 
       fetchNotifications();
     }
-  }, []);
+  }, [router]);
 
   if (!userData) {
     return <LoadingSpinner />;

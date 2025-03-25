@@ -1,4 +1,5 @@
 "use client";
+
 import { useLetterInfoStore } from "@/store/letterInfoStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ const LetterOpen: React.FC = () => {
     if (!token) {
       router.push("/"); // 로그인 페이지로 리디렉션
     }
-  }, []);
+  }, [router]);
 
   return (
     <div className="w-full min-h-screen bg-[#f9f8f3] flex flex-col px-4">

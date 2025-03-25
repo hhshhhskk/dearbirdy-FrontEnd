@@ -34,7 +34,7 @@ export default function BirdyTestResultPage() {
     } catch (error) {
       console.error("Error processing test results:", error);
     }
-  }, [answers]);
+  }, [answers, setBirdName]);
 
   const handleClick = () => {
     if (isClicked || !lottieRef.current) return;
