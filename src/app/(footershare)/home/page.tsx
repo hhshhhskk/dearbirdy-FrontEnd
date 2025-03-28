@@ -95,18 +95,19 @@ const Home: React.FC = () => {
     <div>
       <Header userData={userData} sse={sse} setSse={setSse} />
 
-      <Banner onClick={() => setIsGuideOpen(true)} />
+      <div className="flex flex-col gap-global my-1">
+        <Banner onClick={() => setIsGuideOpen(true)} />
 
-      <HomeMainSection userData={userData} userRole={userRole!} />
+        <HomeMainSection userData={userData} userRole={userRole!} />
 
-      {isGuideOpen && (
-        <HomeLetterGuideModal
-          isOpen={isGuideOpen}
-          onClose={() => setIsGuideOpen(false)}
-          roleName={userRole}
-          type={userRole === "MENTOR" ? "reply" : "letter"}
-        />
-      )}
+        {isGuideOpen && (
+          <HomeLetterGuideModal
+            isOpen={isGuideOpen}
+            onClose={() => setIsGuideOpen(false)}
+            type={userRole === "MENTOR" ? "reply" : "letter"}
+          />
+        )}
+      </div>
     </div>
   );
 };

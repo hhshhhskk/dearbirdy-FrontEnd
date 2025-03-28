@@ -11,16 +11,15 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ userData, sse, setSse }) => {
   return (
-    <header className="sticky top-0 z-10 bg-[#F9F8F3] flex select-none items-center justify-center min-w-[375px] h-[56px] px-4 mb-2">
-      <div className="container flex items-center justify-between">
-        <Image
-          src="/images/logo/logo_black_M.svg"
-          alt="홈 로고"
-          width={98}
-          height={24}
-        />
-        <BellIcon check={userData.read} sseCheck={sse} setSse={setSse} />
-      </div>
+    <header className="sticky top-0 z-10 flex select-none items-center justify-between h-[56px] w-full">
+      <Image
+        src="/images/logo/logo_black_M.svg"
+        alt="홈 로고"
+        width={98}
+        height={24}
+      />
+
+      <BellIcon check={userData.read} sseCheck={sse} setSse={setSse} />
     </header>
   );
 };
