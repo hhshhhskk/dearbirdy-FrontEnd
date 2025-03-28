@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useBirdyTestStore } from "@/store/useBirdyTestStore";
 import ProgressBar from "../../ui/ProgressBar";
-import { questions } from "@/constants/birdyTest";
+import { OptionValue, questions } from "@/constants/birdyTest";
 import clsx from "clsx";
 
 export const ProgressLabel = ({
@@ -62,8 +62,8 @@ export default function BirdyTestForm({ step }: Props) {
 
   if (!question) return null;
 
-  const handleSelect = (answerIndex: 0 | 1 | 2) => {
-    setAnswer(currentIndex, answerIndex);
+  const handleSelect = (answerValue: OptionValue) => {
+    setAnswer(currentIndex, answerValue);
 
     setTimeout(() => {
       if (step < questions.length) {
@@ -94,7 +94,7 @@ export default function BirdyTestForm({ step }: Props) {
             emoji={opt.emoji}
             label={opt.label}
             isSelected={answers[currentIndex] === i}
-            onClick={() => handleSelect(i as 0 | 1 | 2)}
+            onClick={() => handleSelect(opt.value)}
           />
         ))}
       </div>
