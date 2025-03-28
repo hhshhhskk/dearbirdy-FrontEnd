@@ -1,14 +1,14 @@
 "use client";
 
-import HomeMainSenior from "@/components/home/HomeMainSenior";
-import HomeMainYouth from "@/components/home/HomeMainYouth";
+import React, { useEffect, useState } from "react";
+import Banner from "@/components/home/Banner";
+import HomeMainSection from "@/components/home/HomeMainSection";
+import HomeLetterGuideModal from "@/components/letter/HomeLetterGuideModal";
 import Header from "@/components/ui/Header";
 import { getUserInfo } from "@/services/homeGetApi";
 import { useUserStore } from "@/store/useUserStore";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { usePathname, useRouter } from "next/navigation";
-
-import React, { useEffect, useState } from "react";
 
 export interface IUserCategory {
   career: boolean;
@@ -38,6 +38,10 @@ const Home: React.FC = () => {
   const { setRead } = useUserStore();
   const router = useRouter();
   const pathname = usePathname();
+
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
+
+  const userRole = userData?.roleName;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,13 +92,20 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="">
+    <div>
       <Header userData={userData} sse={sse} setSse={setSse} />
 
-      {userData.roleName === "MENTOR" ? (
-        <HomeMainSenior userData={userData} />
-      ) : (
-        <HomeMainYouth userData={userData} />
+      <Banner onClick={() => setIsGuideOpen(true)} />
+
+      <HomeMainSection userData={userData} userRole={userRole!} />
+
+      {isGuideOpen && (
+        <HomeLetterGuideModal
+          isOpen={isGuideOpen}
+          onClose={() => setIsGuideOpen(false)}
+          roleName={userRole}
+          type={userRole === "MENTOR" ? "reply" : "letter"}
+        />
       )}
     </div>
   );

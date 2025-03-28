@@ -8,17 +8,14 @@ interface IProps {
 
 const SendMessage: React.FC<IProps> = ({ userData }) => {
   const quota = userData.quota ?? 0; // ✅ 기본값 0 설정
-  const widthClass = quota >= 10 ? "w-[90px]" : "w-[82px]";
 
   return (
     <div className="flex justify-end w-full">
       <div
-        className={`flex justify-start items-center gap-[2px] p-[4px_8px_4px_6px] h-[32px] rounded-[8px] bg-[#D6E173] ${widthClass}`}
+        className={`flex items-center gap-[2px] p-[4px_8px_4px_6px] rounded-[8px] bg-green01`}
       >
         <HomeLetterIcon fill="#292D32" />
-        <span className="text-[#292D32] text-center font-bold text-[12px] leading-[16px] tracking-[-0.048px]">
-          {quota}개 남음
-        </span>
+        <span className="text-Caption1_B_12">{quota}개 남음</span>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import Limit from "@/components/home/Limit";
 import Report from "@/components/home/Report";
+import CommonLayout from "@/components/layout/CommonLayout";
 import Footer from "@/components/ui/Footer";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -29,10 +30,12 @@ export default function SharedLayout({
     <>
       {report && <Report />}
       {limit && <Limit />}
-      <div className={`box-border font-pretendard min-h-screen min-w-[375px]`}>
-        <div className="justify-center flex-1 w-full">{children}</div>
+
+      <CommonLayout>
+        {children}
+
         <Footer />
-      </div>
+      </CommonLayout>
     </>
   );
 }

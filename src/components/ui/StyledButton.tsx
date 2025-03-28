@@ -5,6 +5,7 @@ interface StyledButtonProps {
   variant?: "primary" | "outline-yellow" | "outline-green";
   disabled?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 export default function StyledButton({
@@ -12,9 +13,10 @@ export default function StyledButton({
   variant = "primary",
   disabled,
   onClick,
+  className,
 }: StyledButtonProps) {
   const base =
-    "w-full rounded-[12px] font-medium text-Body1_M_16 flex items-center justify-center gap-[4px] px-global py-[13px]";
+    "w-full rounded-[12px] font-medium text-Body1_M_16 flex items-center justify-center gap-1 px-global py-[13px] select-none";
 
   const variants = {
     primary: "cursor-pointer bg-black01 text-white01",
@@ -30,7 +32,9 @@ export default function StyledButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`${base} ${disabled ? disabledClass : variants[variant]}`}
+      className={`${base} ${
+        disabled ? disabledClass : variants[variant]
+      } ${className}`}
     >
       {children}
     </button>

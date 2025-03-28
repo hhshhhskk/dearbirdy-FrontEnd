@@ -18,11 +18,13 @@ export default function MyBirdy() {
   if (!userData) <LoadingSpinner />;
 
   return (
-    <div className="flex flex-col gap-6 w-full bg-[#292D32]">
-      {/* 🐦 사용자 프로필 섹션 */}
-      <ProfileSection userData={userData} />
+    <div className="-mx-global bg-black01 min-h-screen flex flex-col pb-[60px]">
+      <div className="p-6 flex flex-col justify-end flex-1">
+        {/* 🐦 사용자 프로필 섹션 */}
+        <ProfileSection userData={userData} />
+      </div>
 
-      <div className="bg-[#F9F8F3] px-4 py-8 rounded-t-[20px] ">
+      <div className="px-global py-8 bg-white02 rounded-t-[20px] ">
         {/* 📩 편지 기록 */}
         <LetterHistory userData={userData} />
       </div>

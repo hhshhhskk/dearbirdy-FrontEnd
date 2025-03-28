@@ -22,14 +22,14 @@ const SettingItem: React.FC<ISettingItem> = ({
 
   return (
     <div
-      className="w-full cursor-pointer select-none flex justify-between items-center px-4 mt-4"
+      className="w-full cursor-pointer select-none flex justify-between items-center px-global py-[14px]"
       onClick={() => {
         if (type === "internal") {
           router.push("/mybirdy/my-account"); // ✅ "내 정보 수정" 클릭 시 이동
         }
       }}
     >
-      <span className="text-gray-700 text-[16px] font-medium">{label}</span>
+      <span className="text-Body1_M_16">{label}</span>
 
       {type === "toggle" && (
         <div

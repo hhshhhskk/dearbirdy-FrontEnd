@@ -1,7 +1,7 @@
 "use client";
 
+import CommonHeader from "@/components/layout/CommonHeader";
 import SettingItem from "@/components/settings/settingItem";
-import MybirdyHeader from "@/components/ui/MybirdyHeader";
 import { SETTINGS_OPTIONS, SettingSection } from "@/constants/settings";
 import { useState } from "react";
 
@@ -9,29 +9,22 @@ const SettingsPage = () => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
-    <div className="p-6 min-h-screen">
-      {/* 상단 네비게이션 */}
-      <div className="text-lg font-medium text-gray-700 pb-4">
-        <MybirdyHeader title="설정" />
-      </div>
+    <div className="-mx-global">
+      <CommonHeader title="설정" />
 
       {SETTINGS_OPTIONS.map((section: SettingSection) => (
         <div key={section.category}>
           {/* 카테고리 헤더 */}
-          <div className="w-full h-10 px-4 py-2 bg-[#F4F5EF] mt-4">
-            <span className="text-[#6B7178] text-[16px] font-medium leading-6 tracking-[-0.064px]">
-              {section.category}
-            </span>
+          <div className="w-full bg-line01 px-global py-[10px]">
+            <h2 className="text-Body1_M_16 text-gray06">{section.category}</h2>
           </div>
 
           {/* "알림" 카테고리일 때 추가 UI 표시 */}
           {section.category === "알림" ? (
-            <div className="w-full  p-4 ">
+            <div className="px-global py-[14px]">
               {/* 편지 알림 받기 */}
               <div className="w-full flex justify-between items-center">
-                <span className="text-gray-700 text-[16px] font-medium">
-                  편지 알림 받기
-                </span>
+                <span className="text-Body1_M_16">편지 알림 받기</span>
                 <div
                   className={`w-10 h-5 flex items-center rounded-full p-1 cursor-pointer transition-all ${
                     isToggled ? "bg-[#292d32]" : "bg-[#D1D1D6]"
@@ -47,7 +40,7 @@ const SettingsPage = () => {
               </div>
 
               {/* 알림 받을 이메일 */}
-              <div className="mt-3 w-full  bg-[#F4F5EF] border-1 border-[#E5E5EA] rounded-[10px] p-4 ">
+              <div className="mt-3 w-full bg-[#F4F5EF] border-1 border-[#E5E5EA] rounded-[10px] p-4 ">
                 <span className="block text-gray-600 text-sm">
                   알림 받을 이메일
                 </span>

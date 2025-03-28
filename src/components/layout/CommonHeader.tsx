@@ -1,4 +1,20 @@
+import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
+import ChevronLeft from "../../components/Icons/common/LeftArrow";
+
+function BackButton() {
+  const router = useRouter();
+
+  return (
+    <button
+      onClick={() => router.back()}
+      aria-label="뒤로가기"
+      className="cursor-pointer"
+    >
+      <ChevronLeft className="w-6 h-6" stroke="#292D32" />
+    </button>
+  );
+}
 
 interface CommonHeaderProps {
   left?: ReactNode;
@@ -10,7 +26,7 @@ interface CommonHeaderProps {
 }
 
 export default function CommonHeader({
-  left,
+  left = <BackButton />,
   title,
   center,
   right,
@@ -19,7 +35,7 @@ export default function CommonHeader({
 }: CommonHeaderProps) {
   return (
     <header
-      className={`h-[56px] bg-white02 flex items-center justify-between ${
+      className={`w-full h-[56px] bg-white02 flex items-center justify-between ${
         noPadding ? "" : "px-global"
       } ${className}`}
     >
@@ -29,7 +45,7 @@ export default function CommonHeader({
 
       <div className="flex-1 flex items-center justify-center">
         {center ?? (
-          <span className="text-Body1_B_16 text-black01 truncate">{title}</span>
+          <span className="text-Body1_B_18 text-black01 truncate">{title}</span>
         )}
       </div>
 

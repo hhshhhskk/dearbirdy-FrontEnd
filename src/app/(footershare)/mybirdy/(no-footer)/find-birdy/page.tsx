@@ -1,27 +1,16 @@
 "use client";
 
-import LeftArrow from "@/components/Icons/common/LeftArrow";
+import CommonHeader from "@/components/layout/CommonHeader";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export default function FindbirdyPage() {
-  const router = useRouter();
-
   return (
-    <div className="flex flex-col items-center px-4">
-      <div className="relative flex justify-center items-center w-full h-[56px]  bg-[#f9f8f3]">
-        <LeftArrow
-          onClick={() => router.back()}
-          className="absolute left-0 w-6 h-6 cursor-pointer"
-          stroke="#292D32"
-        />
-        <p className="text-[#292D32] text-lg font-bold leading-[21.6px]">
-          마이 버디 새롭게 찾기
-        </p>
-      </div>
+    <div className="flex flex-col items-center">
+      <CommonHeader title="마이 버디 새롭게 찾기" noPadding />
+
       <Image
         src={`/images/my-birdy/new_mybirdy.png`}
-        alt="마이버디 새 버디 찾기"
+        alt="마이 버디 새롭게 찾기"
         width={198}
         height={152}
         className="mt-6"

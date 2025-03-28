@@ -36,7 +36,12 @@ export default function OnboardingPage() {
   );
 
   return (
-    <CommonLayout noPadding bottomFixedButton={BottomFixedButton} isFullScreen>
+    <CommonLayout
+      noPadding
+      bottomFixedButton={BottomFixedButton}
+      isFullScreen
+      className="bg-[#a9c6ae]"
+    >
       <Swiper
         pagination={{
           clickable: true,
@@ -58,7 +63,7 @@ export default function OnboardingPage() {
               className="w-full object-cover object-center"
             />
 
-            <div className="absolute top-[147px] px-[26px] text-line01 whitespace-pre-wrap">
+            <div className="absolute top-[88px] px-[26px] text-line01 whitespace-pre-wrap">
               <div className="mb-[12px] text-Title2_B_24">{slide.title}</div>
               <div className="text-Body0_R_18">{slide.content}</div>
             </div>

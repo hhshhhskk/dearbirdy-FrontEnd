@@ -13,7 +13,7 @@
 /* 페이지네이션 위치 */
 .onboarding-swiper .swiper-pagination {
   position: absolute;
-  top: 115px !important;
+  top: 56px !important;
   left: 23px !important;
   width: auto !important;
   z-index: 10;
