@@ -8,7 +8,7 @@ interface IProps {
 const ReplyGuide: React.FC<IProps> = ({ setGuideModal }) => {
   return (
     <>
-      <div className="absolute w-full max-w-[476px] inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
+      <div className="absolute w-full max-w-global inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
       <div className="absolute left-0 bottom-0 z-20 flex w-auto p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#FFF]">
         <div
           className="flex justify-end w-full"

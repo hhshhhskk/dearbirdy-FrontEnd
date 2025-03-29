@@ -15,7 +15,9 @@ module.exports = {
         "2xl": "1536px",
       },
 
-      maxWidth: { global: "476px" },
+      height: {
+        "safe-screen": "calc(100svh - env(safe-area-inset-bottom))",
+      },
       spacing: { global: "16px" },
 
       colors: {

@@ -27,7 +27,7 @@ export default function Modal({
       {/* Modal container */}
       <div
         className={clsx(
-          "relative z-50 w-full max-w-[476px] mx-auto max-h-[80%] px-global pt-6 pb-11 bg-white01 shadow-lg rounded-t-[30px] transition-transform duration-500 animate-slide-up flex flex-col",
+          "relative z-50 w-full max-w-global mx-auto max-h-[80%] px-global pt-6 pb-11 bg-white01 shadow-lg rounded-t-[30px] transition-transform duration-500 animate-slide-up flex flex-col",
           className
         )}
       >

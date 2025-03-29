@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import ChevronLeft from "../../components/Icons/common/LeftArrow";
+import clsx from "clsx";
 
 function BackButton() {
   const router = useRouter();
@@ -21,8 +22,8 @@ interface CommonHeaderProps {
   title?: string;
   right?: ReactNode;
   center?: ReactNode;
+  addPaddingX?: boolean;
   className?: string;
-  noPadding?: boolean;
 }
 
 export default function CommonHeader({
@@ -30,14 +31,16 @@ export default function CommonHeader({
   title,
   center,
   right,
+  addPaddingX = false,
   className = "",
-  noPadding = false,
 }: CommonHeaderProps) {
   return (
     <header
-      className={`w-full h-[56px] bg-white02 flex items-center justify-between ${
-        noPadding ? "" : "px-global"
-      } ${className}`}
+      className={clsx(
+        "sticky top-0 z-20 w-full h-[56px] bg-white02 flex items-center justify-between flex-shrink-0",
+        addPaddingX && "px-global",
+        className
+      )}
     >
       <div className="w-[24px] h-[24px] flex items-center justify-center">
         {left ?? null}

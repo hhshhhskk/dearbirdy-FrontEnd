@@ -1,6 +1,7 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import StyledButton from "@/components/ui/StyledButton";
 import { UserCategory, useSignupStore } from "@/store/useSignupStore";
@@ -51,7 +52,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       isSelected ? "border-green03" : "border-line01"
     }`}
       style={{
-        height: "clamp(100px, 15vh, 124px)",
+        height: "clamp(100px, 14vh, 124px)",
       }}
       onClick={() => onToggle(id)}
     >
@@ -115,33 +116,35 @@ export default function UserCategoryPage() {
   }
 
   return (
-    <div>
-      <InfoBox
-        imageSrc="/images/signup/bluebird-3.svg"
-        altText="카테고리 선택 아이콘"
-        text="우선적으로 편지를 받고 싶은 내용의 카테고리를 선택해주세요."
-      />
+    <>
+      <div>
+        <InfoBox
+          imageSrc="/images/signup/bluebird-3.svg"
+          altText="카테고리 선택 아이콘"
+          text="우선적으로 편지를 받고 싶은 내용의 카테고리를 선택해주세요."
+        />
 
-      <div className="flex-1 w-full h-full mt-11 mb-global">
-        <div className="select-none grid grid-cols-3 gap-x-[7px] gap-y-[8px]">
-          {categories.map(({ id, name, icon }) => (
-            <CategoryCard
-              key={id}
-              id={id}
-              name={name}
-              icon={icon}
-              isSelected={selected.has(id)}
-              onToggle={handleToggle}
-            />
-          ))}
+        <div className="mt-11">
+          <div className="select-none grid grid-cols-3 gap-x-[7px] gap-y-[8px]">
+            {categories.map(({ id, name, icon }) => (
+              <CategoryCard
+                key={id}
+                id={id}
+                name={name}
+                icon={icon}
+                isSelected={selected.has(id)}
+                onToggle={handleToggle}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="absolute bottom-[44px] left-0 right-0 px-global">
+      <BottomFixedElement>
         <StyledButton onClick={handleNext} disabled={selected.size === 0}>
           완료
         </StyledButton>
-      </div>
-    </div>
+      </BottomFixedElement>
+    </>
   );
 }

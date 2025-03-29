@@ -1,6 +1,7 @@
 "use client";
 
 import InfoBox from "@/components/common/InfoBox";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import StyledButton from "@/components/ui/StyledButton";
 import StyledInput from "@/components/ui/StyledInput";
 import { checkNickname } from "@/services/userService";
@@ -88,6 +89,7 @@ export default function NicknamePage() {
         altText="닉네임 아이콘"
         text="고마워요! 우선은요. 제가 당신을 기억할 수 있게 이름을 알려주세요!"
       />
+
       <div className="pt-[44px]">
         <StyledInput
           value={nickname}
@@ -103,11 +105,11 @@ export default function NicknamePage() {
         />
       </div>
 
-      <div className="absolute bottom-[44px] left-0 right-0 px-global">
+      <BottomFixedElement>
         <StyledButton onClick={handleNext} disabled={!isAvailable}>
           다음
         </StyledButton>
-      </div>
+      </BottomFixedElement>
     </>
   );
 }

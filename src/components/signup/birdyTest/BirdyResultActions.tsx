@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useSignupStore } from "@/store/useSignupStore";
 import { postAdditionalInfo } from "@/services/authService";
 import StyledButton from "@/components/ui/StyledButton";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 
 const BirdyResultActions = () => {
   const router = useRouter();
@@ -38,11 +39,11 @@ const BirdyResultActions = () => {
   };
 
   return (
-    <div className="absolute bottom-[44px] left-0 right-0 px-global">
+    <BottomFixedElement>
       <StyledButton onClick={handleNext} disabled={isSubmitting}>
         환영해, 나의 버디!
       </StyledButton>
-    </div>
+    </BottomFixedElement>
   );
 };
 

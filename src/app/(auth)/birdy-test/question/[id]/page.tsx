@@ -1,7 +1,7 @@
 "use client"; // 클라이언트 컴포넌트로 지정
 
 import { useParams } from "next/navigation";
-import BirdyTestForm from "@/components/signup/birdyTestTemp/BirdyTestForm";
+import BirdyTestForm from "@/components/signup/birdyTest/BirdyTestForm";
 import { notFound } from "next/navigation";
 
 export default function BirdyTestQuestion() {

@@ -1,5 +1,6 @@
 "use client";
 
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import StyledButton from "@/components/ui/StyledButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -28,11 +29,11 @@ export default function SignupIntro() {
         />
       </div>
 
-      <div className="absolute bottom-[44px] left-0 right-0 px-global">
+      <BottomFixedElement>
         <StyledButton onClick={() => router.push("/signup/nickname")}>
           좋아요!
         </StyledButton>
-      </div>
+      </BottomFixedElement>
     </div>
   );
 }

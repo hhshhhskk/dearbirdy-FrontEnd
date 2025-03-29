@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function AllBirdyTypesPage() {
   return (
     <div className="flex flex-col items-center">
-      <CommonHeader title="버디 유형 모두 보기" noPadding />
+      <CommonHeader title="버디 유형 모두 보기" />
 
       <Image
         src={`/images/my-birdy/birdy_collection.png`}

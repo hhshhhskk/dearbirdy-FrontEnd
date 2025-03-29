@@ -38,7 +38,7 @@ const LetterReport: React.FC<IProps> = ({
 
   return (
     <div className="">
-      <div className="absolute w-full max-w-[476px] inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
+      <div className="absolute w-full max-w-global inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
 
       <div className="absolute w-full h-screen z-15">
         <div className="absolute bottom-0 left-0 z-20 flex w-full p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#FFF]">

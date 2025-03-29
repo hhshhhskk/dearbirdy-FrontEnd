@@ -47,7 +47,7 @@ export default function WriteLetter() {
   };
 
   return (
-    <div className="relative w-full max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col">
+    <div className="relative w-full max-w-global min-h-screen bg-[#f9f8f3] flex flex-col">
       {isDrawerOpen && (
         <LetterGuideModal
           isOpen={isDrawerOpen}
@@ -106,7 +106,7 @@ export default function WriteLetter() {
           className="flex flex-col mt-[14px]"
         >
           {/* 제목 입력 필드 */}
-          <div className="flex min-w-[375px] w-screen max-w-[476px] p-4 flex-col items-start border-b border-[#E5E5EA]">
+          <div className="flex min-w-[375px] w-screen max-w-global p-4 flex-col items-start border-b border-[#E5E5EA]">
             <input
               {...register("title", {
                 required: "편지 제목을 입력 해 주세요",
@@ -126,7 +126,7 @@ export default function WriteLetter() {
           </div>
 
           {/* 내용 필드 */}
-          <div className="flex flex-col min-w-[375px] w-screen max-w-[476px] p-4">
+          <div className="flex flex-col min-w-[375px] w-screen max-w-global p-4">
             <textarea
               maxLength={300}
               {...register("letter", {

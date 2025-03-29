@@ -51,10 +51,10 @@ const TermsItem = ({ checked, label, onCheck, link }: TermsItemProps) => (
 
 interface TermsStepProps {
   onClose?: () => void; // 선택적 속성으로 변경
-  isModal?: boolean; // 모달 모드 여부
+  onMenteeNext?: () => void;
 }
 
-const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
+const TermsStep: React.FC<TermsStepProps> = ({ onClose, onMenteeNext }) => {
   const router = useRouter();
   const { userRole } = useSignupStore();
 
@@ -82,28 +82,20 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
   /** ✅ 약관 동의 후 모달 닫기 및 다음 단계 이동 */
   const handleNext = () => {
     if (isServiceChecked && isPrivacyChecked) {
-      if (isModal && onClose) {
-        // 모달 모드일 때는 onClose를 호출
-        // console.log("✅ 모달 모드: 약관 동의 완료, 모달 닫기");
-        onClose();
+      if (userRole === "MENTEE") {
+        onMenteeNext?.();
       } else {
-        // 단계 모드일 때는 nextStep 호출
-        // console.log("✅ 단계 모드: 약관 동의 완료, 다음 단계로 이동");
-        if (userRole === "MENTEE") {
-          router.push("/signup/complete");
-        }
-        router.push("/signup/userCategory");
+        router.push("/signup/user-category");
       }
     }
   };
 
-  const containerClasses = isModal
-    ? "absolute inset-0 flex items-center justify-center bg-[rgba(51,51,51,0.80)]"
-    : "";
-
   return (
-    <div className={containerClasses}>
-      <div className="absolute bottom-[44px] w-full px-4 ">
+    <div
+      className="absolute inset-0 flex items-center justify-center bg-[rgba(51,51,51,0.80)] z-999"
+      onClick={onClose}
+    >
+      <div className="absolute bottom-[44px] w-full px-4 max-w-global">
         <div>
           {/* ✅ 캐릭터 이미지 */}
           <div className="mt-[50px] flex justify-center">
@@ -122,51 +114,53 @@ const TermsStep: React.FC<TermsStepProps> = ({ onClose, isModal = false }) => {
         </div>
 
         {/* ✅ 약관 동의 박스 */}
-        <div className="mb-8 w-full bg-white01 rounded-[20px] p-6 text-black01">
-          {/* 전체 동의 */}
-          <div
-            className="flex items-center justify-between cursor-pointer"
-            onClick={handleAllCheck}
-          >
-            <div className="flex items-center gap-2 select-none">
-              <Image
-                src={
-                  isAllChecked
-                    ? "/images/terms/terms-icon-select_all.svg"
-                    : "/images/terms/terms-icon_all.svg"
-                }
-                alt="전체 동의"
-                width={24}
-                height={24}
+        <div onClick={(e) => e.stopPropagation()}>
+          <div className="mb-8 w-full bg-white01 rounded-[20px] p-6">
+            {/* 전체 동의 */}
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={handleAllCheck}
+            >
+              <div className="flex items-center gap-2 select-none">
+                <Image
+                  src={
+                    isAllChecked
+                      ? "/images/terms/terms-icon-select_all.svg"
+                      : "/images/terms/terms-icon_all.svg"
+                  }
+                  alt="전체 동의"
+                  width={24}
+                  height={24}
+                />
+                <p className="text-Body1_M_16">약관 전체 동의하기</p>
+              </div>
+            </div>
+
+            <hr className="w-full my-4 border-gray01" />
+
+            <div className="flex flex-col gap-[10px]">
+              <TermsItem
+                checked={isServiceChecked}
+                label="(필수) 서비스 이용약관"
+                onCheck={() => handleSingleCheck("service")}
+                link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e80f2b442d5324f6ad1fe?pvs=4"
               />
-              <p className="text-Body1_M_16">약관 전체 동의하기</p>
+              <TermsItem
+                checked={isPrivacyChecked}
+                label="(필수) 개인정보 처리방침"
+                onCheck={() => handleSingleCheck("privacy")}
+                link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e8094b4fefdacee285ff7?pvs=4"
+              />
             </div>
           </div>
 
-          <hr className="w-full my-4 border-gray01" />
-
-          <div className="flex flex-col gap-[10px]">
-            <TermsItem
-              checked={isServiceChecked}
-              label="(필수) 서비스 이용약관"
-              onCheck={() => handleSingleCheck("service")}
-              link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e80f2b442d5324f6ad1fe?pvs=4"
-            />
-            <TermsItem
-              checked={isPrivacyChecked}
-              label="(필수) 개인정보 처리방침"
-              onCheck={() => handleSingleCheck("privacy")}
-              link="https://important-pansy-82d.notion.site/Dearbirdy-1b51b9cea31e8094b4fefdacee285ff7?pvs=4"
-            />
-          </div>
+          <StyledButton
+            onClick={handleNext}
+            disabled={!isServiceChecked || !isPrivacyChecked}
+          >
+            다음
+          </StyledButton>
         </div>
-
-        <StyledButton
-          onClick={handleNext}
-          disabled={!isServiceChecked || !isPrivacyChecked}
-        >
-          다음
-        </StyledButton>
       </div>
     </div>
   );

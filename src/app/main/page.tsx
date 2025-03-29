@@ -2,6 +2,7 @@
 
 import Logo from "@/components/Icons/common/Logo";
 import CustomKakaoLogin from "@/components/Icons/CustomKakaoLogin";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import CommonLayout from "@/components/layout/CommonLayout";
 import { useAuthStore } from "@/store/authStore";
 import Image from "next/image";
@@ -20,24 +21,26 @@ export default function MainPage() {
   }, [accessToken, router]);
 
   return (
-    <CommonLayout
-      noPadding
-      isFullScreen
-      bottomFixedButton={<CustomKakaoLogin />}
-    >
-      <Image
-        src="/images/common/background_main.svg"
-        alt="배경"
-        fill
-        className="object-cover"
-      />
+    <>
+      <CommonLayout noPadding className="relative">
+        <Image
+          src="/images/common/background_main.svg"
+          alt="배경"
+          fill
+          className="object-cover"
+        />
 
-      <div className="px-global relative z-10 top-[131px] flex flex-col items-center">
-        <Logo fill="white" className="w-[180px] h-[48px] mb-global" />
-        <h2 className="text-center text-Body0_B_18 text-line01 whitespace-pre-wrap">
-          편지로 연결되는 따뜻한 마음,{"\n"}인생 선후배들의 만남
-        </h2>
-      </div>
-    </CommonLayout>
+        <div className="px-global relative z-10 top-[72px] flex flex-col items-center">
+          <Logo fill="white" className="w-[180px] h-[48px] mb-global" />
+          <h2 className="text-center text-Body0_B_18 text-line01 whitespace-pre-wrap">
+            편지로 연결되는 따뜻한 마음,{"\n"}인생 선후배들의 만남
+          </h2>
+        </div>
+      </CommonLayout>
+
+      <BottomFixedElement>
+        <CustomKakaoLogin />
+      </BottomFixedElement>
+    </>
   );
 }

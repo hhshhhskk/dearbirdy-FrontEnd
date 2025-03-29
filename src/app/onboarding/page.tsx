@@ -11,6 +11,7 @@ import { useState, useRef } from "react";
 import type { Swiper as SwiperType } from "swiper"; // ✅ Swiper 타입 임포트
 import CommonLayout from "@/components/layout/CommonLayout";
 import StyledButton from "@/components/ui/StyledButton";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -29,47 +30,44 @@ export default function OnboardingPage() {
     }
   };
 
-  const BottomFixedButton = (
-    <StyledButton onClick={handleNextSlide}>
-      {isLastSlide ? "반가워요!" : "다음"}
-    </StyledButton>
-  );
-
   return (
-    <CommonLayout
-      noPadding
-      bottomFixedButton={BottomFixedButton}
-      isFullScreen
-      className="bg-[#a9c6ae]"
-    >
-      <Swiper
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        onSwiper={(swiper) => (swiperRef.current = swiper)} // ✅ Swiper 인스턴스 저장
-        onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
-        className="w-full h-full onboarding-swiper"
-      >
-        {onboardingSlides.map((slide, index) => (
-          <SwiperSlide
-            key={index}
-            className="relative flex flex-col items-center justify-center"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={slide.image}
-              alt={`onboarding-step-${index + 1}`}
-              className="w-full object-cover object-center"
-            />
+    <>
+      <CommonLayout noPadding className="bg-[#a9c6ae]">
+        <Swiper
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)} // ✅ Swiper 인스턴스 저장
+          onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
+          className="w-full h-full onboarding-swiper"
+        >
+          {onboardingSlides.map((slide, index) => (
+            <SwiperSlide
+              key={index}
+              className="relative h-full flex flex-col items-center justify-center"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={slide.image}
+                alt={`onboarding-step-${index + 1}`}
+                className="w-full h-full object-cover object-center"
+              />
 
-            <div className="absolute top-[88px] px-[26px] text-line01 whitespace-pre-wrap">
-              <div className="mb-[12px] text-Title2_B_24">{slide.title}</div>
-              <div className="text-Body0_R_18">{slide.content}</div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </CommonLayout>
+              <div className="absolute top-[88px] px-[26px] text-line01 whitespace-pre-wrap">
+                <div className="mb-[12px] text-Title2_B_24">{slide.title}</div>
+                <div className="text-Body0_R_18">{slide.content}</div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </CommonLayout>
+
+      <BottomFixedElement>
+        <StyledButton onClick={handleNextSlide}>
+          {isLastSlide ? "반가워요!" : "다음"}
+        </StyledButton>
+      </BottomFixedElement>
+    </>
   );
 }

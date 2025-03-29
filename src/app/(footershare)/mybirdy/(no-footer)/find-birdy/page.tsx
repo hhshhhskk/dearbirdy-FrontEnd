@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function FindbirdyPage() {
   return (
     <div className="flex flex-col items-center">
-      <CommonHeader title="마이 버디 새롭게 찾기" noPadding />
+      <CommonHeader title="마이 버디 새롭게 찾기" />
 
       <Image
         src={`/images/my-birdy/new_mybirdy.png`}

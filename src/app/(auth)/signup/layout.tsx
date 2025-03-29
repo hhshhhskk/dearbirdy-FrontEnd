@@ -9,10 +9,12 @@ export default function SignupLayout({
   children: React.ReactNode;
 }) {
   return (
-    <CommonLayout isFullScreen>
-      <CommonHeader title="회원가입" noPadding />
+    <>
+      <CommonHeader title="회원가입" addPaddingX />
 
-      <div className="py-2">{children}</div>
-    </CommonLayout>
+      <CommonLayout>
+        <div className="py-2">{children}</div>
+      </CommonLayout>
+    </>
   );
 }

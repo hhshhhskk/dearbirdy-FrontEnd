@@ -211,7 +211,7 @@ const LetterDetailId: React.FC = () => {
             </>
           )}
 
-          <div className="relative w-screen max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
+          <div className="relative w-screen max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
             <header className="sticky top-0 min-w-[343px] h-[56px] flex items-center bg-[#f9f8f3]">
               <Image
                 src="/images/icons/arrow_left_icon.svg"
@@ -419,7 +419,7 @@ const LetterDetailId: React.FC = () => {
         </div>
       ) : (
         // 장년 버전
-        <div className="relative w-screen max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
+        <div className="relative w-screen max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
           {showThrowModal && (
             <ThrowModal
               letterStatusSeq={letter.letterStatusSeq}

@@ -59,7 +59,7 @@ const NotificationBox: React.FC = () => {
   }
 
   return (
-    <div className="w-screen min-h-screen max-w-[476px] bg-[#f9f8f3] flex flex-col">
+    <div className="w-screen min-h-screen max-w-global bg-[#f9f8f3] flex flex-col">
       <header className="relative cursor-pointer select-none w-full h-[56px] flex justify-center items-center">
         <Image
           src="/images/icons/arrow_left_icon.svg"

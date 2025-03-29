@@ -44,7 +44,7 @@ export default function Category() {
           </div>
 
           <div className="flex justify-center w-full">
-            <div className="grid grid-cols-2 gap-2 w-full max-w-[476px]">
+            <div className="grid grid-cols-2 gap-2 w-full max-w-global">
               {categories.map((category) => (
                 <div
                   key={category.id}

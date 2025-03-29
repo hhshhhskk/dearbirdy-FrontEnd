@@ -60,7 +60,7 @@ const ReplyPage: React.FC = () => {
   };
 
   return (
-    <div className="relative w-screen max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col px-4">
+    <div className="relative w-screen max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4">
       {previewModal && <ReplyPreview setPreviewModal={setPreviewModal} />}
       {guideModal && <ReplyGuide setGuideModal={setGuideModal} />}
       <header className="absolute top-0 left-4 right-4 min-w-[343px] w-auto h-[56px] flex justify-between items-center bg-[#F9F8F3]">
@@ -114,7 +114,7 @@ const ReplyPage: React.FC = () => {
           className="flex flex-col mt-[14px]"
         >
           {/* 제목 입력 필드 */}
-          <div className="flex min-w-[375px] w-screen max-w-[476px] p-4 flex-col items-start border-b border-[#E5E5EA]">
+          <div className="flex min-w-[375px] w-screen max-w-global p-4 flex-col items-start border-b border-[#E5E5EA]">
             <input
               {...register("title", {
                 required: "편지 제목을 입력 해 주세요",
@@ -134,7 +134,7 @@ const ReplyPage: React.FC = () => {
           </div>
 
           {/* 내용 필드 */}
-          <div className="flex flex-col min-w-[375px] w-screen max-w-[476px] p-4">
+          <div className="flex flex-col min-w-[375px] w-screen max-w-global p-4">
             <textarea
               maxLength={300}
               {...register("letter", {

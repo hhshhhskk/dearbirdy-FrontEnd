@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Providers from "./providers";
@@ -30,6 +30,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,10 +51,10 @@ export default function RootLayout({
 
       {/* 참고: 전역적 배경색 및 폰트 색상은 global.css에서 적용하고 있음 */}
       <body
-        className={`${pretendard.variable} font-pretendard min-h-screen flex justify-center`}
+        className={`${pretendard.variable} font-pretendard flex justify-center`}
       >
         {/* ✅ React Query Provider 적용 */}
-        <main className="min-h-screen w-full max-w-[476px] flex flex-col shadow-2xl bg-white02">
+        <main className="min-h-safe-screen w-full max-w-global flex flex-col shadow-2xl bg-white02">
           <Providers>{children}</Providers>
         </main>
       </body>

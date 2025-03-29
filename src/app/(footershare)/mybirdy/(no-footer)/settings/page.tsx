@@ -10,7 +10,7 @@ const SettingsPage = () => {
 
   return (
     <div className="-mx-global">
-      <CommonHeader title="설정" />
+      <CommonHeader title="설정" addPaddingX />
 
       {SETTINGS_OPTIONS.map((section: SettingSection) => (
         <div key={section.category}>

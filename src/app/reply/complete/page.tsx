@@ -33,7 +33,7 @@ const LetterReplyCompletePage: React.FC = () => {
   }, [birdName]);
 
   return (
-    <div className="w-screen min-w-[375px] max-w-[476px] min-h-screen bg-[#f9f8f3] flex flex-col px-4">
+    <div className="w-screen min-w-[375px] max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4">
       <main className="relative flex flex-col items-center justify-center">
         <div className="absolute top-[108px]">
           <p className=" text-[#292D32] text-center text-[20px] font-bold leading-[28px] tracking-[-0.08px] ">

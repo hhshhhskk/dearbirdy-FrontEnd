@@ -3,16 +3,18 @@
 import CommonLayout from "@/components/layout/CommonLayout";
 import CommonHeader from "@/components/layout/CommonHeader";
 
-export default function SignupLayout({
+export default function BirdyTestLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <CommonLayout isFullScreen>
-      <CommonHeader title="버디테스트" noPadding />
+    <>
+      <CommonHeader title="버디테스트" addPaddingX />
 
-      <div className="py-2">{children}</div>
-    </CommonLayout>
+      <CommonLayout>
+        <div className="py-2">{children}</div>
+      </CommonLayout>
+    </>
   );
 }
