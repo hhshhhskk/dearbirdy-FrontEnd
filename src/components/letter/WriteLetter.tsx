@@ -1,11 +1,12 @@
 "use client";
 
 import { useLetterStore } from "@/store/useLetterStore";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import LetterGuideModal from "./LetterGuideModal";
 import LetterProgress from "./LetterProgress";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
+import LetterBackModal from "./LetterBackModal";
 
 interface FormValues {
   title: string;
@@ -13,11 +14,14 @@ interface FormValues {
 }
 
 export default function WriteLetter() {
-  const { categoryName, setTitle, setLetter, setStep } = useLetterStore();
+  const { categoryName, title, setTitle, letter, setLetter, setStep } =
+    useLetterStore();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [backModal, setBackModal] = useState(false);
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -25,6 +29,11 @@ export default function WriteLetter() {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const [charCount, setCharCount] = useState<string>("");
+
+  useEffect(() => {
+    setValue("title", title);
+    setValue("letter", letter);
+  }, [setValue]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= 300) {
@@ -48,6 +57,9 @@ export default function WriteLetter() {
 
   return (
     <div className="relative w-full max-w-global min-h-screen bg-[#f9f8f3] flex flex-col">
+       {backModal && (
+        <LetterBackModal setBackModal={setBackModal} setStep={setStep} />
+      )}
       {isDrawerOpen && (
         <LetterGuideModal
           isOpen={isDrawerOpen}
@@ -62,7 +74,7 @@ export default function WriteLetter() {
           width={24}
           height={24}
           className=""
-          onClick={() => setStep(1)}
+          onClick={() => setBackModal(true)}
         />
         <div
           className={`flex h-10 px-4 py-2 items-center gap-1 rounded-[10px] ${

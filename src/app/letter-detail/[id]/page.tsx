@@ -502,9 +502,10 @@ const LetterDetailId: React.FC = () => {
                 <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
                   {letter.sendLetter.letterTitle}
                 </p>
-                <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
+                <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px] break-all  whitespace-pre-line">
                   {letter.sendLetter.letter}
                 </p>
+
                 <div className="flex flex-col items-start w-full gap-2 ">
                   <p className="text-right text-[#8E8E93] text-xs font-normal leading-4 tracking-[-0.048px]">
                     {sendDate}

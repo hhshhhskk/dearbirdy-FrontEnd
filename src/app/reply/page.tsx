@@ -1,5 +1,6 @@
 "use client";
 
+import LetterBackModal from "@/components/letter/LetterBackModal";
 import LetterProgress from "@/components/letter/LetterProgress";
 import ReplyGuide from "@/components/letter/ReplyGuide";
 import ReplyPreview from "@/components/letter/ReplyPreview";
@@ -31,6 +32,8 @@ const ReplyPage: React.FC = () => {
   const [previewModal, setPreviewModal] = useState(false);
 
   const [guideModal, setGuideModal] = useState(false);
+
+  const [backModal, setBackModal] = useState(false);
   const { categoryName, letterStatusSeq } = useLetterInfoStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -61,6 +64,7 @@ const ReplyPage: React.FC = () => {
 
   return (
     <div className="relative w-screen max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4">
+      {backModal && <LetterBackModal setBackModal={setBackModal} />}
       {previewModal && <ReplyPreview setPreviewModal={setPreviewModal} />}
       {guideModal && <ReplyGuide setGuideModal={setGuideModal} />}
       <header className="absolute top-0 left-4 right-4 min-w-[343px] w-auto h-[56px] flex justify-between items-center bg-[#F9F8F3]">
@@ -70,7 +74,7 @@ const ReplyPage: React.FC = () => {
           width={24}
           height={24}
           className=""
-          onClick={() => router.back()}
+          onClick={() => setBackModal(true)}
         />
         <div
           className={`flex h-10 px-4 py-2 items-center gap-1 rounded-[10px] ${

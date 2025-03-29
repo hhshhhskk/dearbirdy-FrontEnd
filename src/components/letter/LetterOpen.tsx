@@ -46,6 +46,7 @@ const LetterOpen: React.FC = () => {
             width={319}
             height={241}
             className="absolute bottom-0"
+            onClick={() => router.push(`/letter-detail/${letterStatusSeq}`)}
           />
           <Image
             src="/images/letter/letter_front.svg"
@@ -53,6 +54,7 @@ const LetterOpen: React.FC = () => {
             width={309}
             height={191}
             className="absolute bottom-0"
+            onClick={() => router.push(`/letter-detail/${letterStatusSeq}`)}
           />
           <div className="absolute bottom-[36px] flex items-center justify-center gap-1 ">
             <Image
