@@ -72,7 +72,7 @@ const SeniorLetterStorage: React.FC = () => {
   };
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <div />;
   }
 
   return (
@@ -93,7 +93,7 @@ const SeniorLetterStorage: React.FC = () => {
                   setCateNum(idx + 1);
                 }
               }}
-              className={`px-3.5 py-1.5 rounded-[20px] min-w-[53px] text-center ${
+              className={`cursor-pointer px-3.5 py-1.5 rounded-[20px] min-w-[53px] text-center ${
                 cateNum === idx + 1
                   ? "bg-[#292D32] text-[#FFF]"
                   : "bg-[#F9F8F3] border border-[#E5E5EA] text-[#C7C7CC]"

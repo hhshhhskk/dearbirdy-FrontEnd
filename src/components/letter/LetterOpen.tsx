@@ -39,7 +39,7 @@ const LetterOpen: React.FC = () => {
             편지가 도착했어요
           </p>
         </div>
-        <div className="relative w-full h-[388px] flex justify-center items-center mt-[25px]">
+        <div className="cursor-pointer relative w-full h-[388px] flex justify-center items-center mt-[25px]">
           <Image
             src="/images/letter/letter_back.svg"
             alt="편지지 뒤쪽"

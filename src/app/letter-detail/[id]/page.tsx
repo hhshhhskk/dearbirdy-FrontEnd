@@ -237,14 +237,18 @@ const LetterDetailId: React.FC = () => {
                   ? `${letter?.replyLetter.sendUser}`
                   : "답장을 기다리는중"}
               </span>
-              <Image
-                src="/images/icons/more_icon.svg"
-                alt="더보기 아이콘"
-                width={24}
-                height={24}
-                className="mr-2"
-                onClick={() => setShowReportModal(true)}
-              />
+
+              {/* 보고 있는 편지가 답장일 때만 신고하기 버튼 렌더링 */}
+              {letter.replyLetter && (
+                <Image
+                  src="/images/icons/more_icon.svg"
+                  alt="더보기 아이콘"
+                  width={24}
+                  height={24}
+                  className="cursor-pointer mr-2"
+                  onClick={() => setShowReportModal(true)}
+                />
+              )}
               <BookMarkIcon
                 letterStatusSeq={letter.letterStatusSeq}
                 fill={letter.saved ? "#84A667" : "none"}
@@ -454,14 +458,16 @@ const LetterDetailId: React.FC = () => {
             <span className="flex-auto text-[#292D32] font-bold text-base leading-6 tracking-tight ml-1">
               {letter?.replyLetter.sendUser}
             </span>
-            <Image
+
+            {/* 멘토한테는 신고하기 기능 없음 */}
+            {/* <Image
               src="/images/icons/more_icon.svg"
               alt="더보기 아이콘"
               width={24}
               height={24}
-              className="mr-2"
+              className="cursor-pointer mr-2"
               onClick={() => setShowReportModal(true)}
-            />
+            /> */}
             <BookMarkIcon
               letterStatusSeq={letter.letterStatusSeq}
               fill={letter.saved ? "#84A667" : "none"}
@@ -611,38 +617,41 @@ const LetterDetailId: React.FC = () => {
             </div>
           </div>
           {!letter.sendLetter ? (
-            <BottomFixedElement>
-              <div className="flex items-center justify-center cursor-pointer">
-                <p
-                  className="text-[#84A667] text-[14px] font-medium leading-[20px] tracking-[-0.056px]"
-                  onClick={throwClicked}
+            <>
+              <div className="h-[140px]" />
+              <BottomFixedElement>
+                <div className="flex items-center justify-center cursor-pointer">
+                  <p
+                    className="text-[#84A667] text-[14px] font-medium leading-[20px] tracking-[-0.056px]"
+                    onClick={throwClicked}
+                  >
+                    답하기 어렵다면, 다른 새에게 맡기기
+                  </p>
+                </div>
+                <div
+                  className="cursor-pointer flex w-full h-[50px] justify-center items-center  gap-1 align-stretch rounded-lg bg-[#292D32] mt-2"
+                  onClick={() => {
+                    router.push("/reply");
+                    setLetterStatusSeq(letter.letterStatusSeq);
+                    setCategoryName(letter.replyLetter.categoryName);
+                    // 나의 장년의 새가 날아가야해서
+                    setBirdName(letter.replyLetter.replyUserBird);
+                    setNickname(letter.replyLetter.sendUser);
+                  }}
                 >
-                  답하기 어렵다면, 다른 새에게 맡기기
-                </p>
-              </div>
-              <div
-                className="cursor-pointer flex w-full h-[50px] justify-center items-center  gap-1 align-stretch rounded-lg bg-[#292D32] mt-2"
-                onClick={() => {
-                  router.push("/reply");
-                  setLetterStatusSeq(letter.letterStatusSeq);
-                  setCategoryName(letter.replyLetter.categoryName);
-                  // 나의 장년의 새가 날아가야해서
-                  setBirdName(letter.replyLetter.replyUserBird);
-                  setNickname(letter.replyLetter.sendUser);
-                }}
-              >
-                <Image
-                  src="/images/icons/letter_icon.svg"
-                  alt="편지쓰기 아이콘"
-                  width={24}
-                  height={24}
-                  className=""
-                />
-                <span className="text-center text-white font-pretendard text-base leading-6 tracking-[-0.064px]">
-                  답장 쓰기
-                </span>
-              </div>
-            </BottomFixedElement>
+                  <Image
+                    src="/images/icons/letter_icon.svg"
+                    alt="편지쓰기 아이콘"
+                    width={24}
+                    height={24}
+                    className=""
+                  />
+                  <span className="text-center text-white font-pretendard text-base leading-6 tracking-[-0.064px]">
+                    답장 쓰기
+                  </span>
+                </div>
+              </BottomFixedElement>
+            </>
           ) : (
             <div className="h-4"></div>
           )}
