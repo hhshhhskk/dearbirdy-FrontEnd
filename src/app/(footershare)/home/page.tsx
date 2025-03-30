@@ -118,7 +118,7 @@ const Home: React.FC = () => {
           <LetterGuideModal
             isOpen={isGuideOpen}
             onClose={() => setIsGuideOpen(false)}
-            type={userRole === "MENTOR" ? "reply" : "letter"}
+            type={userRole === "MENTOR" ? "REPLY" : "OUTGOING"}
           />
         )}
       </div>

@@ -1,20 +1,20 @@
 "use client";
 
-import Category from "@/components/letter/Category";
-import LetterSent from "@/components/letter/LetterSent";
-import SelectBird from "@/components/letter/SelectBird";
-import WriteLetter from "@/components/letter/WriteLetter";
-import { useLetterStore } from "@/store/useLetterStore";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function AppRouter() {
-  const { step } = useLetterStore();
+export default function BirdyTestEntryPage() {
+  const router = useRouter();
 
-  return (
-    <div>
-      {step === 1 && <Category />}
-      {step === 2 && <WriteLetter userRole="MENTEE" />}
-      {step === 3 && <SelectBird />}
-      {step === 4 && <LetterSent type="send" />}
-    </div>
-  );
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      router.push("/");
+    } else {
+      router.push("/send/select-category");
+    }
+  });
+
+  return null;
 }

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface StyledButtonProps {
   children: ReactNode;
-  variant?: "primary" | "outline-yellow" | "outline-green";
+  variant?: "primary" | "outline-green";
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
@@ -20,10 +20,8 @@ export default function StyledButton({
 
   const variants = {
     primary: "cursor-pointer bg-black01 text-white01",
-    "outline-yellow":
-      "cursor-pointer bg-transparent border border-green01 text-green01",
     "outline-green":
-      "cursor-pointer bg-[#F0F1EC] border border-green03 text-black01",
+      "cursor-pointer bg-transparent border border-green03 text-green03",
   };
 
   const disabledClass = "bg-gray01 text-gray03 cursor-default";
