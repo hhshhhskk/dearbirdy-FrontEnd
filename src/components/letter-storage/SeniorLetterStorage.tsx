@@ -19,7 +19,6 @@ import {
   getLetterWait,
 } from "@/services/letterStorage";
 import { birdNameMap } from "@/constants/birdNameMap"; // ✅ birdName 변환 맵 추가
-import LoadingSpinner from "../ui/LoadingSpinner";
 
 const queryClient = new QueryClient();
 

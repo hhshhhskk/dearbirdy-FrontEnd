@@ -19,7 +19,6 @@ import { useInView } from "react-intersection-observer";
 import { birdNameMap } from "@/constants/birdNameMap";
 import HomeLetterIcon from "../Icons/Home_letter_icon";
 import BirdyTip from "./BirdyTip";
-import LoadingSpinner from "../ui/LoadingSpinner";
 
 const queryClient = new QueryClient();
 
