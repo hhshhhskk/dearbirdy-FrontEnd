@@ -1,35 +1,12 @@
-import { LetterSave } from "@/services/letterStorage";
-import { useBookMarkStore } from "@/store/bookMarkStore";
 import React from "react";
 
 interface SvgIconProps {
   fill?: string;
   stroke?: string;
-  letterStatusSeq: number;
-  setBookMark?: React.Dispatch<React.SetStateAction<number>>;
-  handleShowToast?: () => void;
-  bookMarkToast?: boolean;
 }
-//#C7C7CC
-const BookMarkIcon: React.FC<SvgIconProps> = ({
-  bookMarkToast,
-  handleShowToast,
-  letterStatusSeq,
-  fill,
-  stroke,
-}) => {
-  const { setBookMark } = useBookMarkStore();
-  const BookMarkClicked = async () => {
-    await LetterSave(letterStatusSeq);
-    setBookMark(letterStatusSeq);
-    if (!bookMarkToast && handleShowToast) {
-      handleShowToast();
-    }
-  };
+const BookMarkIcon: React.FC<SvgIconProps> = ({ fill, stroke }) => {
   return (
     <svg
-      className="cursor-pointer"
-      onClick={BookMarkClicked}
       xmlns="http://www.w3.org/2000/svg"
       width="25"
       height="24"

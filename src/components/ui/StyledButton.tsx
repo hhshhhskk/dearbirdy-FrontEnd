@@ -16,7 +16,7 @@ export default function StyledButton({
   className,
 }: StyledButtonProps) {
   const base =
-    "w-full rounded-[12px] font-medium text-Body1_M_16 flex items-center justify-center gap-1 px-global py-[13px] select-none";
+    "w-full rounded-[12px] font-medium text-Body2_M_14 flex items-center justify-center gap-1 px-global py-[11px] select-none";
 
   const variants = {
     primary: "cursor-pointer bg-black01 text-white01",

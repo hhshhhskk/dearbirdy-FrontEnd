@@ -28,7 +28,7 @@ export default function Dialog({
     <Modal onClose={onClose} className={className}>
       <div className="mb-global flex flex-col gap-2">
         {title && <h2 className="text-Body1_B_16">{title}</h2>}
-        {message && <p className="text-Body1_R_16">{message}</p>}
+        {message && <p className="text-Body2_R_14 text-gray06">{message}</p>}
       </div>
 
       <div className="flex justify-stretch gap-2">

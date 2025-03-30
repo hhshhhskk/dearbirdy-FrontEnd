@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import BookMarkIcon from "../Icons/Bookmark_icon";
 import { useRouter } from "next/navigation";
 import { useBookMarkStore } from "@/store/bookMarkStore";
 import { Letter } from "@/app/(footershare)/letters/page";
@@ -18,7 +17,8 @@ import {
   getLetterSaved,
   getLetterWait,
 } from "@/services/letterStorage";
-import { birdNameMap } from "@/constants/birdNameMap"; // ✅ birdName 변환 맵 추가
+import { birdNameMap } from "@/constants/birdNameMap";
+import BookMark from "./BookMark";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +27,6 @@ const SeniorLetterStorage: React.FC = () => {
   const router = useRouter();
   const [cateNum, setCateNum] = useState<number>(1);
   const { bookMark } = useBookMarkStore();
-  const [showToast, setShowToast] = useState(false);
   const { setBirdName, setLetterStatusSeq, setNickname } = useLetterInfoStore();
 
   const fetchLetters = async ({ pageParam }: { pageParam: number }) => {
@@ -64,11 +63,6 @@ const SeniorLetterStorage: React.FC = () => {
       fetchNextPage();
     }
   }, [fetchNextPage, hasNextPage, isFetchingNextPage, inView]);
-
-  const handleShowToast = () => {
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
-  };
 
   if (isLoading) {
     return <div />;
@@ -165,12 +159,9 @@ const SeniorLetterStorage: React.FC = () => {
                             height={60}
                           />
                           <div onClick={(e) => e.stopPropagation()}>
-                            <BookMarkIcon
-                              bookMarkToast={letter.saved}
-                              handleShowToast={handleShowToast}
+                            <BookMark
                               letterStatusSeq={letter.letterStatusSeq}
-                              fill={letter.saved ? "#84A667" : "none"}
-                              stroke={letter.saved ? "#84A667" : "#C7C7CC"}
+                              isSaved={letter.saved}
                             />
                           </div>
                         </div>
@@ -218,14 +209,6 @@ const SeniorLetterStorage: React.FC = () => {
             <div ref={ref} className="h-4 " />
           </main>
         )}
-        {/* 책갈피 토스트 메세지 */}
-        <div className="fixed flex flex-col items-center translate-x-1/2 bottom-10 right-1/2">
-          {showToast && (
-            <div className="fixed text-sm text-white rounded-xl  bg-[rgba(100,100,100,0.8)] flex w-[323px] h-[56px] px-5 py-[19px] justify-center items-center shadow-lg bottom-10 animate-bounce">
-              책갈피는 &apos;저장한 편지&apos;에서 확인할 수 있어요!
-            </div>
-          )}
-        </div>
       </div>
     </QueryClientProvider>
   );

@@ -51,3 +51,4 @@ export const categories = [
 ];
 
 export type CategoryType = (typeof categories)[number]["id"];
+export type CategoryNameType = (typeof categories)[number]["name"];

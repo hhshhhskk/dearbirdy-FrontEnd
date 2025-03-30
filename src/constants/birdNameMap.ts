@@ -7,3 +7,6 @@ export const birdNameMap: Record<string, string> = {
   파랑새: "bluebird",
   익명새: "default",
 };
+
+export type BirdNameKr = keyof typeof birdNameMap;
+export type BirdNameEn = (typeof birdNameMap)[BirdNameKr];

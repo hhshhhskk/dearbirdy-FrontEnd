@@ -12,22 +12,19 @@ import {
   getLetterSaved,
   getLetterWait,
 } from "@/services/letterStorage";
-import { useBookMarkStore } from "@/store/bookMarkStore";
-import BookMarkIcon from "../Icons/Bookmark_icon";
 import { Letter } from "@/app/(footershare)/letters/page";
 import { useInView } from "react-intersection-observer";
 import { birdNameMap } from "@/constants/birdNameMap";
 import HomeLetterIcon from "../Icons/Home_letter_icon";
 import BirdyTip from "./BirdyTip";
+import BookMark from "./BookMark";
 
 const queryClient = new QueryClient();
 
 const YouthLetterStorage: React.FC = () => {
   const category = ["전체", "답장 기다리는 편지", "저장한 편지"];
   const [cateNum, setCateNum] = useState<number>(1);
-  const { bookMark } = useBookMarkStore();
   const router = useRouter();
-  const [showToast, setShowToast] = useState(false);
 
   const fetchLetters = async ({ pageParam }: { pageParam: number }) => {
     if (cateNum === 1) return await getLetterAll(pageParam);
@@ -37,7 +34,7 @@ const YouthLetterStorage: React.FC = () => {
 
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } =
     useInfiniteQuery({
-      queryKey: ["letters", cateNum, bookMark],
+      queryKey: ["letters", cateNum],
       queryFn: fetchLetters,
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
@@ -63,11 +60,6 @@ const YouthLetterStorage: React.FC = () => {
       fetchNextPage();
     }
   }, [fetchNextPage, inView, hasNextPage, isFetchingNextPage]);
-
-  const handleShowToast = () => {
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
-  };
 
   if (isLoading) return <div />;
 
@@ -164,12 +156,9 @@ const YouthLetterStorage: React.FC = () => {
                             height={60}
                           />
                           <div onClick={(e) => e.stopPropagation()}>
-                            <BookMarkIcon
-                              handleShowToast={handleShowToast}
-                              bookMarkToast={letter.saved}
+                            <BookMark
                               letterStatusSeq={letter.letterStatusSeq}
-                              fill={letter.saved ? "#84A667" : "none"}
-                              stroke={letter.saved ? "#84A667" : "#C7C7CC"}
+                              isSaved={letter.saved}
                             />
                           </div>
                         </div>
@@ -212,14 +201,6 @@ const YouthLetterStorage: React.FC = () => {
             <div ref={ref} className="h-4" />
           </main>
         )}
-        {/* 책갈피 토스트 메세지 */}
-        <div className="fixed flex flex-col items-center translate-x-1/2 bottom-10 right-1/2">
-          {showToast && (
-            <div className="fixed text-sm text-white rounded-xl  bg-[rgba(100,100,100,0.8)] flex w-[323px] h-[56px] px-5 py-[19px] justify-center items-center shadow-lg bottom-10 animate-bounce">
-              책갈피는 &apos;저장한 편지&apos;에서 확인할 수 있어요!
-            </div>
-          )}
-        </div>
       </div>
     </QueryClientProvider>
   );
