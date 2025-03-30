@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Providers from "./providers";
 import Head from "next/head";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const pretendard = localFont({
   src: "../app/fonts/PretendardVariable.woff2",
@@ -48,6 +49,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="192x192" href="/logo_192.png" />
         <link rel="apple-touch-icon" sizes="512x512" href="/logo_512.png" />
       </Head>
+
+      <GoogleAnalytics gaId="G-QMMEXE7E56" />
 
       {/* 참고: 전역적 배경색 및 폰트 색상은 global.css에서 적용하고 있음 */}
       <body
