@@ -12,10 +12,10 @@ import { useState } from "react";
 
 export default function UserRolePage() {
   const router = useRouter();
-  const { setUserRole } = useSignupStore();
+  const { userRole, setUserRole } = useSignupStore();
 
   const [selectedRole, setSelectedRole] = useState<"MENTEE" | "MENTOR" | null>(
-    null
+    userRole || null
   );
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);

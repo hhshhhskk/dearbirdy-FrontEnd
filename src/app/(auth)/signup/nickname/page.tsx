@@ -9,33 +9,35 @@ import { useSignupStore } from "@/store/useSignupStore";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const isValidNickname = (nickname: string) => {
-  const nicknameRegex = /^[가-힣a-zA-Z0-9]+$/;
-  return nicknameRegex.test(nickname);
-};
+const isValidNickname = (nickname: string) =>
+  /^[가-힣a-zA-Z0-9]+$/.test(nickname);
 
 export default function NicknamePage() {
-  const { setNickname } = useSignupStore();
+  const { nickname: storedNickname, setNickname } = useSignupStore();
   const router = useRouter();
 
-  const [nickname, setInput] = useState("");
-  const [debouncedNickname, setDebouncedNickname] = useState(""); // 디바운싱 적용 값
+  const [nickname, setInput] = useState(storedNickname);
+  const [debouncedNickname, setDebouncedNickname] = useState(nickname);
   const [errorType, setErrorType] = useState<
     "tooShort" | "tooLong" | "invalidChar" | "fail" | null
   >(null);
   const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const getTrueLength = (val: string) => Array.from(val).length;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setInput(val);
 
-    if (val.length > 10) {
+    const len = getTrueLength(val);
+
+    if (len > 10) {
       setErrorType("tooLong");
       setIsAvailable(false);
       return;
     }
-    if (val.length < 2) {
+    if (len < 2) {
       setErrorType("tooShort");
       setIsAvailable(false);
       return;
@@ -51,7 +53,8 @@ export default function NicknamePage() {
   };
 
   useEffect(() => {
-    if (debouncedNickname.length < 2 || debouncedNickname.length > 10) return;
+    const len = getTrueLength(debouncedNickname);
+    if (len < 2 || len > 10) return;
 
     const timer = setTimeout(async () => {
       setLoading(true);
