@@ -132,8 +132,8 @@ const LetterDetailId: React.FC = () => {
           {/* 오버레이  고마움 전달 모달*/}
           {showModal && (
             <>
-              <div className="absolute inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
-              <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 tr z-20 flex w-[376px] p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#F9F8F3]">
+              <div className="fixed inset-0 z-10 bg-[rgba(51,51,51,0.80)]"></div>
+              <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 tr z-20 flex max-w-global w-full p-[24px_16px_44px_16px] flex-col items-center  rounded-t-[30px] rounded-b-none bg-[#F9F8F3]">
                 <div
                   className="flex justify-end w-full"
                   onClick={() => setModal(false)}
@@ -149,10 +149,11 @@ const LetterDetailId: React.FC = () => {
                   답장이 도움이 되셨나요?
                 </div>
                 <div className="text-[#292D32] text-center font-normal text-[14px] leading-[22px] tracking-[-0.056px] mt-2 mb-6">
-                  파랑새가 보낸 답장에 고마움을 보내주세요!
+                  {letter.sendLetter.replyUserBird}가 보낸 답장에 고마움을
+                  보내주세요!
                 </div>
                 <div
-                  className="flex w-full h-[80px] p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] "
+                  className="flex w-full p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] "
                   onClick={() => {
                     getThanks(letter.replyLetter.letterSeq, "MOVED");
                     setModal(false);
@@ -171,7 +172,7 @@ const LetterDetailId: React.FC = () => {
                   </p>
                 </div>
                 <div
-                  className="flex w-full h-[80px] p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] mt-2"
+                  className="flex w-full p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] mt-2"
                   onClick={() => {
                     getThanks(letter.replyLetter.letterSeq, "HELPFUL");
                     setModal(false);
@@ -190,7 +191,7 @@ const LetterDetailId: React.FC = () => {
                   </p>
                 </div>
                 <div
-                  className="flex w-full h-[80px] p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] mt-2"
+                  className="flex w-full p-[20px_16px] justify-start items-center rounded-[20px] border border-[#D6E173] bg-[#FFF] mt-2"
                   onClick={() => {
                     getThanks(letter.replyLetter.letterSeq, "NOT_ALONE");
                     setModal(false);
@@ -252,10 +253,10 @@ const LetterDetailId: React.FC = () => {
             </header>
             {letter.replyLetter ? (
               // 받은 편지
-              <main className="flex flex-col items-center justify-center">
-                <div className="pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex justify-start gap-2">
+              <div className="flex flex-col items-center justify-center">
+                <div className="px-global w-full pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
+                  <div className="self-start flex flex-col gap-4">
+                    <div className="flex gap-2">
                       <Image
                         src="/images/icons/direct_inbox_icon.svg"
                         alt="받은편지 아이콘"
@@ -266,7 +267,7 @@ const LetterDetailId: React.FC = () => {
                         받은 편지
                       </span>
                     </div>
-                    <div className="gap-2">
+                    <div className="flex items-end gap-2">
                       <Image
                         src={`/images/birds/${
                           birdNameMap[letter.replyLetter.replyUserBird] ||
@@ -284,12 +285,14 @@ const LetterDetailId: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
-                    {letter.replyLetter.letterTitle}
-                  </p>
-                  <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
-                    {letter.replyLetter.letter}
-                  </p>
+                  <div className="w-full text-left">
+                    <p className="w-full mb-2 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
+                      {letter.replyLetter.letterTitle}
+                    </p>
+                    <p className="w-full h-[240px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
+                      {letter.replyLetter.letter}
+                    </p>
+                  </div>
                   <div className="flex flex-col items-start w-full gap-2 ">
                     <p className="text-right text-[#8E8E93] text-xs font-normal leading-4 tracking-[-0.048px]">
                       {replyDate}
@@ -349,7 +352,7 @@ const LetterDetailId: React.FC = () => {
                     )}
                   </div>
                 </div>
-              </main>
+              </div>
             ) : (
               // 답장 기다리고 있을때 배너
               <div className="w-full p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px] ">
@@ -362,7 +365,7 @@ const LetterDetailId: React.FC = () => {
               </div>
             )}
             {/* 보낸 편지 */}
-            <main className="">
+            <div className="">
               <div className="flex flex-col items-center justify-center">
                 <div className="w-full pt-[16px] px-4 pb-[20px] flex break-all flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
                   <div className="flex flex-col w-full">
@@ -413,7 +416,7 @@ const LetterDetailId: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </main>
+            </div>
 
             <div className="h-2"></div>
           </div>
@@ -468,8 +471,8 @@ const LetterDetailId: React.FC = () => {
 
           {letter.sendLetter ? (
             // 보낸 편지
-            <main className="flex flex-col items-center justify-center ">
-              <div className=" pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
+            <div className="flex flex-col items-center justify-center ">
+              <div className="w-full pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
                 <div className="flex flex-col w-full gap-4">
                   <div className="flex justify-start gap-2">
                     <Image
@@ -540,7 +543,7 @@ const LetterDetailId: React.FC = () => {
                   )}
                 </div>
               </div>
-            </main>
+            </div>
           ) : (
             // 답장 기다리고 있을때 배너
             <div className="w-full p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px] ">
@@ -558,7 +561,7 @@ const LetterDetailId: React.FC = () => {
 
           {/* 받은 편지 */}
 
-          <main className="flex flex-col items-center justify-center mb-[150px]">
+          <div className="flex flex-col items-center justify-center">
             <div className="w-full pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
               <div className="flex flex-col w-full ">
                 <div className="flex justify-start gap-2">
@@ -606,7 +609,7 @@ const LetterDetailId: React.FC = () => {
                 </div>
               </div>
             </div>
-          </main>
+          </div>
           {!letter.sendLetter ? (
             <BottomFixedElement>
               <div className="flex items-center justify-center cursor-pointer">
