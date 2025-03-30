@@ -65,7 +65,9 @@ export default function LetterViewHeader({
   const HeaderRight = () => {
     return (
       <div className="flex items-center gap-2">
-        {userRole === "MENTEE" && replyLetterSeq && (
+        {/* Temporarily hide report button (TODO: 신고 기능 반영) */}
+
+        {/* {userRole === "MENTEE" && replyLetterSeq && (
           <Image
             src="/images/icons/more_icon.svg"
             alt="더보기 아이콘"
@@ -77,7 +79,7 @@ export default function LetterViewHeader({
               console.log("clicked");
             }}
           />
-        )}
+        )} */}
 
         <BookMark letterStatusSeq={myLetterSeq} isSaved={isSaved} />
       </div>
