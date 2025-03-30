@@ -1,19 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { GuideType, LETTER_GUIDES } from "@/constants/letterGuide";
+import { LETTER_GUIDES } from "@/constants/letterGuide";
 import ActionSheet from "../ui/ActionSheet";
+import { LetterType } from "@/constants/letter";
 
 interface LetterGuideModalProps {
   isOpen: boolean;
   onClose: () => void;
-  type: GuideType;
+  type: LetterType;
 }
 
 export default function LetterGuideModal({
   isOpen,
   onClose,
-  type = "letter",
+  type,
 }: LetterGuideModalProps) {
   if (!isOpen) return null;
 

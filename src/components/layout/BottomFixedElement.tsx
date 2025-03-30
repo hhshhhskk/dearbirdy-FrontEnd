@@ -16,7 +16,7 @@ export default function BottomFixedElement({
   return (
     <div
       className={clsx(
-        "fixed bottom-0 pb-[44px] left-1/2 -translate-x-1/2 w-full max-w-global px-global z-50 transition-transform duration-200 ease-in-out will-change-transform",
+        "fixed bottom-0 pb-[44px] left-1/2 -translate-x-1/2 w-full max-w-global px-global z-10 transition-transform duration-200 ease-in-out will-change-transform",
         className
       )}
       style={{

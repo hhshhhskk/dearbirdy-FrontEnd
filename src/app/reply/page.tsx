@@ -11,7 +11,7 @@ const ReplyPage: React.FC = () => {
     <>
       {previewModal && <ReplyPreview setPreviewModal={setPreviewModal} />}
 
-      <WriteLetter userRole="MENTOR" />
+      <WriteLetter type="REPLY" />
 
       <div
         onClick={() => setPreviewModal(true)}

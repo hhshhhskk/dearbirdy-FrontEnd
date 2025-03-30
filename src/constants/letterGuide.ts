@@ -1,5 +1,5 @@
 export const LETTER_GUIDES = {
-  letter: {
+  OUTGOING: {
     title: "편지 가이드",
     subtitle: "자유롭게 당신의 이야기를 들려주세요",
     guideTitle: "답답한 마음을 어떻게 풀어내야 할지 막막할 때는?",
@@ -10,7 +10,7 @@ export const LETTER_GUIDES = {
       "지금의 상황을 한발짝 뒤에서 바라보는 것도 중요해요.",
     ],
   },
-  reply: {
+  REPLY: {
     title: "답장 가이드",
     subtitle: "지쳐있는 인생후배에게 어떻게 힘을 줄 수 있을까요?",
     guideTitle: "지쳐있는 인생후배에게 어떻게 힘을 줄 수 있을까요?",
@@ -23,5 +23,3 @@ export const LETTER_GUIDES = {
     ],
   },
 };
-
-export type GuideType = keyof typeof LETTER_GUIDES;
