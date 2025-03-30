@@ -5,14 +5,18 @@ import { useLetterStore } from "@/store/useLetterStore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Toggle from "./Toggle";
+import BottomFixedElement from "../layout/BottomFixedElement";
+import StyledButton from "../ui/StyledButton";
+import NotificationToggle from "./NotificationToggle";
+import { useLetterInfoStore } from "@/store/letterInfoStore";
 
 // ✅ Lottie를 SSR에서 제외하여 클라이언트에서만 로드
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-export default function LetterSent() {
+export default function LetterSent({ type }: { type: "send" | "reply" }) {
   const { myBirdName, setMyBirdName, selectedBird, resetLetter } =
     useLetterStore();
+  const { nickname: replyNickname } = useLetterInfoStore();
   const router = useRouter();
   const [animationData, setAnimationData] = useState(null);
 
@@ -38,51 +42,46 @@ export default function LetterSent() {
   }, [myBirdName]); // ✅ myBirdName이 설정된 후 실행
 
   return (
-    <div className="w-full min-h-screen bg-[#f9f8f3] flex flex-col ">
-      <main className="relative flex flex-col items-center justify-center">
-        <div className="absolute top-[108px]">
-          <p className="text-[#292D32] text-[20px] font-bold leading-[28px] tracking-[-0.08px]">
-            나의 {myBirdName}가 {selectedBird}에게 <br />
-            마음을 정성껏 전달할 거예요
-          </p>
+    <>
+      <div className="flex flex-col min-h-safe-screen pt-[108px] px-global pb-[191px]">
+        <div className="text-Title3_B_20 text-center">
+          나의 {type === "send" ? myBirdName : "버디"}가{" "}
+          {type === "send" ? selectedBird : replyNickname}에게 <br />
+          마음을 정성껏 전달할 거예요
         </div>
 
-        {/* 애니메이션 */}
-        <div className="flex items-center justify-center w-full h-screen">
+        <div className="flex-grow flex items-center justify-center overflow-hidden">
           {animationData && (
             <Lottie
               animationData={animationData}
-              style={{ width: 375, height: 310 }}
+              className="max-w-full max-h-full w-[375px] h-[310px]"
             />
           )}
         </div>
+      </div>
 
-        {/* 안내 박스 */}
-        <div className="absolute bottom-[44px]">
-          <div className="mt-[171px] w-[343px] h-[64px] border border-[#E5E5EA] bg-[#F0F1EC] rounded-[12px] p-[10px] flex justify-between items-center">
-            <div>
-              <p className="text-[#6B7178] text-[14px] font-medium">
-                빠르면 하루, 최대 7일이 걸릴 수 있어요.
-              </p>
-              <p className="text-[#6B7178] text-[14px] font-medium">
-                답장이 오면 알림을 받을까요?
-              </p>
-            </div>
-            <Toggle />
+      <BottomFixedElement>
+        <div className="px-global py-[10px] border border-gray01 bg-[#F0F1EC] rounded-[12px] flex justify-between items-center mb-[33px]">
+          <div className="text-Body2_R_14 text-gray06">
+            {type === "send"
+              ? "빠르면 하루, 최대 7일이 걸릴 수 있어요."
+              : "답장을 확인하면 고마움 표시가 도착해요."}
+            <br />
+            {type === "send" ? "답장이" : "고마움 표시가"} 오면 알림을 받을까요?
           </div>
 
-          {/* 홈으로 버튼 */}
-          <button
-            className="w-[343px] h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center mt-[17px] select-none cursor-pointer"
-            onClick={() => {
-              resetLetter();
-              router.push("/home");
-            }}
-          >
-            홈으로
-          </button>
+          <NotificationToggle />
         </div>
-      </main>
-    </div>
+
+        <StyledButton
+          onClick={() => {
+            resetLetter();
+            router.push("/home");
+          }}
+        >
+          홈으로
+        </StyledButton>
+      </BottomFixedElement>
+    </>
   );
 }

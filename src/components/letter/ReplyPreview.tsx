@@ -61,9 +61,9 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
   }
 
   return (
-    <div className="absolute inset-0 z-10 flex items-center justify-center w-full h-screen">
+    <div className="fixed inset-0 z-99 flex items-center justify-center w-full h-screen">
       {/* 오버레이 */}
-      <div className="absolute inset-0  z-20 bg-[rgba(51,51,51,0.80)]">
+      <div className="absolute inset-0 z-20 bg-[rgba(51,51,51,0.80)]">
         <div
           className="cursor-pointer flex justify-end w-full  mt-[59px] pr-[16px] "
           onClick={() => setPreviewModal(false)}
@@ -78,7 +78,7 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
       </div>
 
       {/* 모달 */}
-      <div className="flex z-30 w-[343px] h-[550px] p-[24px_16px] flex-col items-start gap-[10px] rounded-[30px] border border-[#F4F5EF] bg-white">
+      <div className="m-global flex z-30 w-[85%] min-h-[50vh] p-[24px_16px] flex-col items-start gap-[10px] rounded-[30px] border border-[#F4F5EF] bg-white">
         <div className="flex items-end justify-start gap-2">
           <Image
             src={`/images/birds/${
@@ -95,7 +95,7 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
             {letter?.replyLetter.categoryName}
           </span>
         </div>
-        <div className="w-full h-[380px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]">
+        <div className="w-full h-[380px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px] whitespace-pre-wrap break-words">
           {letter?.replyLetter.letter}
         </div>
         <p className="text-[#8E8E93] text-right text-[12px] font-normal leading-[16px] tracking-[-0.048px]">

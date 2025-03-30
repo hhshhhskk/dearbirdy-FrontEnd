@@ -15,7 +15,9 @@ const SendMessage: React.FC<IProps> = ({ userData }) => {
         className={`flex items-center gap-[2px] p-[4px_8px_4px_6px] rounded-[8px] bg-green01`}
       >
         <HomeLetterIcon fill="#292D32" />
-        <span className="text-Caption1_B_12">{quota}개 남음</span>
+        <span className="text-Caption1_B_12">
+          {quota.toLocaleString()}개 남음
+        </span>
       </div>
     </div>
   );

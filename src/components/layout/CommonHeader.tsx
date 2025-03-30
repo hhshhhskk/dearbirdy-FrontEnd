@@ -42,7 +42,7 @@ export default function CommonHeader({
         className
       )}
     >
-      <div className="w-[24px] h-[24px] flex items-center justify-center">
+      <div className="flex items-center justify-center min-w-[24px]">
         {left ?? null}
       </div>
 
@@ -52,7 +52,7 @@ export default function CommonHeader({
         )}
       </div>
 
-      <div className="w-[24px] h-[24px] flex items-center justify-center">
+      <div className="flex items-center justify-center min-w-[24px]">
         {right ?? null}
       </div>
     </header>

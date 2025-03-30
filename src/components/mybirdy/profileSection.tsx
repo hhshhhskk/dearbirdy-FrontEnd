@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { birdNameMap } from "@/constants/birdNameMap"; // ✅ 외부에서 불러오기
 import { IUserData } from "@/app/(footershare)/home/page";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import { getBirdImageSrc } from "@/util/birdTypeUtils";
 
 interface IProps {
   userData?: IUserData;
@@ -11,20 +11,13 @@ interface IProps {
 const ProfileSection: React.FC<IProps> = ({ userData }) => {
   const roleText = userData?.roleName === "MENTOR" ? "인생선배" : "인생후배";
 
-  // ✅ 한글 → 영문 변환 후 이미지 경로 설정
-  const getImageSrc = (birdName: string) => {
-    const englishName = birdNameMap[birdName] || "default";
-
-    return `/images/letter-slide/${englishName}_profile.png`;
-  };
-
   if (!userData) return <LoadingSpinner />;
 
   return (
     <div>
       {/* 상단 프로필 이미지 */}
       <Image
-        src={getImageSrc(userData.birdName)}
+        src={getBirdImageSrc(userData.birdName)}
         alt="프로필 이미지"
         width={184}
         height={184}

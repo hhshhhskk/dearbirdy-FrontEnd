@@ -31,10 +31,10 @@ const ThrowModal: React.FC<IProps> = ({
     <>
       {/* 오버레이 */}
       <div
-        className="absolute inset-0  z-20 bg-[rgba(51,51,51,0.80)]
+        className="fixed inset-0 z-70 bg-[rgba(51,51,51,0.80)]
       flex justify-center items-center"
       >
-        <div className="flex w-[328px] p-[20px_16px] flex-col items-start rounded-[18px] border border-[#F0F1EC] bg-white">
+        <div className="mx-global flex p-[20px_16px] flex-col items-start rounded-[18px] border border-[#F0F1EC] bg-white">
           <p className="text-[#292D32] font-bold text-[18px] leading-[26px] tracking-[-0.072px]">
             편지 답장을 다른 새에게 맡기시겠어요?
           </p>
@@ -44,7 +44,7 @@ const ThrowModal: React.FC<IProps> = ({
           </p>
           <div className="flex items-center justify-center w-full gap-2 mt-4">
             <div
-              className="flex w-[140px] h-[44px] p-[11px_15px] justify-center items-center rounded-[10px] border border-[#C7C7CC] bg-[#FFF]"
+              className="cursor-pointer flex flex-1 p-[11px_15px] justify-center items-center rounded-[10px] border border-[#C7C7CC] bg-[#FFF]"
               onClick={() => setShowThrowModal(false)}
             >
               <span className="text-[#292D32] text-center font-medium text-[14px] leading-[20px] tracking-[-0.056px]">
@@ -52,7 +52,7 @@ const ThrowModal: React.FC<IProps> = ({
               </span>
             </div>
             <div
-              className="flex w-[140px] h-[44px] p-[11px_15px] justify-center items-center rounded-[10px] bg-[#292D32]"
+              className="cursor-pointer flex flex-1 p-[11px_15px] justify-center items-center rounded-[10px] bg-[#292D32]"
               onClick={throwClicked}
             >
               <span className="text-[#FFF] text-center font-medium text-[14px] leading-[20px] tracking-[-0.056px]">

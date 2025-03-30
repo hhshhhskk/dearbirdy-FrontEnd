@@ -1,4 +1,5 @@
 "use client";
+import CommonLayout from "@/components/layout/CommonLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -19,8 +20,8 @@ export default function ReplyLayout({
   });
 
   return (
-    <>
-      <div className="">{children}</div>
-    </>
+    <CommonLayout noPadding>
+      <main>{children}</main>
+    </CommonLayout>
   );
 }

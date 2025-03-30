@@ -12,9 +12,9 @@ export default function AppRouter() {
   return (
     <div>
       {step === 1 && <Category />}
-      {step === 2 && <WriteLetter />}
+      {step === 2 && <WriteLetter userRole="MENTEE" />}
       {step === 3 && <SelectBird />}
-      {step === 4 && <LetterSent />}
+      {step === 4 && <LetterSent type="send" />}
     </div>
   );
 }

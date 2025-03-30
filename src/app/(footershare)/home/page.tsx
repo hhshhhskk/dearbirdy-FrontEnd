@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Banner from "@/components/home/Banner";
 import HomeMainSection from "@/components/home/HomeMainSection";
-import HomeLetterGuideModal from "@/components/letter/HomeLetterGuideModal";
-import Header from "@/components/ui/Header";
+import LetterGuideModal from "@/components/letter/LetterGuideModal";
 import { getUserInfo } from "@/services/homeGetApi";
 import { useUserStore } from "@/store/useUserStore";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { usePathname, useRouter } from "next/navigation";
+import CommonHeader from "@/components/layout/CommonHeader";
+import Image from "next/image";
+import BellIcon from "@/components/Icons/Header_bell_icon";
 
 export interface IUserCategory {
   career: boolean;
@@ -92,8 +94,20 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div>
-      <Header userData={userData} sse={sse} setSse={setSse} />
+    <div className="px-global">
+      <CommonHeader
+        left={
+          <Image
+            src="/images/logo/logo_black_M.svg"
+            alt="홈 로고"
+            width={98}
+            height={24}
+          />
+        }
+        right={
+          <BellIcon check={userData.read} sseCheck={sse} setSse={setSse} />
+        }
+      />
 
       <div className="flex flex-col gap-global my-1">
         <Banner onClick={() => setIsGuideOpen(true)} />
@@ -101,7 +115,7 @@ const Home: React.FC = () => {
         <HomeMainSection userData={userData} userRole={userRole!} />
 
         {isGuideOpen && (
-          <HomeLetterGuideModal
+          <LetterGuideModal
             isOpen={isGuideOpen}
             onClose={() => setIsGuideOpen(false)}
             type={userRole === "MENTOR" ? "reply" : "letter"}

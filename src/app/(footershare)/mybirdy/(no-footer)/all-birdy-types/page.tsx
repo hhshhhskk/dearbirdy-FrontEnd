@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function AllBirdyTypesPage() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center px-global">
       <CommonHeader title="버디 유형 모두 보기" />
 
       <Image

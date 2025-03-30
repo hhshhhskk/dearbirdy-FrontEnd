@@ -1,17 +1,21 @@
 "use client";
 
-import LeftArrow from "@/components/Icons/common/LeftArrow";
 import { useLetterStore } from "@/store/useLetterStore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { getBirdyInfo, postLetter } from "@/services/userService";
-import { birdNameMap } from "@/constants/birdNameMap"; // ✅ 외부에서 불러오기
 import { BIRD_TRAIT_STYLES } from "@/constants/birdTraitsStyles";
 import LoadingSpinner from "../ui/LoadingSpinner";
+import CommonHeader from "../layout/CommonHeader";
+import BottomFixedElement from "../layout/BottomFixedElement";
+import StyledButton from "../ui/StyledButton";
+import clsx from "clsx";
+import "./SelectBird.css";
+import { getBirdImageSrc } from "@/util/birdTypeUtils";
 
 export interface Bird {
   birdName: string;
@@ -19,10 +23,66 @@ export interface Bird {
   explanation: string;
 }
 
-// ✅ 한글 새 이름을 영문으로 변환하여 이미지 경로 생성하는 함수
-const getImageSrc = (birdName: string) => {
-  const englishName = birdNameMap[birdName] || "default";
-  return `/images/letter-slide/${englishName}_profile.png`;
+interface BirdCardProps {
+  bird: Bird;
+  active: boolean;
+  onClick: () => void;
+}
+
+const BirdCard = ({ bird, active, onClick }: BirdCardProps) => {
+  const imageSrc = getBirdImageSrc(bird.birdName);
+
+  return (
+    <div
+      onClick={onClick}
+      className={clsx(
+        "px-global py-10 bg-white01 rounded-[20px] flex flex-col items-center justify-center cursor-pointer border",
+        active ? "border-green03 " : "border-transparent"
+      )}
+    >
+      <div className="mb-[14px]">
+        <Image
+          src={imageSrc}
+          alt={bird.birdName}
+          width={100}
+          height={100}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src =
+              "/images/letter-slide/default_profile.png";
+          }}
+        />
+
+        <div
+          className="flex items-center justify-center rounded-[6px] px-[6px] py-[2px] mt-[6px] mb-[10px]"
+          style={{
+            backgroundColor: BIRD_TRAIT_STYLES[bird.birdName]?.background,
+          }}
+        >
+          <span
+            className="text-Body2_M_14"
+            style={{
+              color: BIRD_TRAIT_STYLES[bird.birdName]?.textColor,
+            }}
+          >
+            {bird.traits}
+          </span>
+        </div>
+
+        <p className="text-Body1_B_16 text-center">{bird.birdName}</p>
+      </div>
+
+      <div className="px-[14px] py-global bg-white02 border border-[#F0F1EC] rounded-[10px]">
+        {bird.explanation.split("\n").map((text, i) => (
+          <p
+            key={i}
+            className={i === 0 ? "text-Body1_M_16" : "text-Body1_R_16"}
+          >
+            {text}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default function SelectBird() {
@@ -30,15 +90,17 @@ export default function SelectBird() {
     setStep,
     setSelectedBird,
     selectedBird,
-    setMyBirdName, // ✅ 사용자 새 저장 추가
+    setMyBirdName,
     categoryName,
     title,
     letter,
   } = useLetterStore();
 
+  const swiperRef = useRef<SwiperClass | null>(null);
+
   const [birds, setBirds] = useState<Bird[]>([]);
   const [isSending, setIsSending] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0); // ✅ 현재 Swiper에서 보이는 새의 인덱스
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const fetchBirds = async () => {
@@ -47,7 +109,7 @@ export default function SelectBird() {
         console.log("response", response);
         if (response?.data?.birdyList) {
           setBirds(response.data.birdyList);
-          setSelectedBird(response.data.birdyList[0]?.birdName); // ✅ 첫 번째 새를 기본 선택
+          setSelectedBird(response.data.birdyList[0]?.birdName);
         } else {
           // console.warn("🚨 API 응답이 없어서 기본 데이터를 사용합니다.");
           setBirds([]);
@@ -97,118 +159,53 @@ export default function SelectBird() {
   }
 
   return (
-    <div className="relative flex flex-col items-center h-screen text-black">
-      {/* 상단 네비게이션 */}
-      <nav className="flex justify-start w-full py-4">
-        <LeftArrow
-          className="w-6 h-6 cursor-pointer"
-          stroke="#292D32"
-          onClick={() => setStep(2)}
-        />
-      </nav>
+    <div className="relative flex flex-col items-center">
+      <CommonHeader addPaddingX />
 
-      {/* 제목 */}
-      <p className="text-[#292D32] text-center text-[20px] font-bold leading-[28px] tracking-[-0.08px] mt-4">
-        어떤 새에게 답장을 받아볼까요?
-      </p>
+      <div className="mt-global mb-[21px] px-global text-center">
+        <p className="text-Title3_B_20">어떤 새에게 답장을 받아볼까요?</p>
 
-      {/* 설명 */}
-      <p className="text-[#6B7178] text-center text-[16px] font-normal leading-[24px] tracking-[-0.064px] mt-1.5">
-        선택한 새와 다른 새에게 답장이 올 수도 있어요
-      </p>
-
-      {/* Swiper 카드 영역 */}
-      <div className=" max-w-[380px]">
-        <div className="mt-[21px] pl-[21px] w-full">
-          <Swiper
-            modules={[Pagination]}
-            spaceBetween={10} // ✅ 카드 간격 유지
-            slidesPerView="auto" // ✅ Centered Auto 적용
-            // centeredSlides={true} ✅ 가운데 정렬
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex); // ✅ 현재 보여지는 슬라이드의 인덱스 저장
-              setSelectedBird(birds[swiper.realIndex]?.birdName); // ✅ 자동으로 선택된 새 변경
-            }}
-            className="select-bird-swiper "
-            pagination={{
-              clickable: true,
-              renderBullet: (index, className) => {
-                return `<span class="${className}" style="background-color: ${
-                  index === activeIndex ? "#84A667" : "#E5E5EA"
-                }; width: 8px; height: 8px; border-radius: 50%; margin: 21px 4px 0 4px;"></span>`;
-              },
-            }}
-          >
-            {birds.map((bird, index) => (
-              <SwiperSlide key={index} className="max-w-[306px]">
-                <div
-                  className={`w-full h-[492px] bg-white rounded-xl flex flex-col items-center justify-center px-4 py-10 cursor-pointer 
-                  ${activeIndex === index && "border border-[#84A667]"}
-                  `}
-                >
-                  {/* 🐦 프로필 이미지 */}
-                  <Image
-                    src={getImageSrc(bird.birdName)} // ✅ 한글 → 영문 변환 후 이미지 적용
-                    alt={bird.birdName}
-                    width={100}
-                    height={100}
-                    className="mb-2"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        "/images/letter-slide/default_profile.png";
-                    }} // ✅ 이미지 로드 실패 시 기본 이미지 적용
-                  />
-                  {/* Traits (태그 형태) */}
-                  <div
-                    className="w-[100px] h-[24px] flex items-center justify-center rounded-[6px] mb-2"
-                    style={{
-                      background:
-                        BIRD_TRAIT_STYLES[bird.birdName]?.background ||
-                        "rgba(0,0,0,0.1)",
-                    }}
-                  >
-                    <span
-                      className="text-[14px] font-medium leading-[20px] tracking-[-0.056px]"
-                      style={{
-                        color:
-                          BIRD_TRAIT_STYLES[bird.birdName]?.textColor || "#000",
-                      }}
-                    >
-                      {bird.traits}
-                    </span>
-                  </div>
-                  {/* 새 이름 */}
-                  <p className="text-[#292D32] text-center text-[16px] font-bold leading-[24px] tracking-[-0.064px] mb-4">
-                    {bird.birdName}
-                  </p>
-                  {/* 설명 박스 */}
-                  <div className="w-[274px] h-[224px] p-[16px] border border-[#F0F1EC] bg-[#F9F8F3] rounded-[10px]">
-                    {bird.explanation.split("\n").map((text, i) => (
-                      <p
-                        key={i}
-                        className={`text-[#292D32] text-[16px] ${
-                          i === 0 ? "font-medium" : "font-normal"
-                        } leading-[24px] tracking-[-0.064px]`}
-                      >
-                        {text}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <p className="text-gray06 text-Body1_R_16 mt-[6px]">
+          선택한 새와 다른 새에게 답장이 올 수도 있어요
+        </p>
       </div>
 
-      {/* 하단 버튼 */}
-      <button
-        className="absolute bottom-[44px] z-10 cursor-pointer select-none w-full h-[50px] bg-[#292D32] text-white text-[16px] font-semibold rounded-[12px] flex items-center justify-center "
-        onClick={handleSendLetter}
-        disabled={isSending}
+      <Swiper
+        modules={[Pagination]}
+        spaceBetween={8}
+        slidesPerView="auto"
+        onSlideChange={(swiper) => {
+          setActiveIndex(swiper.realIndex);
+          setSelectedBird(birds[swiper.realIndex]?.birdName);
+        }}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        className={clsx("w-full select-bird-swiper mb-[94px]")}
+        pagination={{
+          clickable: true,
+        }}
+        slidesOffsetBefore={21}
+        slidesOffsetAfter={21}
       >
-        {isSending ? "전송 중..." : "편지 보내기"}
-      </button>
+        {birds.map((bird, index) => (
+          <SwiperSlide key={index} className="max-w-[80%]">
+            <BirdCard
+              bird={bird}
+              active={activeIndex === index}
+              onClick={() => {
+                swiperRef.current?.slideTo(index);
+                setActiveIndex(index);
+                setSelectedBird(bird.birdName);
+              }}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <BottomFixedElement>
+        <StyledButton onClick={handleSendLetter} disabled={isSending}>
+          편지 보내기
+        </StyledButton>
+      </BottomFixedElement>
     </div>
   );
 }

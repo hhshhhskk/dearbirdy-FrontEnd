@@ -2,6 +2,7 @@
 
 import { IUserData } from "@/app/(footershare)/home/page";
 import BookMarkIcon from "@/components/Icons/Bookmark_icon";
+import BottomFixedElement from "@/components/layout/BottomFixedElement";
 import ThrowAfterModal from "@/components/letter-storage/ThrowAfterModal";
 import ThrowModal from "@/components/letter-storage/ThrowModal";
 import LetterReport from "@/components/letter/LetterReport";
@@ -211,8 +212,8 @@ const LetterDetailId: React.FC = () => {
             </>
           )}
 
-          <div className="relative w-screen max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
-            <header className="sticky top-0 min-w-[343px] h-[56px] flex items-center bg-[#f9f8f3]">
+          <div className="bg-[#f9f8f3] flex flex-col gap-2">
+            <header className="sticky top-0 h-[56px] flex items-center bg-[#f9f8f3]">
               <Image
                 src="/images/icons/arrow_left_icon.svg"
                 alt="왼쪽 방향 아이콘"
@@ -252,8 +253,8 @@ const LetterDetailId: React.FC = () => {
             {letter.replyLetter ? (
               // 받은 편지
               <main className="flex flex-col items-center justify-center">
-                <div className="p-[16px] pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
-                  <div className="flex flex-col w-full gap-4">
+                <div className="pt-[16px] pb-[20px] flex flex-col items-center gap-[24px] border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
+                  <div className="flex flex-col gap-4">
                     <div className="flex justify-start gap-2">
                       <Image
                         src="/images/icons/direct_inbox_icon.svg"
@@ -265,7 +266,7 @@ const LetterDetailId: React.FC = () => {
                         받은 편지
                       </span>
                     </div>
-                    <div className="flex items-end justify-start gap-2">
+                    <div className="gap-2">
                       <Image
                         src={`/images/birds/${
                           birdNameMap[letter.replyLetter.replyUserBird] ||
@@ -419,7 +420,7 @@ const LetterDetailId: React.FC = () => {
         </div>
       ) : (
         // 장년 버전
-        <div className="relative w-screen max-w-global min-h-screen bg-[#f9f8f3] flex flex-col px-4 gap-2">
+        <div className="bg-[#f9f8f3] flex flex-col gap-2">
           {showThrowModal && (
             <ThrowModal
               letterStatusSeq={letter.letterStatusSeq}
@@ -430,7 +431,7 @@ const LetterDetailId: React.FC = () => {
           {showThrowAfterModal && (
             <ThrowAfterModal setShowThrowAfterModal={setShowThrowAfterModal} />
           )}
-          <header className="sticky top-0 min-w-[343px] h-[56px] flex items-center bg-[#F9F8F3]">
+          <header className="sticky top-0 h-[56px] flex items-center bg-[#F9F8F3]">
             <Image
               src="/images/icons/arrow_left_icon.svg"
               alt="왼쪽 방향 아이콘"
@@ -542,14 +543,14 @@ const LetterDetailId: React.FC = () => {
             </main>
           ) : (
             // 답장 기다리고 있을때 배너
-            <div className="min-w-[342px] w-full p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px] ">
+            <div className="w-full p-[14px] flex flex-col items-center gap-[8px] border border-[#4CA7D0] bg-[#F0FDFF] rounded-[14px] ">
               {/* <p className="text-[#6B7178] text-center text-[14px] font-bold leading-[20px] tracking-[-0.056px]">
             답장 시간이 D일 hh시간 남았어요
           </p>
           <p className="text-[#292D32] text-center text-[16px] font-normal leading-[24px] track ing-[-0.064px]">
             후배버디가 답장을 기다리고 있어요.
           </p> */}
-              <p className="text-[#292D32] text-center text-[16px] font-normal leading-[24px] track ing-[-0.064px]">
+              <p className="text-[#292D32] text-center text-[16px] font-normal leading-[24px]">
                 후배버디가 답장을 기다리고 있어요.
               </p>
             </div>
@@ -557,7 +558,7 @@ const LetterDetailId: React.FC = () => {
 
           {/* 받은 편지 */}
 
-          <main className="flex flex-col items-center justify-center">
+          <main className="flex flex-col items-center justify-center mb-[150px]">
             <div className="w-full pt-[16px] px-4 pb-[20px] flex flex-col items-center border border-[#F0F1EC] bg-[#FFF] rounded-[20px]">
               <div className="flex flex-col w-full ">
                 <div className="flex justify-start gap-2">
@@ -591,7 +592,7 @@ const LetterDetailId: React.FC = () => {
               <p className="w-full mt-6 text-[#292D32] text-[16px] font-medium leading-[24px] tracking-[-0.064px]">
                 {letter.replyLetter.letterTitle}
               </p>
-              <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px]   ">
+              <p className="w-full h-[240px] mt-2 text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px] whitespace-pre-wrap break-words  ">
                 {letter.replyLetter.letter}
               </p>
               <div className="flex flex-col items-start w-full ">
@@ -607,7 +608,7 @@ const LetterDetailId: React.FC = () => {
             </div>
           </main>
           {!letter.sendLetter ? (
-            <div className="absolute left-4 right-4 bottom-[44px] min-w-[343px] w-auto">
+            <BottomFixedElement>
               <div className="flex items-center justify-center cursor-pointer">
                 <p
                   className="text-[#84A667] text-[14px] font-medium leading-[20px] tracking-[-0.056px]"
@@ -638,7 +639,7 @@ const LetterDetailId: React.FC = () => {
                   답장 쓰기
                 </span>
               </div>
-            </div>
+            </BottomFixedElement>
           ) : (
             <div className="h-4"></div>
           )}

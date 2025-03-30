@@ -64,23 +64,3 @@ body {
   -webkit-tap-highlight-color: transparent;
   scrollbar-width: none;
 }
-
-/* ✅ SelectBird Swiper 전용 스타일 */
-.select-bird-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #e5e5ea !important;
-  opacity: 1;
-}
-
-.select-bird-swiper .swiper-pagination-bullet-active {
-  background-color: #84a667 !important;
-}
-
-/* 페이지네이션 위치 조정 (SelectBird) */
-.select-bird-swiper .swiper-pagination {
-  position: relative;
-  /* bottom: -15px; */
-  text-align: center;
-}

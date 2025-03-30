@@ -79,7 +79,7 @@ export default function BirdyTestForm({ step }: Props) {
     <>
       <div className="flex flex-col gap-[6px] mb-[30px]">
         <ProgressLabel value={step} max={questions.length} />
-        <ProgressBar value={step} max={questions.length} color="green" />
+        <ProgressBar value={step} max={questions.length} />
       </div>
 
       <div className="text-center mb-[64px]">

@@ -2,6 +2,7 @@ import React from "react";
 import NextArrow from "@/components/common/NextArrow";
 import { SettingType } from "@/constants/settings";
 import { useRouter } from "next/navigation";
+import ToggleSwitch from "../ui/ToggleSwitch";
 
 interface ISettingItem {
   type: SettingType;
@@ -18,7 +19,7 @@ const SettingItem: React.FC<ISettingItem> = ({
   isToggled,
   onToggle,
 }) => {
-  const router = useRouter(); // ✅ 내부 이동을 위한 router 추가
+  const router = useRouter();
 
   return (
     <div
@@ -31,19 +32,8 @@ const SettingItem: React.FC<ISettingItem> = ({
     >
       <span className="text-Body1_M_16">{label}</span>
 
-      {type === "toggle" && (
-        <div
-          className={`w-10 h-5 flex items-center rounded-full p-1 cursor-pointer transition-all ${
-            isToggled ? "bg-[#292d32]" : "bg-[#D1D1D6]"
-          }`}
-          onClick={onToggle}
-        >
-          <div
-            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-all ${
-              isToggled ? "translate-x-5" : "translate-x-0"
-            }`}
-          />
-        </div>
+      {type === "toggle" && isToggled && onToggle && (
+        <ToggleSwitch isActive={isToggled} onChange={onToggle} />
       )}
 
       {/* ✅ "내 정보 수정"도 NextArrow 아이콘 추가 */}

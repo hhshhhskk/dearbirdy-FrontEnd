@@ -2,6 +2,7 @@
 
 import CommonHeader from "@/components/layout/CommonHeader";
 import SettingItem from "@/components/settings/settingItem";
+import ToggleSwitch from "@/components/ui/ToggleSwitch";
 import { SETTINGS_OPTIONS, SettingSection } from "@/constants/settings";
 import { useState } from "react";
 
@@ -9,7 +10,7 @@ const SettingsPage = () => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
-    <div className="-mx-global">
+    <>
       <CommonHeader title="설정" addPaddingX />
 
       {SETTINGS_OPTIONS.map((section: SettingSection) => (
@@ -25,28 +26,17 @@ const SettingsPage = () => {
               {/* 편지 알림 받기 */}
               <div className="w-full flex justify-between items-center">
                 <span className="text-Body1_M_16">편지 알림 받기</span>
-                <div
-                  className={`w-10 h-5 flex items-center rounded-full p-1 cursor-pointer transition-all ${
-                    isToggled ? "bg-[#292d32]" : "bg-[#D1D1D6]"
-                  }`}
-                  onClick={() => setIsToggled(!isToggled)}
-                >
-                  <div
-                    className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-all ${
-                      isToggled ? "translate-x-5" : "translate-x-0"
-                    }`}
-                  />
-                </div>
+
+                <ToggleSwitch
+                  isActive={isToggled}
+                  onChange={() => setIsToggled(!isToggled)}
+                />
               </div>
 
               {/* 알림 받을 이메일 */}
-              <div className="mt-3 w-full bg-[#F4F5EF] border-1 border-[#E5E5EA] rounded-[10px] p-4 ">
-                <span className="block text-gray-600 text-sm">
-                  알림 받을 이메일
-                </span>
-                <span className="block text-gray-900 text-md font-medium mt-1">
-                  준비중입니다..
-                </span>
+              <div className="mt-3 w-full bg-line02 border-1 border-gray01 rounded-[10px] px-5 py-global text-gray06">
+                <p className="text-Caption1_R_12 mb-[6px]">알림 받을 이메일</p>
+                <p className="text-Body2_M_14">준비중입니다...</p>
               </div>
             </div>
           ) : (
@@ -67,7 +57,7 @@ const SettingsPage = () => {
           )}
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

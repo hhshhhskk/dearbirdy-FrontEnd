@@ -1,4 +1,5 @@
 "use client";
+import CommonLayout from "@/components/layout/CommonLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -18,9 +19,5 @@ export default function LetterDetailLayout({
     }
   });
 
-  return (
-    <>
-      <div className="box-border font-pretendard ">{children}</div>
-    </>
-  );
+  return <CommonLayout>{children}</CommonLayout>;
 }

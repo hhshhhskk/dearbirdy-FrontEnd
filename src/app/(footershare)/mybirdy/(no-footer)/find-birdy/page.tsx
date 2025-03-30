@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function FindbirdyPage() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center px-global">
       <CommonHeader title="마이 버디 새롭게 찾기" />
 
       <Image
