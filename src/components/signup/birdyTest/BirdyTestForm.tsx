@@ -93,7 +93,7 @@ export default function BirdyTestForm({ step }: Props) {
             key={i}
             emoji={opt.emoji}
             label={opt.label}
-            isSelected={answers[currentIndex] === i}
+            isSelected={answers[currentIndex] === opt.value}
             onClick={() => handleSelect(opt.value)}
           />
         ))}
