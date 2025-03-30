@@ -3,9 +3,8 @@
 import { categories } from "@/constants/letterCategoryList";
 import { useLetterStore } from "@/store/useLetterStore";
 import Image from "next/image";
+import CommonHeader from "../layout/CommonHeader";
 import clsx from "clsx";
-import CommonHeader from "@/components/layout/CommonHeader";
-import { useRouter } from "next/navigation";
 
 function CategoryCard({
   name,
@@ -39,13 +38,12 @@ function CategoryCard({
   );
 }
 
-export default function LetterCategorySelectionPage() {
-  const { categoryName, setCategory } = useLetterStore();
-  const router = useRouter();
+export default function Category() {
+  const { categoryName, setCategory, setStep } = useLetterStore();
 
   const handleCategoryClick = (categoryName: string) => {
     setCategory(categoryName);
-    router.push("/send/write-letter");
+    setStep(2);
   };
 
   return (

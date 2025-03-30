@@ -5,7 +5,6 @@ import { getLetterDetail } from "@/services/letterDetail";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Modal from "../ui/Modal";
 
 interface IProps {
   setPreviewModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -62,39 +61,51 @@ const ReplyPreview: React.FC<IProps> = ({ setPreviewModal }) => {
   }
 
   return (
-    <Modal onClose={() => setPreviewModal(false)} showOuterCloseButton>
-      <div className="min-h-[40svh] flex flex-col justify-between">
-        <div>
-          <div className="flex items-end justify-start gap-2 ">
-            <Image
-              src={`/images/birds/${
-                letter && birdNameMap[letter.replyLetter.replyUserBird]
-              }_50.svg`}
-              alt="프로필 새 50"
-              width={50}
-              height={50}
-            />
-            <p className="text-[23px] font-bold leading-[27.6px] iceJaram-Rg">
-              Dear. {letter?.replyLetter.replyUser}
-            </p>
-            <span className="p-[1px_6px] rounded-[6px] bg-gray01 text-[#6B7178] text-Body2_M_14">
-              {letter?.replyLetter.categoryName}
-            </span>
-          </div>
-
-          <div className="my-[10px] text-Body1_R_16 whitespace-pre-wrap break-words">
-            {letter?.replyLetter.letter}
-          </div>
-        </div>
-
-        <div>
-          <p className="text-[#8E8E93] text-Caption1_R_12 mb-2">{replyDate}</p>
-          <p className="font-[Sandoll BaikzongyulPil] text-[18px] font-bold leading-[21.6px] iceJaram-Rg">
-            from. {letter?.replyLetter.sendUser}
-          </p>
+    <div className="fixed inset-0 z-99 flex items-center justify-center w-full h-screen">
+      {/* 오버레이 */}
+      <div className="absolute inset-0 z-20 bg-[rgba(51,51,51,0.80)]">
+        <div
+          className="cursor-pointer flex justify-end w-full  mt-[59px] pr-[16px] "
+          onClick={() => setPreviewModal(false)}
+        >
+          <Image
+            src="/images/icons/close_white_icon.svg"
+            alt="닫기 아이콘"
+            width={24}
+            height={24}
+          />
         </div>
       </div>
-    </Modal>
+
+      {/* 모달 */}
+      <div className="m-global flex z-30 w-[85%] min-h-[50vh] p-[24px_16px] flex-col items-start gap-[10px] rounded-[30px] border border-[#F4F5EF] bg-white">
+        <div className="flex items-end justify-start gap-2">
+          <Image
+            src={`/images/birds/${
+              letter && birdNameMap[letter.replyLetter.replyUserBird]
+            }_50.svg`}
+            alt="프로필 새 50"
+            width={50}
+            height={50}
+          />
+          <p className="text-[#000] text-[23px] font-bold leading-[27.6px] iceJaram-Rg">
+            Dear. {letter?.replyLetter.replyUser}
+          </p>
+          <span className="p-[1px_6px] rounded-[6px] bg-[#E5E5EA] text-[#6B7178] text-center text-[14px] font-medium leading-[20px] tracking-[-0.056px]">
+            {letter?.replyLetter.categoryName}
+          </span>
+        </div>
+        <div className="w-full h-[380px] text-[#292D32] text-[16px] font-normal leading-[24px] tracking-[-0.064px] whitespace-pre-wrap break-words">
+          {letter?.replyLetter.letter}
+        </div>
+        <p className="text-[#8E8E93] text-right text-[12px] font-normal leading-[16px] tracking-[-0.048px]">
+          {replyDate}
+        </p>
+        <span className="text-[#292D32] text-right font-[Sandoll BaikzongyulPil] text-[18px] font-bold leading-[21.6px] iceJaram-Rg">
+          from. {letter?.replyLetter.sendUser}
+        </span>
+      </div>
+    </div>
   );
 };
 

@@ -9,13 +9,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { getBirdyInfo, postLetter } from "@/services/userService";
 import { BIRD_TRAIT_STYLES } from "@/constants/birdTraitsStyles";
+import LoadingSpinner from "../ui/LoadingSpinner";
+import CommonHeader from "../layout/CommonHeader";
+import BottomFixedElement from "../layout/BottomFixedElement";
+import StyledButton from "../ui/StyledButton";
 import clsx from "clsx";
 import "./SelectBird.css";
 import { getBirdImageSrc } from "@/util/birdTypeUtils";
-import CommonHeader from "@/components/layout/CommonHeader";
-import BottomFixedElement from "@/components/layout/BottomFixedElement";
-import StyledButton from "@/components/ui/StyledButton";
-import { useRouter } from "next/navigation";
 
 export interface Bird {
   birdName: string;
@@ -85,8 +85,9 @@ const BirdCard = ({ bird, active, onClick }: BirdCardProps) => {
   );
 };
 
-export default function BirdSelectionPage() {
+export default function SelectBird() {
   const {
+    setStep,
     setSelectedBird,
     selectedBird,
     setMyBirdName,
@@ -95,7 +96,6 @@ export default function BirdSelectionPage() {
     letter,
   } = useLetterStore();
 
-  const router = useRouter();
   const swiperRef = useRef<SwiperClass | null>(null);
 
   const [birds, setBirds] = useState<Bird[]>([]);
@@ -111,6 +111,7 @@ export default function BirdSelectionPage() {
           setBirds(response.data.birdyList);
           setSelectedBird(response.data.birdyList[0]?.birdName);
         } else {
+          // console.warn("🚨 API 응답이 없어서 기본 데이터를 사용합니다.");
           setBirds([]);
         }
       } catch (error) {
@@ -139,11 +140,11 @@ export default function BirdSelectionPage() {
       });
 
       if (response?.data?.myBirdName) {
-        setMyBirdName(response.data.myBirdName);
+        setMyBirdName(response.data.myBirdName); // ✅ 사용자 새 저장
       }
 
-      console.log("response", response);
-      router.push("/send/complete");
+      // console.log("✅ 편지 전송 성공");
+      setStep(4);
     } catch (error) {
       console.error("❌ 편지 전송 실패:", error);
       alert("편지 전송에 실패했어요. 다시 시도해주세요.");
@@ -152,8 +153,9 @@ export default function BirdSelectionPage() {
     }
   };
 
+  // ✅ 데이터가 없을 때 로딩 메시지 표시
   if (birds.length === 0) {
-    return <div />;
+    return <LoadingSpinner />;
   }
 
   return (

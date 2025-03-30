@@ -15,29 +15,6 @@ import BottomFixedElement from "../layout/BottomFixedElement";
 import { postReply } from "@/services/letterReply";
 import { useRouter } from "next/navigation";
 import { useLetterInfoStore } from "@/store/letterInfoStore";
-import { LetterType } from "@/constants/letter";
-import ChevronLeft from "../../components/Icons/common/LeftArrow";
-import LetterBackModal from "./LetterBackModal";
-
-function ExitLetterButton() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  return (
-    <>
-      <button
-        onClick={() => setIsDialogOpen(true)}
-        aria-label="뒤로가기"
-        className="cursor-pointer"
-      >
-        <ChevronLeft className="w-6 h-6" stroke="#292D32" />
-      </button>
-
-      {isDialogOpen && (
-        <LetterBackModal onClose={() => setIsDialogOpen(false)} />
-      )}
-    </>
-  );
-}
 
 interface FormValues {
   title: string;
@@ -45,11 +22,11 @@ interface FormValues {
 }
 
 interface WriteLetterProps {
-  type: LetterType;
+  userRole: "MENTOR" | "MENTEE";
 }
 
-export default function WriteLetter({ type }: WriteLetterProps) {
-  const { categoryName, setTitle, setLetter } = useLetterStore();
+export default function WriteLetter({ userRole }: WriteLetterProps) {
+  const { categoryName, setTitle, setLetter, setStep } = useLetterStore();
   const { categoryName: replyCategoryName, letterStatusSeq } =
     useLetterInfoStore();
 
@@ -86,8 +63,8 @@ export default function WriteLetter({ type }: WriteLetterProps) {
     setTitle(data.title);
     setLetter(data.letter);
 
-    if (type === "OUTGOING") {
-      router.push("/send/select-bird");
+    if (userRole === "MENTEE") {
+      setStep(3);
     } else {
       setIsSending(true);
 
@@ -97,6 +74,8 @@ export default function WriteLetter({ type }: WriteLetterProps) {
           categoryName: replyCategoryName,
           letterStatusSeq,
         };
+
+        console.log("replyForm", replyForm);
 
         await postReply(replyForm);
         router.push("/reply/complete");
@@ -116,7 +95,6 @@ export default function WriteLetter({ type }: WriteLetterProps) {
     <>
       <div className="min-h-safe-screen flex flex-col">
         <CommonHeader
-          left={<ExitLetterButton />}
           right={
             <SmallButton
               disabled={isDisabled || isSending}
@@ -141,7 +119,7 @@ export default function WriteLetter({ type }: WriteLetterProps) {
               className="cursor-pointer text-Body2_R_14 text-green03 mt-[6px] underline underline-offset-2"
               onClick={() => setIsDrawerOpen(true)}
             >
-              {type === "OUTGOING" ? "편지" : "답장"} 이렇게 쓰세요
+              {userRole === "MENTEE" ? "편지" : "답장"} 이렇게 쓰세요
             </button>
           </div>
 
@@ -204,7 +182,7 @@ export default function WriteLetter({ type }: WriteLetterProps) {
         <LetterGuideModal
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
-          type={type}
+          type={userRole === "MENTEE" ? "letter" : "reply"}
         />
       )}
     </>
