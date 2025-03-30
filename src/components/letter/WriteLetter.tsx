@@ -71,7 +71,7 @@ export default function WriteLetter({ userRole }: WriteLetterProps) {
       try {
         const replyForm = {
           ...data,
-          replyCategoryName,
+          categoryName: replyCategoryName,
           letterStatusSeq,
         };
 
