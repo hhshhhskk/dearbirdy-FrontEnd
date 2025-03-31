@@ -112,7 +112,12 @@ export default function LetterDisplay({
           </div>
         )}
 
-      {type === "REPLY" && reactionId && (
+      {userRole === "MENTEE" && type === "REPLY" && reactionId && (
+        <div className="mt-global">
+          <ReactionDisplay reactionId={reactionId} />
+        </div>
+      )}
+      {userRole === "MENTOR" && type === "OUTGOING" && reactionId && (
         <div className="mt-global">
           <ReactionDisplay reactionId={reactionId} />
         </div>

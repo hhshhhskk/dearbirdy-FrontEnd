@@ -46,6 +46,22 @@ export default function MentorLetterView({
           </div>
         )}
 
+        {outgoingLetter && (
+          <LetterDisplay
+            type="OUTGOING"
+            categoryName={outgoingLetter.categoryName}
+            fromUserName={outgoingLetter.sendUser}
+            fromUserBirdName={outgoingLetter.sendUserBird}
+            toUserName={outgoingLetter.replyUser}
+            toUserBirdName={outgoingLetter.replyUserBird}
+            title={outgoingLetter.letterTitle}
+            content={outgoingLetter.letter}
+            letterDate={outgoingLetter.creatAt}
+            letterSeq={outgoingLetter.letterSeq}
+            reactionId={reactionId}
+            userRole={"MENTOR"}
+          />
+        )}
         <LetterDisplay
           type="REPLY"
           categoryName={incomingLetter.categoryName}
@@ -60,23 +76,6 @@ export default function MentorLetterView({
           reactionId={reactionId}
           userRole={"MENTOR"}
         />
-
-        {outgoingLetter && (
-          <LetterDisplay
-            type="OUTGOING"
-            categoryName={outgoingLetter.categoryName}
-            fromUserName={outgoingLetter.sendUser}
-            fromUserBirdName={outgoingLetter.sendUserBird}
-            toUserName={outgoingLetter.replyUser}
-            toUserBirdName={outgoingLetter.replyUserBird}
-            title={outgoingLetter.letterTitle}
-            content={outgoingLetter.letter}
-            letterDate={outgoingLetter.creatAt}
-            letterSeq={outgoingLetter.letterSeq}
-            reactionId={reactionId}
-            userRole={"MENTEE"}
-          />
-        )}
       </div>
 
       {!outgoingLetter && (
