@@ -19,6 +19,7 @@ export const getThanks = async (letterSeq: number, type: string) => {
     const response = await api.get(
       `/letter/thanks?letterSeq=${letterSeq}&type=${type}`
     );
+
     return response.data.data;
   } catch (error) {
     console.error("❌ 편지 고마움 전달 요청 실패:", error);

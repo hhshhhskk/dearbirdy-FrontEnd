@@ -4,7 +4,7 @@ import { categories } from "@/constants/letterCategoryList";
 import { useLetterStore } from "@/store/useLetterStore";
 import Image from "next/image";
 import clsx from "clsx";
-import CommonHeader from "@/components/layout/CommonHeader";
+import ChevronLeft from "../../../components/Icons/common/LeftArrow";
 import { useRouter } from "next/navigation";
 
 function CategoryCard({
@@ -50,11 +50,16 @@ export default function LetterCategorySelectionPage() {
 
   return (
     <>
-      <CommonHeader className="px-global" />
-
-      <div className="px-global mt-2">
+      <button
+        onClick={() => router.push("/home")}
+        aria-label="뒤로가기"
+        className="cursor-pointer px-global"
+      >
+        <ChevronLeft className="w-6 h-6" stroke="#292D32" />
+      </button>
+      <div className="mt-2 px-global">
         <div>
-          <p className="text-Title3_B_20 whitespace-break-spaces mb-2">
+          <p className="mb-2 text-Title3_B_20 whitespace-break-spaces">
             {"어떤 이야기를 \n나누고 싶으신가요?"}
           </p>
           <p className="text-Body1_R_16 text-gray06">
@@ -63,7 +68,7 @@ export default function LetterCategorySelectionPage() {
         </div>
 
         <div className="flex justify-center w-full py-6">
-          <div className="grid grid-cols-2 gap-2 w-full">
+          <div className="grid w-full grid-cols-2 gap-2">
             {categories.map((category) => (
               <CategoryCard
                 key={category.id}

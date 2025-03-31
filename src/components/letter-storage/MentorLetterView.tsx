@@ -37,7 +37,7 @@ export default function MentorLetterView({
       <div className="flex flex-col gap-2 mt-2 mb-global">
         {!outgoingLetter && (
           <div className="p-[14px] text-center gap-[8px] border border-blue01 bg-[#F0FDFF] rounded-[14px]">
-            {/* <p className="text-gray06 text-Body2_B_14 mb-2">
+            {/* <p className="mb-2 text-gray06 text-Body2_B_14">
             답장 시간이 D일 hh시간 남았어요
           </p> */}
             <p className="text-Body1_R_16">
@@ -84,7 +84,7 @@ export default function MentorLetterView({
           recipientName={incomingLetter.replyUserBird}
           myBirdType={incomingLetter.sendUser}
           categoryName={incomingLetter.categoryName}
-          letterStatusSeq={incomingLetter.letterSeq}
+          letterStatusSeq={myLetterSeq}
         />
       )}
     </>

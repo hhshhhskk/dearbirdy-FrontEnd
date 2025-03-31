@@ -77,8 +77,8 @@ export default function LetterDisplay({
         </p>
       </div>
 
-      <div className="py-6 whitespace-pre-wrap break-words">
-        <h2 className="text-Body1_M_16 mb-2">{title}</h2>
+      <div className="py-6 break-words whitespace-pre-wrap">
+        <h2 className="mb-2 text-Body1_M_16">{title}</h2>
         <p className="text-Body1_R_16">{content}</p>
       </div>
 

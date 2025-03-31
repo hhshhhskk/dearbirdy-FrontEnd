@@ -37,7 +37,7 @@ export default function MenteeLetterView({
       <div className="flex flex-col gap-2 mt-2 mb-global">
         {!incomingLetter && (
           <div className="p-[14px] text-center gap-[8px] border border-blue01 bg-[#F0FDFF] rounded-[14px]">
-            <p className="text-gray06 text-Body2_B_14 mb-2">
+            <p className="mb-2 text-gray06 text-Body2_B_14">
               따뜻한 말이 담긴 답장을 작성하고 있어요
             </p>
             <p className="text-Body1_R_16">

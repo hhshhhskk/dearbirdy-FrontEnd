@@ -36,7 +36,7 @@ export default function ReplyButtonDiv({
     setBirdName(myBirdType);
     setNickname(recipientName);
   };
-
+  
   return (
     <>
       <div>

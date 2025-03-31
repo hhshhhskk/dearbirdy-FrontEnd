@@ -60,6 +60,8 @@ export default function LetterDetailPage() {
     fetchLetterDetail();
   }, [id]);
 
+  console.log(letter);
+
   if (!letter) return <div />;
 
   if (userRole === "MENTOR") {

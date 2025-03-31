@@ -6,18 +6,22 @@ import ActionSheet from "../ui/ActionSheet";
 import { getThanks } from "@/services/letterDetail";
 import { Reaction, reactionList } from "@/constants/letter";
 import { BirdNameKr } from "@/constants/birdNameMap";
+import { useRouter } from "next/navigation";
 
 interface ReactionOptionButtonProps {
   reaction: Reaction;
   letterSeq: number;
+  onClose: () => void;
 }
 
 const ReactionOptionButton = ({
   reaction,
   letterSeq,
 }: ReactionOptionButtonProps) => {
+  const router = useRouter();
   const reactionButtonHandler = () => {
     getThanks(letterSeq, reaction.id);
+    router.push("/letters");
   };
 
   return (
@@ -55,9 +59,9 @@ const ReactionSelectionActionSheet = ({
 }: ReactionSelectionActionSheetProps) => {
   return (
     <ActionSheet isOpen={isOpen} onClose={onClose}>
-      <div className="mt-global mb-6 text-center">
+      <div className="mb-6 text-center mt-global">
         <h2 className="text-Body1_B_18">답장이 도움이 되셨나요?</h2>
-        <p className="text-Body2_R_14 mt-2 mb-6">
+        <p className="mt-2 mb-6 text-Body2_R_14">
           {fromUserBirdName}가 보낸 답장에 고마움을 보내주세요!
         </p>
       </div>
@@ -68,6 +72,7 @@ const ReactionSelectionActionSheet = ({
             key={reaction.id}
             reaction={reaction}
             letterSeq={letterSeq}
+            onClose={onClose}
           />
         ))}
       </div>
