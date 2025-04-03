@@ -49,32 +49,26 @@ const Page = () => {
     // </>
     <div className="flex flex-col items-center px-global">
       <CommonHeader title="닉네임 수정" />
-
+      <div className="w-full bg-line01 px-global py-[10px]">
+        <h2 className="text-Body1_M_16 text-gray06">닉네임</h2>
+      </div>
       <Image
-        src={`/images/my-birdy/birdy_collection.png`}
+        src={`/images/my-birdy/birdy_coding.png`}
         alt="닉네임 수정"
         width={198}
         height={152}
         className="mt-6"
       />
       <p className="text-[#8E8E93] text-center text-base font-bold leading-[24px] tracking-[-0.064px] mt-5">
-        곧 업데이트 예정이에요
+        닉네임 변경은 준비 중이에요
       </p>
       <p className="text-[#8E8E93] text-center text-base font-normal leading-[24px] tracking-[-0.064px] mt-4">
-        닉네임을 바꾸고 싶다면
+        얼른 만들어서 재치있는 새로운 닉네임을
         <br />
-        디어버디 고객센터에 문의해주세요.
+        설정할 수 있도록 해드릴게요.
         <br />
-        빠르고 친절하게 해결해드릴게요.
+        조금만 기다려주세요!
       </p>
-      <div className="flex w-full p-[16px_20px] flex-col items-start rounded-[10px] border border-[#E5E5EA] bg-[#F0F1EC] mt-5">
-        <p className="text-[#6B7178] text-xs font-normal leading-[16px] tracking-[-0.048px]">
-          디어버디 고객센터
-        </p>
-        <p className="text-[#6B7178] text-sm font-medium leading-[20px] tracking-[-0.056px] mt-1.5">
-          dearbirdy@dearbirdy.xyz
-        </p>
-      </div>
     </div>
   );
 };

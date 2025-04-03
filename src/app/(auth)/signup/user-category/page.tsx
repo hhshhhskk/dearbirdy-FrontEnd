@@ -121,7 +121,7 @@ export default function UserCategoryPage() {
         <InfoBox
           imageSrc="/images/signup/bluebird-3.svg"
           altText="카테고리 선택 아이콘"
-          text="우선적으로 편지를 받고 싶은 내용의 카테고리를 선택해주세요."
+          text="우선적으로 편지를 받고 싶은 내용의 카테고리를 모두 선택해주세요."
         />
 
         <div className="mt-11">

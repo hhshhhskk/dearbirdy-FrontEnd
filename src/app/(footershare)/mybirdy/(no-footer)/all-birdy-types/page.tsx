@@ -30,7 +30,7 @@ export default function AllBirdyTypesPage() {
           디어버디 인스타그램
         </p>
         <p className="text-[#6B7178] text-sm font-medium leading-[20px] tracking-[-0.056px] mt-1.5">
-          @dearbirdy3
+          @dearbirdy.xyz
         </p>
       </div>
     </div>

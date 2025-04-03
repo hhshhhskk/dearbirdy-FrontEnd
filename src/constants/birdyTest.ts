@@ -17,7 +17,7 @@ export interface Question {
 export const questions: Question[] = [
   {
     id: 1,
-    text: `취미나 여가보다 자기계발 중\n뭐가 더 중요하다고 생각하나요?`,
+    text: `취미나 여가, 자기계발 중\n뭐가 더 중요하다고 생각하나요?`,
     direction: "life",
     options: [
       { value: 2, emoji: "✏️", label: "자기계발이요!" },
@@ -142,26 +142,26 @@ export const questions: Question[] = [
 export const birdTypes = [
   {
     name: "앵무새",
-    lifeMin: 10,
+    lifeMin: 9,
     lifeMax: 12,
     lifestyleMin: 7,
     lifestyleMax: 12,
   },
   {
     name: "올빼미",
-    lifeMin: 10,
+    lifeMin: 9,
     lifeMax: 12,
     lifestyleMin: 0,
     lifestyleMax: 6,
   },
-  { name: "뱁새", lifeMin: 7, lifeMax: 9, lifestyleMin: 0, lifestyleMax: 12 },
+  { name: "뱁새", lifeMin: 7, lifeMax: 8, lifestyleMin: 0, lifestyleMax: 12 },
   {
     name: "카나리아",
-    lifeMin: 4,
+    lifeMin: 5,
     lifeMax: 6,
     lifestyleMin: 0,
     lifestyleMax: 12,
   },
-  { name: "벌새", lifeMin: 0, lifeMax: 3, lifestyleMin: 7, lifestyleMax: 12 },
-  { name: "파랑새", lifeMin: 0, lifeMax: 3, lifestyleMin: 0, lifestyleMax: 6 },
+  { name: "벌새", lifeMin: 0, lifeMax: 4, lifestyleMin: 7, lifestyleMax: 12 },
+  { name: "파랑새", lifeMin: 0, lifeMax: 4, lifestyleMin: 0, lifestyleMax: 6 },
 ];
