@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
       router.push(selectedItem.path);
     }
   };
-  console.log("ㅁㅁㅁ read: ", read);
+  // console.log(" read: ", read);
 
   return (
     <div className="fixed bottom-0 w-full max-w-global h-[60px] flex justify-around items-center border-t border-line02 bg-white02">

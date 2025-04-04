@@ -6,11 +6,13 @@ import HomeMainSection from "@/components/home/HomeMainSection";
 import LetterGuideModal from "@/components/letter/LetterGuideModal";
 import { getUserInfo } from "@/services/homeGetApi";
 import { useUserStore } from "@/store/useUserStore";
-import { fetchEventSource } from "@microsoft/fetch-event-source";
+
 import { usePathname, useRouter } from "next/navigation";
 import CommonHeader from "@/components/layout/CommonHeader";
 import Image from "next/image";
 import BellIcon from "@/components/Icons/Header_bell_icon";
+import Tutorial from "@/components/home/Tutorial";
+import { useSseStore } from "@/store/useSseStore";
 
 export interface IUserCategory {
   career: boolean;
@@ -36,13 +38,15 @@ export interface IUserData {
 
 const Home: React.FC = () => {
   const [userData, setUserData] = useState<IUserData | null>(null);
-  const [sse, setSse] = useState(false);
   const { setRead } = useUserStore();
   const router = useRouter();
   const pathname = usePathname();
 
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [istutorial, setIsTutorial] = useState(false);
 
+  const data = useSseStore((state) => state.data);
+  const messageCheck = useSseStore((state) => state.messageCheck);
   const userRole = userData?.roleName;
 
   useEffect(() => {
@@ -61,22 +65,15 @@ const Home: React.FC = () => {
           setRead(response.data.read);
           setUserData(response.data);
 
-          // 실시간 알림
-          const parsedData = JSON.parse(token);
-          const accessToken = parsedData.state.accessToken;
+          // 튜토리얼 체크
+          if (response.data.roleName === "MENTEE") {
+            const tutorial = localStorage.getItem("tutorialComplete");
 
-          fetchEventSource(
-            `${process.env.NEXT_PUBLIC_API_URL}/notification/subscribe`,
-            {
-              headers: {
-                access: accessToken,
-              },
-              onmessage(event) {
-                console.log(event.data); //"알림도착"
-                if (event.data === "알림도착") setSse(true);
-              },
+            if (!tutorial) {
+              localStorage.setItem("tutorialComplete", "true");
+              setIsTutorial(true);
             }
-          );
+          }
         }
       } catch (err) {
         console.log(err);
@@ -84,11 +81,11 @@ const Home: React.FC = () => {
     };
 
     fetchData();
-  }, [pathname, router, setRead]);
+  }, [pathname, router, setRead, data]);
 
   console.log(userData);
-  console.log("sse: ", sse);
 
+  console.log("알림데이터 data: ", data);
   if (!userData) {
     return;
   }
@@ -105,11 +102,15 @@ const Home: React.FC = () => {
           />
         }
         right={
-          <BellIcon check={userData.read} sseCheck={sse} setSse={setSse} />
+          <BellIcon
+            check={userData.read}
+            sseCheck={data}
+            messageCheck={messageCheck}
+          />
         }
       />
 
-      <div className="flex flex-col gap-global my-1">
+      <div className="flex flex-col my-1 gap-global">
         <Banner onClick={() => setIsGuideOpen(true)} />
 
         <HomeMainSection userData={userData} userRole={userRole!} />
@@ -121,6 +122,7 @@ const Home: React.FC = () => {
             type={userRole === "MENTOR" ? "REPLY" : "OUTGOING"}
           />
         )}
+        {istutorial && <Tutorial />}
       </div>
     </div>
   );

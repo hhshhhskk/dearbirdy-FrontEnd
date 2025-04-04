@@ -6,17 +6,21 @@ import React from "react";
 interface SvgIconProps {
   check?: boolean;
   sseCheck?: boolean;
-  setSse: React.Dispatch<React.SetStateAction<boolean>>;
+  messageCheck: () => void;
 }
 
-const BellIcon: React.FC<SvgIconProps> = ({ check, sseCheck, setSse }) => {
+const BellIcon: React.FC<SvgIconProps> = ({
+  check,
+  sseCheck,
+  messageCheck,
+}) => {
   const router = useRouter();
 
   return (
     <div
       onClick={() => {
         router.push("/notification-box");
-        setSse(false);
+        messageCheck();
       }}
     >
       {check || sseCheck ? (

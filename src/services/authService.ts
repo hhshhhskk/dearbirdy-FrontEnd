@@ -4,7 +4,7 @@ import api from "../lib/api";
 import { useAuthStore } from "@/store/authStore";
 
 export const getAccessToken = async (code: string) => {
-  console.log("✅ 백엔드 요청 시작, code 값:", code);
+  // console.log("✅ 백엔드 요청 시작, code 값:", code);
 
   try {
     const response = await api.get(`/auth/kakao?code=${code}`);
