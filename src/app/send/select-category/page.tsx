@@ -6,6 +6,8 @@ import Image from "next/image";
 import clsx from "clsx";
 import ChevronLeft from "../../../components/Icons/common/LeftArrow";
 import { useRouter } from "next/navigation";
+import Tutorial from "@/components/home/Tutorial";
+import { useEffect, useState } from "react";
 
 function CategoryCard({
   name,
@@ -43,13 +45,27 @@ export default function LetterCategorySelectionPage() {
   const { categoryName, setCategory } = useLetterStore();
   const router = useRouter();
 
+  const [istutorial, setIsTutorial] = useState(false);
+
   const handleCategoryClick = (categoryName: string) => {
     setCategory(categoryName);
     router.push("/send/write-letter");
   };
 
+  useEffect(() => {
+    const tutorial = localStorage.getItem("tutorialComplete");
+
+    if (!tutorial) {
+      localStorage.setItem("tutorialComplete", "true");
+      setIsTutorial(true);
+    }
+  }, []);
+
   return (
     <>
+      {istutorial && (
+        <Tutorial tutorialStep={2} setIsTutorial={setIsTutorial} />
+      )}
       <button
         onClick={() => router.push("/home")}
         aria-label="뒤로가기"

@@ -70,7 +70,6 @@ const Home: React.FC = () => {
             const tutorial = localStorage.getItem("tutorialComplete");
 
             if (!tutorial) {
-              localStorage.setItem("tutorialComplete", "true");
               setIsTutorial(true);
             }
           }
@@ -122,7 +121,7 @@ const Home: React.FC = () => {
             type={userRole === "MENTOR" ? "REPLY" : "OUTGOING"}
           />
         )}
-        {istutorial && <Tutorial />}
+        {istutorial && <Tutorial tutorialStep={1} />}
       </div>
     </div>
   );

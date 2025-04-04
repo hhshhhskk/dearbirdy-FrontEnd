@@ -1,13 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 
-const Tutorial = () => {
-  const [isNext, setIsNext] = useState(true);
+interface TutorialProps {
+  tutorialStep: number;
+  setIsTutorial?: (value: boolean) => void;
+}
+
+const Tutorial: React.FC<TutorialProps> = ({ tutorialStep, setIsTutorial }) => {
   const router = useRouter();
-  console.log("isNext : ", isNext);
 
   return (
     <div className="fixed inset-0 flex flex-col justify-center z-999">
@@ -20,13 +23,15 @@ const Tutorial = () => {
           "relative z-50 w-full flex justify-center items-center"
         )}
       >
-        {isNext ? (
+        {tutorialStep === 1 ? (
           <Image
             src="/images/birds/home/tutorial_bluebird1.png"
             alt="tutorial_bluebird"
             width={375}
             height={420}
-            onClick={() => setIsNext(false)}
+            onClick={() => {
+              router.push("/send");
+            }}
           />
         ) : (
           <Image
@@ -36,7 +41,9 @@ const Tutorial = () => {
             height={567}
             className=""
             onClick={() => {
-              router.push("/send");
+              if (setIsTutorial) {
+                setIsTutorial(false);
+              }
             }}
           />
         )}
