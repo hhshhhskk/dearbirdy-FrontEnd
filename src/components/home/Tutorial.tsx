@@ -20,7 +20,7 @@ const Tutorial: React.FC<TutorialProps> = ({ tutorialStep, setIsTutorial }) => {
       {/* ActionSheet container */}
       <div
         className={clsx(
-          "relative z-50 w-full flex justify-center items-center"
+          "relative z-50 w-full h-full flex justify-center items-center"
         )}
       >
         {tutorialStep === 1 ? (
@@ -39,7 +39,7 @@ const Tutorial: React.FC<TutorialProps> = ({ tutorialStep, setIsTutorial }) => {
             alt="tutorial_bluebird"
             width={375}
             height={567}
-            className=""
+            className="self-start"
             onClick={() => {
               if (setIsTutorial) {
                 setIsTutorial(false);
