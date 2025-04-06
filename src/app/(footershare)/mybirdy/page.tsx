@@ -18,8 +18,8 @@ export default function MyBirdy() {
   if (!userData) <LoadingSpinner />;
 
   return (
-    <div className="bg-black01 min-h-safe-screen flex flex-col">
-      <div className="p-6 flex flex-col justify-end flex-1">
+    <div className="flex flex-col bg-black01 min-h-safe-screen">
+      <div className="flex flex-col justify-end flex-1 p-6">
         {/* 🐦 사용자 프로필 섹션 */}
         <ProfileSection userData={userData} />
       </div>
