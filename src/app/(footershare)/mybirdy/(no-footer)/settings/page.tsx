@@ -4,10 +4,19 @@ import CommonHeader from "@/components/layout/CommonHeader";
 import SettingItem from "@/components/settings/settingItem";
 import ToggleSwitch from "@/components/ui/ToggleSwitch";
 import { SETTINGS_OPTIONS, SettingSection } from "@/constants/settings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SettingsPage = () => {
   const [isToggled, setIsToggled] = useState(false);
+  const [roleName, setRoleName] = useState("");
+
+  useEffect(() => {
+    const storedData = sessionStorage.getItem("userInfo");
+    if (storedData) {
+      const userInfo = JSON.parse(storedData);
+      setRoleName(userInfo.roleName);
+    }
+  }, []);
 
   return (
     <>
@@ -24,7 +33,7 @@ const SettingsPage = () => {
           {section.category === "알림" ? (
             <div className="px-global py-[14px]">
               {/* 편지 알림 받기 */}
-              <div className="w-full flex justify-between items-center">
+              <div className="flex items-center justify-between w-full">
                 <span className="text-Body1_M_16">편지 알림 받기</span>
 
                 <ToggleSwitch
@@ -41,18 +50,24 @@ const SettingsPage = () => {
             </div>
           ) : (
             section.items.map((item, index) => (
-              <SettingItem
+              <div
                 key={index}
-                type={item.type}
-                label={item.label}
-                url={item.url}
-                isToggled={item.type === "toggle" ? isToggled : undefined}
-                onToggle={
-                  item.type === "toggle"
-                    ? () => setIsToggled(!isToggled)
-                    : undefined
-                }
-              />
+                className={`${
+                  roleName === "MENTEE" && item.type === "category" && "hidden"
+                }`}
+              >
+                <SettingItem
+                  type={item.type}
+                  label={item.label}
+                  url={item.url}
+                  isToggled={item.type === "toggle" ? isToggled : undefined}
+                  onToggle={
+                    item.type === "toggle"
+                      ? () => setIsToggled(!isToggled)
+                      : undefined
+                  }
+                />
+              </div>
             ))
           )}
         </div>

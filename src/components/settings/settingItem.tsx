@@ -27,6 +27,8 @@ const SettingItem: React.FC<ISettingItem> = ({
       onClick={() => {
         if (type === "internal") {
           router.push("/mybirdy/my-account"); // ✅ "내 정보 수정" 클릭 시 이동
+        } else if (type === "category") {
+          router.push("/mybirdy/edit-category");
         }
       }}
     >
@@ -37,7 +39,9 @@ const SettingItem: React.FC<ISettingItem> = ({
       )}
 
       {/* ✅ "내 정보 수정"도 NextArrow 아이콘 추가 */}
-      {(type === "link" || type === "internal") && <NextArrow url={url} />}
+      {(type === "link" || type === "internal" || type === "category") && (
+        <NextArrow url={url} />
+      )}
     </div>
   );
 };

@@ -25,7 +25,7 @@ const BottomButton: React.FC<BottomButtonProps> = ({
 }) => {
   return (
     <div
-      className="fixed left-1/2 transform -translate-x-1/2"
+      className="fixed transform -translate-x-1/2 left-1/2"
       style={{
         bottom: `${bottomMargin}px`,
         width: `${width}px`,

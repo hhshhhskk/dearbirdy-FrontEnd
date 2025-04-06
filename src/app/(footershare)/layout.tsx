@@ -4,7 +4,7 @@ import Limit from "@/components/home/Limit";
 import Report from "@/components/home/Report";
 import CommonLayout from "@/components/layout/CommonLayout";
 import Footer from "@/components/ui/Footer";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function SharedLayout({
@@ -14,8 +14,11 @@ export default function SharedLayout({
 }) {
   const report = false;
   const limit = false;
-
+  const pathname = usePathname();
   const router = useRouter();
+
+  const showFooter =
+    pathname === "/mybirdy" || !pathname.startsWith("/mybirdy/");
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -35,7 +38,7 @@ export default function SharedLayout({
         {children}
       </CommonLayout>
 
-      <Footer />
+      {showFooter && <Footer />}
     </>
   );
 }

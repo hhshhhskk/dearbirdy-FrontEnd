@@ -1,6 +1,6 @@
 // src/constants/settings.ts
 
-export type SettingType = "toggle" | "link" | "internal";
+export type SettingType = "toggle" | "link" | "internal" | "category";
 
 export interface SettingItem {
   type: SettingType;
@@ -29,6 +29,10 @@ export const SETTINGS_OPTIONS: SettingSection[] = [
       {
         type: "internal",
         label: "내 정보 수정",
+      },
+      {
+        type: "category",
+        label: "편지 카테고리 변경",
       },
     ],
   },

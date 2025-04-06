@@ -24,7 +24,7 @@ export default function StyledButton({
       "cursor-pointer bg-transparent border border-green03 text-green03",
   };
 
-  const disabledClass = "bg-gray01 text-gray03 cursor-default";
+  const disabledClass = "bg-gray00 text-gray03 cursor-default";
 
   return (
     <button
