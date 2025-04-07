@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Providers from "./providers";
-import Head from "next/head";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const pretendard = localFont({
@@ -30,6 +29,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {
@@ -46,12 +46,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <Head>
-        <link rel="manifest" href="/manifest.json?v=3" />
-        <link rel="apple-touch-icon" sizes="192x192" href="/logo_192.png" />
-        <link rel="apple-touch-icon" sizes="512x512" href="/logo_512.png" />
-      </Head>
-
       <GoogleAnalytics gaId="G-QMMEXE7E56" />
 
       {/* 참고: 전역적 배경색 및 폰트 색상은 global.css에서 적용하고 있음 */}
