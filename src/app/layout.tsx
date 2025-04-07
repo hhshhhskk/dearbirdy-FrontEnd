@@ -13,6 +13,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.dearbirdy.xyz"),
   title: "DearBirdy: 디어버디",
   description: "편지로 연결되는 따뜻한 마음, 인생 선후배들의 만남 디어버디",
   openGraph: {
@@ -46,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <Head>
+        <link rel="manifest" href="/manifest.json?v=3" />
         <link rel="apple-touch-icon" sizes="192x192" href="/logo_192.png" />
         <link rel="apple-touch-icon" sizes="512x512" href="/logo_512.png" />
       </Head>
@@ -57,7 +59,7 @@ export default function RootLayout({
         className={`${pretendard.variable} font-pretendard flex justify-center`}
       >
         {/* ✅ React Query Provider 적용 */}
-        <main className="min-h-safe-screen w-full max-w-global flex flex-col shadow-2xl bg-white02">
+        <main className="flex flex-col w-full shadow-2xl min-h-safe-screen max-w-global bg-white02">
           <Providers>{children}</Providers>
         </main>
       </body>
