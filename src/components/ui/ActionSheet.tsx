@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 
 interface ActionSheetProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   onClose: () => void;
   children: React.ReactNode;
   className?: string;
@@ -20,7 +20,7 @@ export default function ActionSheet({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-999 flex flex-col justify-end">
+    <div className="fixed inset-0 flex flex-col justify-end z-999">
       {/* Background overlay */}
       <div className="absolute inset-0 bg-black opacity-70" onClick={onClose} />
 
@@ -32,7 +32,7 @@ export default function ActionSheet({
         )}
       >
         {/* Header with close button */}
-        <div className="sticky top-0 flex justify-end w-full z-10 bg-white01">
+        <div className="sticky top-0 z-10 flex justify-end w-full bg-white01">
           <Image
             src="/images/icons/close_icon.svg"
             alt="닫기"
