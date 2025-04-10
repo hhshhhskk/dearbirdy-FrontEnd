@@ -95,6 +95,10 @@ module.exports = {
           "18px",
           { lineHeight: "26px", fontWeight: "700", lineSpacing: "-0.072px" },
         ],
+        Body0_B_18: [
+          "18px",
+          { lineHeight: "24px", fontWeight: "700", lineSpacing: "-0.072px" },
+        ],
 
         Title3_R_20: [
           "20px",

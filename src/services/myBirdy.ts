@@ -18,3 +18,15 @@ export const categoryUpdate = async (userCategory: CategoryState) => {
     throw err;
   }
 };
+
+// 회원 탈퇴
+export const getWithDrawal = async () => {
+  try {
+    const response = await api.get(`/auth/withdrawal`);
+    console.error("탈퇴성공: ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error: ", error);
+    return null;
+  }
+};

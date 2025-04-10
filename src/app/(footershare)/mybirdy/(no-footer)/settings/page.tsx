@@ -1,6 +1,8 @@
 "use client";
 
 import CommonHeader from "@/components/layout/CommonHeader";
+import LeaveComplete from "@/components/settings/LeaveComplete";
+import LeaveModal from "@/components/settings/LeaveModal";
 import LogOutModal from "@/components/settings/LogOutModal";
 import SettingItem from "@/components/settings/settingItem";
 import ToggleSwitch from "@/components/ui/ToggleSwitch";
@@ -11,6 +13,8 @@ const SettingsPage = () => {
   const [isToggled, setIsToggled] = useState(false);
   const [roleName, setRoleName] = useState("");
   const [logOutModal, setLogOutModal] = useState(false);
+  const [leaveModal, setLeaveModal] = useState(false);
+  const [leaveCompleteModal, setLeaveCompleteModal] = useState(false);
 
   useEffect(() => {
     const storedData = sessionStorage.getItem("userInfo");
@@ -21,15 +25,25 @@ const SettingsPage = () => {
   }, []);
 
   const logoutClicked = () => {
-    console.log("click");
-
     setLogOutModal(true);
+  };
+
+  const leaveClicked = () => {
+    setLeaveModal(true);
   };
 
   return (
     <>
       <div className="relative h-full">
         {logOutModal && <LogOutModal onClose={() => setLogOutModal(false)} />}
+        {leaveModal && (
+          <LeaveModal
+            isOpen={leaveModal}
+            setLeaveCompleteModal={setLeaveCompleteModal}
+            onClose={() => setLeaveModal(false)}
+          />
+        )}
+        {leaveCompleteModal && <LeaveComplete />}
         <CommonHeader title="설정" addPaddingX />
 
         {SETTINGS_OPTIONS.map((section: SettingSection) => (
@@ -92,7 +106,9 @@ const SettingsPage = () => {
           <span onClick={logoutClicked} className="cursor-pointer">
             로그아웃
           </span>
-          <span className="cursor-pointer">서비스 탈퇴</span>
+          <span className="cursor-pointer" onClick={leaveClicked}>
+            서비스 탈퇴
+          </span>
         </div>
       </div>
     </>
