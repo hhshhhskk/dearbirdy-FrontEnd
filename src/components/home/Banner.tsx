@@ -46,20 +46,20 @@ export default function Banner({ onClick, className }: BannerProps) {
           <p className="text-Body1_B_16">
             <span></span>
             {bannerContent.title}
-            <span
+            {/* <span
               className={`${
-                bannerContent.type === "UPDATE" ? "block" : "hidden"
+                bannerContent.type === "EVENT" ? "block" : "hidden"
               }`}
             >
               이벤트가 있어요
-            </span>
+            </span> */}
           </p>
         </div>
 
         <div className="w-[126px] flex-shrink">
           <Image
-            src={`/images/birds/banner/${bannerContent.type}_banner.png`}
-            alt="배너 이미지"
+            src={`/images/birds/banner/${bannerContent.type}1_banner.png`}
+            alt={`${bannerContent.type}1`}
             width={126}
             height={92}
             className="object-contain w-full h-auto"
