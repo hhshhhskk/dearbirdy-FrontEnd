@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { IUserData } from "../(footershare)/home/page";
 import { getNotificationList } from "@/services/homeGetApi";
 import SeniorNotificationPage from "@/components/notification/SeniorNotificationPage";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import LoadingWave from "@/components/ui/LoadingWave";
 
 export interface INotification {
   birdName: string;
@@ -55,7 +55,7 @@ const NotificationBox: React.FC = () => {
   }, [router]);
 
   if (!userData) {
-    return <LoadingSpinner />;
+    return <LoadingWave />;
   }
 
   return (

@@ -1,23 +1,9 @@
-// import NotificationSSE from "@/components/home/NotificationSSE";
-// import React from "react";
-
-// // 실시간 알림 테스트용
-// const SendPage: React.FC = () => {
-//   return (
-//     <div>
-//       <NotificationSSE />
-//     </div>
-//   );
-// };
-
-// export default SendPage;
-
 "use client";
 
 import CommonHeader from "@/components/layout/CommonHeader";
 import React from "react";
 
-const TestPage = () => {
+const NoticePage = () => {
   return (
     <div className={"flex flex-col w-full  px-global overflow-y-auto"}>
       <CommonHeader title="공지" />
@@ -98,4 +84,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default NoticePage;

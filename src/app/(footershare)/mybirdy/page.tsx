@@ -4,7 +4,7 @@ import LetterHistory from "@/components/mybirdy/letterHistory";
 import ProfileSection from "@/components/mybirdy/profileSection";
 import { useEffect, useState } from "react";
 import { IUserData } from "../home/page";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import LoadingWave from "@/components/ui/LoadingWave";
 
 export default function MyBirdy() {
   const [userData, setUserData] = useState<IUserData | undefined>(undefined);
@@ -15,7 +15,10 @@ export default function MyBirdy() {
       setUserData(userInfo);
     }
   }, []);
-  if (!userData) <LoadingSpinner />;
+
+  if (!userData) {
+    return <LoadingWave />;
+  }
 
   return (
     <div className="flex flex-col bg-black01 min-h-safe-screen">

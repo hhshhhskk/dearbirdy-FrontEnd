@@ -1,42 +1,68 @@
 import React from "react";
 import Image from "next/image";
 import clsx from "clsx";
+import { bannerContents } from "@/constants/bannerType";
 
 interface BannerProps {
   onClick: () => void;
   className?: string;
 }
 
+// interface BannerProps {
+//   announcementsType: "BUG" | "EVENT" | "UPDATE" | "INSPECTION";
+//   title: string;
+//   content: string;
+//   createdAt: string;
+// }
+
 export default function Banner({ onClick, className }: BannerProps) {
+  // const dummy = {
+  //   announcementsType: "BUG",
+  //   title: "제목",
+  //   content: "본문",
+  //   createdAt: "2025-04-14T20:53:52.967595",
+  // };
+
+  const bannerContent = bannerContents[1];
+  console.log(bannerContent.color);
+
   return (
     <button
       onClick={onClick}
       className={clsx(
-        "relative px-global py-1 cursor-pointer select-none rounded-[12px] bg-white01",
+        "relative px-global py-1 cursor-pointer select-none rounded-[12px] bg-white01 overflow-hidden",
         className
       )}
     >
-      <div className="absolute inset-0 bg-radial-[at_50%_100%] from-[#fff5d4] to-70%" />
+      <div
+        className={`absolute bottom-[-40px] left-0 w-[90%] h-9 rounded-[261px] ${bannerContent.color} blur-[37px]`}
+      />
 
-      <div className="relative z-10 flex justify-between items-center">
+      <div className="relative z-10 flex items-center justify-between">
         <div className="text-left">
           <p className="text-Caption1_R_12 text-[#CAB29A]">
-            편지 보내기 전 읽어봐요
+            디어버디에 새 소식이 찾아왔어요
           </p>
           <p className="text-Body1_B_16">
-            답답한 마음을 어떻게
-            <br />
-            풀어내야 할지 막막할 때는
+            <span></span>
+            {bannerContent.title}
+            <span
+              className={`${
+                bannerContent.type === "UPDATE" ? "block" : "hidden"
+              }`}
+            >
+              이벤트가 있어요
+            </span>
           </p>
         </div>
 
-        <div className="max-w-[126px] flex-shrink">
+        <div className="w-[126px] flex-shrink">
           <Image
-            src="/images/birds/home/home_birds.png"
-            alt="홈 새두마리"
+            src={`/images/birds/banner/${bannerContent.type}_banner.png`}
+            alt="배너 이미지"
             width={126}
             height={92}
-            className="w-full h-auto object-contain"
+            className="object-contain w-full h-auto"
           />
         </div>
       </div>

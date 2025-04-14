@@ -13,6 +13,7 @@ import Image from "next/image";
 import BellIcon from "@/components/Icons/Header_bell_icon";
 import Tutorial from "@/components/home/Tutorial";
 import { useSseStore } from "@/store/useSseStore";
+import LoadingWave from "@/components/ui/LoadingWave";
 
 export interface IUserCategory {
   career: boolean;
@@ -86,7 +87,7 @@ const Home: React.FC = () => {
 
   console.log("알림데이터 data: ", data);
   if (!userData) {
-    return;
+    return <LoadingWave />;
   }
 
   return (
@@ -110,8 +111,8 @@ const Home: React.FC = () => {
       />
 
       <div className="flex flex-col my-1 gap-global">
-        <Banner onClick={() => setIsGuideOpen(true)} />
-
+        {/* <Banner onClick={() => setIsGuideOpen(true)} /> */}
+        <Banner onClick={() => router.push("/notice")} />
         <HomeMainSection userData={userData} userRole={userRole!} />
 
         {isGuideOpen && (

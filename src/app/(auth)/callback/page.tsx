@@ -3,8 +3,9 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAccessToken } from "@/services/authService";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+
 import { useSseStore } from "@/store/useSseStore";
+import LoadingWave from "@/components/ui/LoadingWave";
 
 const KakaoCallback = () => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const KakaoCallback = () => {
     handleKakaoLogin();
   }, [code, router]);
 
-  return <LoadingSpinner />;
+  return <LoadingWave />;
 };
 
 export default KakaoCallback;

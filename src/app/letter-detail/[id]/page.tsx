@@ -2,6 +2,7 @@
 
 import MenteeLetterView from "@/components/letter-storage/MenteeLetterView";
 import MentorLetterView from "@/components/letter-storage/MentorLetterView";
+import LoadingWave from "@/components/ui/LoadingWave";
 import { BirdNameKr } from "@/constants/birdNameMap";
 import { getLetterDetail } from "@/services/letterDetail";
 import { getReactionIdByMessage } from "@/util/letterUtils";
@@ -62,7 +63,7 @@ export default function LetterDetailPage() {
 
   console.log(letter);
 
-  if (!letter) return <div />;
+  if (!letter) return <LoadingWave />;
 
   if (userRole === "MENTOR") {
     return (
