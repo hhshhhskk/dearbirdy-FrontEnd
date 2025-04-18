@@ -65,7 +65,7 @@ export default function LetterDetailPage() {
 
   if (!letter) return <LoadingWave />;
 
-  if (userRole === "MENTOR") {
+  if (userRole === "MENTOR" || userRole === "ADMIN") {
     return (
       <MentorLetterView
         myLetterSeq={letter?.letterStatusSeq}

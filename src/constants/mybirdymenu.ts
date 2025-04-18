@@ -7,9 +7,9 @@ export const myBirdyMenuItems = [
   {
     text: "FAQ",
     icon: "/images/my-birdy/faq.svg",
-    // route: "/mybirdy/faq"
-    route:
-      "https://www.notion.so/Dear-Bridy-FAQ-1bb1b9cea31e809095b8d6c9fcbbbee5",
+    route: "/mybirdy/faq",
+    // route:
+    //   "https://www.notion.so/Dear-Bridy-FAQ-1bb1b9cea31e809095b8d6c9fcbbbee5",
   },
   {
     text: "마이 버디 새롭게 찾기",

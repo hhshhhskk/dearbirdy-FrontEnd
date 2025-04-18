@@ -22,7 +22,7 @@ function BackButton() {
 }
 
 interface LetterViewHeaderProps {
-  userRole: "MENTOR" | "MENTEE";
+  userRole: "MENTOR" | "MENTEE" | "ADMIN";
   otherUserName: string;
   otherUserBirdType: BirdNameEn;
   isSaved: boolean;
@@ -73,7 +73,7 @@ export default function LetterViewHeader({
             alt="더보기 아이콘"
             width={24}
             height={24}
-            className="cursor-pointer mr-2"
+            className="mr-2 cursor-pointer"
             onClick={() => {
               setIsReportModalOpen(true);
               console.log("clicked");

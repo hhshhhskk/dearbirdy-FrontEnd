@@ -83,7 +83,7 @@ const LetterStorage: React.FC = () => {
     <div className="px-global">
       {userData.roleName === "MENTEE" ? (
         <YouthLetterStorage />
-      ) : userData.roleName === "MENTOR" ? (
+      ) : userData.roleName === "MENTOR" || userData.roleName === "ADMIN" ? (
         <SeniorLetterStorage />
       ) : null}
     </div>

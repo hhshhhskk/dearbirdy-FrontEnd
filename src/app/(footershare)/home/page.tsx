@@ -29,7 +29,7 @@ export interface IUserCategory {
 export interface IUserData {
   birdName: string;
   nickname: string;
-  roleName: "MENTOR" | "MENTEE"; // 역할이 정해져 있다면 리터럴 타입으로 제한 가능
+  roleName: "MENTOR" | "MENTEE" | "ADMIN"; // 역할이 정해져 있다면 리터럴 타입으로 제한 가능
   userCategory: IUserCategory;
   quota: number;
   sendLetter: number;
@@ -119,7 +119,11 @@ const Home: React.FC = () => {
           <LetterGuideModal
             isOpen={isGuideOpen}
             onClose={() => setIsGuideOpen(false)}
-            type={userRole === "MENTOR" ? "REPLY" : "OUTGOING"}
+            type={
+              userRole === "MENTOR" || userData.roleName === "ADMIN"
+                ? "REPLY"
+                : "OUTGOING"
+            }
           />
         )}
         {istutorial && <Tutorial tutorialStep={1} />}

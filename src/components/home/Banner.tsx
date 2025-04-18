@@ -24,7 +24,7 @@ export default function Banner({ onClick, className }: BannerProps) {
   // };
 
   const bannerContent = bannerContents[1];
-  console.log(bannerContent.color);
+  // console.log(bannerContent.color);
 
   return (
     <button

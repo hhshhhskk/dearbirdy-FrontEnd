@@ -12,7 +12,7 @@ export default function SettingsMenu() {
       {myBirdyMenuItems.map((item, index) => (
         <div
           key={index}
-          className="flex justify-between cursor-pointer items-center"
+          className="flex items-center justify-between cursor-pointer"
           onClick={() => router.push(item.route)}
         >
           <div className="flex items-center gap-1 ">

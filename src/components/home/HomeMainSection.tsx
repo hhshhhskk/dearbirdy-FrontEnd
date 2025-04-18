@@ -14,7 +14,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false }); // 서버 
 
 interface HomeMainSectionProps {
   userData?: IUserData;
-  userRole: "MENTOR" | "MENTEE";
+  userRole: "MENTOR" | "MENTEE" | "ADMIN";
   serviceLimit?: boolean;
 }
 
@@ -27,10 +27,12 @@ export default function HomeMainSection({
 
   const [animationData, setAnimationData] = useState(null);
 
-  const buttonText = userRole === "MENTOR" ? "편지 보기" : "편지 쓰기";
-  const buttonRoute = userRole === "MENTOR" ? "/letters" : "/send";
+  const buttonText =
+    userRole === "MENTOR" || userRole === "ADMIN" ? "편지 보기" : "편지 쓰기";
+  const buttonRoute =
+    userRole === "MENTOR" || userRole === "ADMIN" ? "/letters" : "/send";
   const titleGreeting =
-    userRole === "MENTOR"
+    userRole === "MENTOR" || userRole === "ADMIN"
       ? "고민을 들어주러 오셨군요!"
       : "오늘은 무슨 고민이 있나요?";
 

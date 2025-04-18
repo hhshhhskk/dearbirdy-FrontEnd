@@ -19,7 +19,7 @@ interface LetterDisplayProps {
   letterDate: string;
   letterSeq: number;
   reactionId: ReactionId | null;
-  userRole: "MENTOR" | "MENTEE";
+  userRole: "MENTOR" | "MENTEE" | "ADMIN";
 }
 
 export default function LetterDisplay({
@@ -117,11 +117,12 @@ export default function LetterDisplay({
           <ReactionDisplay reactionId={reactionId} />
         </div>
       )}
-      {userRole === "MENTOR" && type === "OUTGOING" && reactionId && (
-        <div className="mt-global">
-          <ReactionDisplay reactionId={reactionId} />
-        </div>
-      )}
+      {userRole === "MENTOR" ||
+        (userRole === "ADMIN" && type === "OUTGOING" && reactionId && (
+          <div className="mt-global">
+            <ReactionDisplay reactionId={reactionId} />
+          </div>
+        ))}
     </div>
   );
 }

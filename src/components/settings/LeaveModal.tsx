@@ -19,10 +19,22 @@ export default function LeaveModal({
   const [leave, setLeave] = useState(false);
   const [checkNum, setCheckNum] = useState(0);
   const text = [
-    { id: 1, description: "원하는 활동이 없어요" },
-    { id: 2, description: "고민을 해결하는데 도움이 안돼요" },
-    { id: 3, description: "서비스를 이용하기가 불편해요" },
-    { id: 4, description: "기타" },
+    {
+      id: 1,
+      withdrawalType: "NO_DESIRED_ACTIVITY",
+      description: "원하는 활동이 없어요",
+    },
+    {
+      id: 2,
+      withdrawalType: "NOT_HELPFUL_FOR_PROBLEMS",
+      description: "고민을 해결하는데 도움이 안돼요",
+    },
+    {
+      id: 3,
+      withdrawalType: "INCONVENIENT_SERVICE",
+      description: "서비스를 이용하기가 불편해요",
+    },
+    { id: 4, withdrawalType: "OTHER", description: "기타" },
   ];
 
   return (
@@ -77,7 +89,7 @@ export default function LeaveModal({
               onClick={() => {
                 setLeaveCompleteModal(true);
                 onClose();
-                getWithDrawal();
+                getWithDrawal(text[checkNum - 1].withdrawalType);
               }}
             >
               탈퇴하기

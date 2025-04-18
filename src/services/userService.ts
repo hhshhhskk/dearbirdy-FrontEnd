@@ -14,8 +14,6 @@ export const checkNickname = async (nickname: string): Promise<boolean> => {
       return false;
     }
 
-    // console.log("✅ 액세스 토큰:", accessToken ? "토큰 있음" : "토큰 없음");
-
     const response = await api.get(`user/check-nickname?nickname=${nickname}`, {
       headers: {
         access: accessToken, // 토큰을 헤더에 추가
