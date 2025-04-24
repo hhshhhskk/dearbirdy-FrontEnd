@@ -11,7 +11,13 @@ export default function ReactionDisplay({ reactionId }: ReactionDisplayProps) {
   if (!reaction) return null;
 
   return (
-    <div className="bg-line02 px-global py-[13px] flex items-center rounded-[12px]">
+    <div
+      className="px-global py-[13px] flex items-center rounded-[12px]"
+      style={{
+        border: `1px solid ${reaction.borderColor}`,
+        backgroundColor: reaction.bgColor,
+      }}
+    >
       <Image
         src={reaction?.imageSrc}
         alt={reactionId}

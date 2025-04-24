@@ -67,6 +67,7 @@ const SeniorLetterStorage: React.FC = () => {
   if (isLoading) {
     return <div />;
   }
+  console.log(data);
 
   return (
     <QueryClientProvider client={queryClient}>

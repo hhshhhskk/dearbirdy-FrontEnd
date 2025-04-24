@@ -1,0 +1,19 @@
+.birdy-type-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e5e5ea !important;
+  opacity: 1;
+}
+
+.birdy-type-swiper .swiper-pagination-bullet-active {
+  background-color: #84a667 !important;
+}
+
+.birdy-type-swiper .birdy-type-swiper-pagination {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  margin-top: 24px;
+}

@@ -2,6 +2,17 @@ import { CategoryState } from "@/app/(footershare)/mybirdy/(no-footer)/edit-cate
 import api from "@/lib/api";
 import { AxiosError } from "axios";
 
+// 모든 버디 유형 보기
+export const getAllbirdytype = async () => {
+  try {
+    const response = await api.get(`/birdy/myPage/birdy`);
+    return response.data;
+  } catch (error) {
+    console.error("Error: ", error);
+    return null;
+  }
+};
+
 // 닉네임 수정
 export const nickNameUpdateApi = async (nickname: string) => {
   try {

@@ -1,45 +1,49 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ActionSheet from "../ui/ActionSheet";
 import { getThanks } from "@/services/letterDetail";
 import { Reaction, reactionList } from "@/constants/letter";
 import { BirdNameKr } from "@/constants/birdNameMap";
 import { useRouter } from "next/navigation";
+import EXCITED from "@/animations/thanks/EXCITED.json";
+import dynamic from "next/dynamic";
 
 interface ReactionOptionButtonProps {
   reaction: Reaction;
   letterSeq: number;
   onClose: () => void;
+  setReactionId: React.Dispatch<React.SetStateAction<string>>;
+  setIsThanksModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false }); // 서버 사이드 렌더링 방지
 
 const ReactionOptionButton = ({
   reaction,
   letterSeq,
+  onClose,
+  setReactionId,
+  setIsThanksModalVisible,
 }: ReactionOptionButtonProps) => {
-  const router = useRouter();
   const reactionButtonHandler = () => {
     getThanks(letterSeq, reaction.id);
-    router.push("/letters");
+    setReactionId(reaction.id);
+    onClose();
+    setIsThanksModalVisible(true);
   };
 
   return (
-    <button
-      onClick={reactionButtonHandler}
-      className="px-global py-5 border border-green01 bg-white01 rounded-[20px] w-full flex items-center"
-    >
+    <button className="flex items-center w-full px-global ">
       <Image
         src={reaction.imageSrc}
         alt={reaction.id}
-        width={40}
-        height={40}
-        className="mr-2"
+        width={104}
+        height={140}
+        onClick={reactionButtonHandler}
+        className="cursor-pointer"
       />
-
-      <p className="text-[#292D32] font-Pretendard text-[18px] font-medium leading-[26px] tracking-[-0.072px]">
-        {reaction.message}
-      </p>
     </button>
   );
 };
@@ -47,32 +51,43 @@ const ReactionOptionButton = ({
 interface ReactionSelectionActionSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  fromUserBirdName: BirdNameKr;
+  fromUserBirdName?: BirdNameKr;
   letterSeq: number;
+  setReactionId: React.Dispatch<React.SetStateAction<string>>;
+  setIsThanksModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ReactionSelectionActionSheet = ({
   isOpen,
   onClose,
-  fromUserBirdName,
+  setReactionId,
+  setIsThanksModalVisible,
   letterSeq,
 }: ReactionSelectionActionSheetProps) => {
   return (
     <ActionSheet isOpen={isOpen} onClose={onClose}>
       <div className="mb-6 text-center mt-global">
-        <h2 className="text-Body1_B_18">답장이 도움이 되셨나요?</h2>
-        <p className="mt-2 mb-6 text-Body2_R_14">
-          {fromUserBirdName}가 보낸 답장에 고마움을 보내주세요!
+        <h2 className="text-Title3_B_20">
+          선배버디로부터 받은
+          <br />
+          답장은 어땠나요?
+        </h2>
+        <p className="mt-5 text-Body2_M_14 text-gray06">
+          선배버디에게 전달하고 싶은
+          <br />
+          고마움 카드를 들고 있는 버디를 선택해주세요!
         </p>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex mb-40 mt-9">
         {reactionList.map((reaction) => (
           <ReactionOptionButton
             key={reaction.id}
             reaction={reaction}
             letterSeq={letterSeq}
             onClose={onClose}
+            setReactionId={setReactionId}
+            setIsThanksModalVisible={setIsThanksModalVisible}
           />
         ))}
       </div>
@@ -90,7 +105,19 @@ export default function SendReactionButton({
   letterSeq,
 }: SendReactionButtonProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isThanksModalVisible, setIsThanksModalVisible] = useState(false);
 
+  const [lottieData, setLottieData] = useState(null);
+  const [reactionId, setReactionId] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (reactionId) {
+      import(`@/animations/thanks/${reactionId}.json`).then((data) => {
+        setLottieData(data.default);
+      });
+    }
+  }, [reactionId]);
   return (
     <>
       <div
@@ -122,7 +149,40 @@ export default function SendReactionButton({
         onClose={() => setIsModalVisible(false)}
         fromUserBirdName={fromUserBirdName}
         letterSeq={letterSeq}
+        setReactionId={setReactionId}
+        setIsThanksModalVisible={setIsThanksModalVisible}
       />
+      {isThanksModalVisible && (
+        <div>
+          <div className="fixed inset-0 flex flex-col justify-end z-999">
+            {/* Background overlay */}
+            <div
+              className="absolute inset-0 bg-black opacity-70"
+              onClick={() => {
+                setIsThanksModalVisible(false);
+                router.push("/letters");
+              }}
+            />
+
+            {/* ActionSheet container */}
+
+            <div
+              className="absolute top-0 w-full -translate-x-1/2 translate-y-1/4 left-1/2"
+              onClick={() => setIsThanksModalVisible(false)}
+            >
+              <div className="flex justify-center">
+                <Lottie
+                  animationData={lottieData}
+                  loop={false}
+                  autoplay={true}
+                  className="w-3/4"
+                />
+              </div>
+              <Lottie animationData={EXCITED} loop={true} autoplay={true} />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

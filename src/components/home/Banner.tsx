@@ -59,7 +59,7 @@ export default function Banner({ onClick, className }: BannerProps) {
         <div className="w-[126px] flex-shrink">
           <Image
             src={`/images/birds/banner/${bannerContent.type}1_banner.png`}
-            alt={`${bannerContent.type}1`}
+            alt={`${bannerContent.type}`}
             width={126}
             height={92}
             className="object-contain w-full h-auto"
