@@ -43,6 +43,8 @@ const Home: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  const { connect, isConnected } = useSseStore();
+
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [istutorial, setIsTutorial] = useState(false);
 
@@ -74,6 +76,12 @@ const Home: React.FC = () => {
               setIsTutorial(true);
             }
           }
+
+          // 실시간 알림
+          // 연결이 안되어 있을 때만 connect
+          if (!isConnected) {
+            connect();
+          }
         }
       } catch (err) {
         console.log(err);
@@ -85,7 +93,7 @@ const Home: React.FC = () => {
 
   console.log(userData);
 
-  console.log("알림데이터 data: ", data);
+  // console.log("알림데이터 data: ", data);
   if (!userData) {
     return <LoadingWave />;
   }

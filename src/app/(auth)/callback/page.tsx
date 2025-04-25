@@ -4,14 +4,12 @@ import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAccessToken } from "@/services/authService";
 
-import { useSseStore } from "@/store/useSseStore";
 import LoadingWave from "@/components/ui/LoadingWave";
 
 const KakaoCallback = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
-  const { connect } = useSseStore();
 
   // console.log("✅ 현재 URL에서 code 값 확인:", code);
 
@@ -35,10 +33,6 @@ const KakaoCallback = () => {
           router.push("/signup");
         } else {
           // console.log("✅ 기존 회원 → 홈으로 이동");
-
-          // 실시간 알림
-
-          connect();
 
           router.push("/home");
         }
