@@ -40,14 +40,16 @@ export default function AllBirdyTypesPage() {
   }
 
   return (
-    <div className="flex flex-col items-center px-global birdy-type-swiper">
-      <CommonHeader />
+    <div className="flex flex-col items-center birdy-type-swiper ">
+      <div className="w-full px-global">
+        <CommonHeader />
+      </div>
       <div className="mt-4 text-center text-Title3_B_20 text-black01">
         모든 버디들은 따뜻함을
         <br />
         전해주기 위해 태어났어요
       </div>
-      <div className="w-full max-w-md h-[500px] mt-5">
+      <div className="w-full h-[700px] mt-3">
         <Swiper
           slidesPerView={1}
           modules={[Pagination]}
@@ -55,14 +57,15 @@ export default function AllBirdyTypesPage() {
             el: ".birdy-type-swiper-pagination",
             clickable: true,
           }}
-          autoHeight={true}
-          className=""
+          className="h-[530px]"
         >
           {birds.map((bird, index) => (
             <SwiperSlide key={index}>
               <div
-                className="flex flex-col min-h-[506px]  items-center justify-center py-8 bg-white02
-              rounded-[30px] shadow-[0_0_20px_0_rgba(107,107,107,0.10)] px-4"
+                className="flex flex-col min-h-[506px] items-center justify-center py-8 px-4 rounded-[30px] bg-white02 mt-2 mx-4
+                shadow-[0_0_20px_0_rgba(107,107,107,0.10)]
+
+             "
               >
                 <div className="text-Body2_R_14 text-gray06">
                   만나서 반가워요
