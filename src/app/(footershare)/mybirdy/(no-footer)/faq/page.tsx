@@ -41,7 +41,7 @@ export default function FAQPage() {
           </div>
         ))}
       </div>
-      <div className="bg-white02 border border-line02 rounded-[18px] px-4 py-5 mx-4 mt-16">
+      {/* <div className="bg-white02 border border-line02 rounded-[18px] px-4 py-5 mx-4 mt-16">
         <div className="text-Body1_B_16 text-black01">
           고객센터로 직접 질문 보내기
         </div>
@@ -54,7 +54,7 @@ export default function FAQPage() {
             질문 보내기
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
